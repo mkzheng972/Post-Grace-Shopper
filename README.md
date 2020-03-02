@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 # Boilermaker for Grace Shopper - Leslie Wu, Mark Zheng
+=======
+# Boilermaker for Grace Shopper - Leslie Wu - Yan
+
+>>>>>>> 1c01f366c8d4c7f837e117e12031d50b866c1e34
 
 _Good things come in pairs_
 
