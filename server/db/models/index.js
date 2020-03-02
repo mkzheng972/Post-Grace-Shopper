@@ -1,4 +1,6 @@
 const User = require('./user')
+const Noodle = require('./noodle.js')
+const Order = require('./order')
 
 /**
  * If we had any associations to make, this would be a great place to put them!

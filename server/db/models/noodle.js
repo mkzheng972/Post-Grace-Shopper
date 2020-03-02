@@ -1,0 +1,41 @@
+const Sequelize = require('sequelize')
+const db = require('../db')
+
+const Noodle = db.define('noodle', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  noodleType: {
+    type: Sequelize.STRING
+  },
+  imageUrl: {
+    type: Sequelize.STRING
+  },
+  description: {
+    type: Sequelize.TEXT
+  },
+  price: {
+    type: Sequelize.FLOAT
+  },
+  quantity: {
+    type: Sequelize.STRING
+  },
+  isCustom: {
+    type: Sequelize.BOOLEAN
+  }
+})
+
+module.exports = Noodle
+
+/**
+ * instanceMethods
+ */
+
+/**
+ * classMethods
+ */
+
+/**
+ * hooks
+ */
