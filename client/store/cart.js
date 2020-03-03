@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Axios from 'axios'
 
 const GOT_CART = 'GOT_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
@@ -12,7 +11,7 @@ const gotCart = cart => ({
 export const getCart = id => {
   return async dispatch => {
     try {
-      const {data} = await Axios.get(`/api/orders/${id}`)
+      const {data} = await axios.get(`/api/orders/${id}`)
       if (data) dispatch(gotCart(data))
     } catch (error) {
       console.log('no cart', error)
@@ -27,7 +26,7 @@ export const addToCart = noodle => ({
 
 export default function(state = [], action) {
   switch (action.type) {
-    case GET_CART:
+    case GOT_CART:
       return action.cart
     case ADD_TO_CART:
       return [...state, action.noodle]
