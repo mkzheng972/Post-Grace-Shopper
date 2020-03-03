@@ -7,7 +7,8 @@ import {me} from './store'
 import Cart from './components/Cart'
 import AllNoodles from './components/AllNoodles'
 import SingleNoodle from './components/SingleNoodle'
-
+import UserSettings from './components/UserSettings'
+import UserOrders from './components/UserOrders'
 /**
  * COMPONENT
  */
@@ -30,6 +31,8 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            <Route path="/user/orders" component={UserOrders} />
+            <Route path="/user/settings" component={UserSettings} />
             <Route path="/home" component={UserHome} />
           </Switch>
         )}
