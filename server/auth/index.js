@@ -1,5 +1,7 @@
 const router = require('express').Router()
+const Order = require('../db/models/order')
 const User = require('../db/models/user')
+
 module.exports = router
 
 router.post('/login', async (req, res, next) => {
@@ -21,7 +23,7 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
-    const {email, imageUrl, firstName, lastName} = req.body
+    const {email, imageUrl, firstName, lastName, password} = req.body
     const [instance, wasCreated] = await User.findOrCreate({
       where: {email}
     })
@@ -29,6 +31,7 @@ router.post('/signup', async (req, res, next) => {
       instance.firstName = firstName
       instance.imageUrl = imageUrl
       instance.lastName = lastName
+      instance.password = password
       await instance.save()
     }
     req.login(instance, err => (err ? next(err) : res.json(instance)))
