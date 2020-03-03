@@ -181,12 +181,16 @@ async function seed() {
     }),
     orders.map(order => {
       if (Math.round(Math.random()) === 1) {
-        return order.addNoodle(noodles[Math.round(Math.random() * 6)])
+        return order.addNoodle(noodles[Math.round(Math.random() * 6)], {
+          through: {quantity: Math.random() * 100}
+        })
       }
     }),
     orders.map(order => {
       if (Math.round(Math.random()) === 1) {
-        return order.addNoodle(noodles[Math.round(Math.random() * 6)])
+        return order.addNoodle(noodles[Math.round(Math.random() * 6)], {
+          through: {quantity: Math.random() * 100}
+        })
       }
     }),
     ingredients.map(ingredient => {

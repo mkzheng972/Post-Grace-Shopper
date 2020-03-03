@@ -2,14 +2,15 @@ const User = require('./user')
 const Order = require('./order')
 const Noodle = require('./noodle')
 const Ingredient = require('./ingredient')
+const OrderItem = require('./orderItem')
 
 // one to many
 Order.belongsTo(User)
 User.hasMany(Order)
 
 // many to many
-Order.belongsToMany(Noodle, {through: 'orderItem'})
-Noodle.belongsToMany(Order, {through: 'orderItem'})
+Order.belongsToMany(Noodle, {through: OrderItem})
+Noodle.belongsToMany(Order, {through: OrderItem})
 
 // many to many
 Noodle.belongsToMany(Ingredient, {through: 'noodleIngredient'})
