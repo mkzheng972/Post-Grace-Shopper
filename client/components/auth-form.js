@@ -36,12 +36,6 @@ const AuthForm = props => {
           </label>
           <input name="password" type="password" />
         </div>
-        {/* <div>
-          <label htmlFor="imageUrl">
-            <small>Your Image Link</small>
-          </label>
-          <input name="imageUrl" type="text" />
-        </div> */}
         <div>
           <button type="submit">{displayName}</button>
         </div>
