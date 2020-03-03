@@ -2,24 +2,26 @@ import React from 'react'
 
 export default function CartColumns() {
   return (
-    <div>
-      <div>
-        <p>NOODLES</p>
-      </div>
-      <div>
-        <p>NAME</p>
-      </div>
-      <div>
-        <p>PRICE</p>
-      </div>
-      <div>
-        <p>QUANTITY</p>
-      </div>
-      <div>
-        <p>REMOVE</p>
-      </div>
-      <div>
-        <p>TOTAL</p>
+    <div className="container-fluid text-center">
+      <div className="row">
+        <div className="col-10 mx-auto col-lg-2">
+          <p>NOODLES</p>
+        </div>
+        <div className="col-10 mx-auto col-lg-2">
+          <p>NAME</p>
+        </div>
+        <div className="col-10 mx-auto col-lg-2">
+          <p>PRICE</p>
+        </div>
+        <div className="col-10 mx-auto col-lg-2">
+          <p>QUANTITY</p>
+        </div>
+        <div className="col-10 mx-auto col-lg-2">
+          <p>REMOVE</p>
+        </div>
+        <div className="col-10 mx-auto col-lg-2">
+          <p>TOTAL</p>
+        </div>
       </div>
     </div>
   )

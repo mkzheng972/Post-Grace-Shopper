@@ -1,14 +1,18 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import CartColumns from './CartColumns'
+import CartList from './CartList'
 
 export class Cart extends Component {
   render() {
+    const {cart} = this.props
     return (
       <div>
-        <h3>inCart</h3>
-        {this.props.cart.length ? (
-          <CartColumns />
+        {cart.length ? (
+          <div>
+            <CartColumns />
+            <CartList cart={cart} />
+          </div>
         ) : (
           <h1>Your Cart is Currently empty</h1>
         )}
