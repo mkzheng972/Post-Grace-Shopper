@@ -5,12 +5,11 @@ const Order = db.define('order', {
   instructions: {
     type: Sequelize.TEXT
   },
-  userId: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
   status: {
     type: Sequelize.STRING
+  },
+  date: {
+    type: Sequelize.DATEONLY
   }
 })
 

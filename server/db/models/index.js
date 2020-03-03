@@ -4,8 +4,8 @@ const Noodle = require('./noodle')
 const Ingredient = require('./ingredient')
 
 // one to many
-User.hasMany(Order)
 Order.belongsTo(User)
+User.hasMany(Order)
 
 // many to many
 Order.belongsToMany(Noodle, {through: 'orderItem'})
