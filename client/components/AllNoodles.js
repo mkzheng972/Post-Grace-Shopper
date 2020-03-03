@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 export class AllNoodles extends Component {
   render() {
+    const {noodles} = this.props
     return (
       <div>
         <h2>Testing All Noodles</h2>
@@ -11,7 +12,9 @@ export class AllNoodles extends Component {
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  noodles: state.noodles
+})
 
 const mapDispatchToProps = {}
 
