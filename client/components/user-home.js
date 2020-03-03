@@ -12,7 +12,7 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome {`${firstName} ${lastName}`}</h3>
-      <Link to="/usersettings">
+      <Link to="/user/settings">
         <p>Your Settings</p>
       </Link>
     </div>
