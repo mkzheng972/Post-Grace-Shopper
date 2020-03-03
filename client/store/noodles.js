@@ -15,7 +15,7 @@ const gotNoodles = noodles => ({
 })
 
 const gotSingleNoodle = noodle => ({
-  type: GET_NOODLE,
+  type: GET_SINGLE_NOODLE,
   noodle
 })
 
@@ -94,27 +94,28 @@ export const getSingleNoodle = id => async dispatch => {
 //DID NOT EXPORT DEFAULT(or reg export) REDUCERS YET
 //Talk over with team
 
-// export default function(state = [], action) {
-//   switch (action.type) {
-//     case GET_NOODLES:
-//       return action.noodles
-//     case ADD_NOODLE:
-//       return [...state, action.noodle]
-//     case DELETE_NOODLE:
-//       const filteredNoodle = state.filter(noodle => noodle.id !== action.id)
-//       return filteredNoodle
-//     default:
-//       return state
-//   }
-// }
+export const noodlesReducer = (state = [], action) => {
+  switch (action.type) {
+    case GET_NOODLES:
+      console.log('NoodReducer', action)
+      return action.noodles
+    // case ADD_NOODLE:
+    //   return [...state, action.noodle]
+    // case DELETE_NOODLE:
+    //   const filteredNoodle = state.filter(noodle => noodle.id !== action.id)
+    // return filteredNoodle
+    default:
+      return state
+  }
+}
 
-// export default function(state = {}, action) {
-//   switch (action.type) {
-//     case GET_SINGLE_NOODLE:
-//       return action.noodle
-//     case UPDATE_NOODLE:
-//       return action.noodle
-//     default:
-//       return state
-//   }
-// }
+export const noodleReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_SINGLE_NOODLE:
+      return action.noodle
+    // case UPDATE_NOODLE:
+    //   return action.noodle
+    default:
+      return state
+  }
+}
