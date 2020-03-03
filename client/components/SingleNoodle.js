@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getSingleNoodle} from '../store/noodles'
+import {addToCart} from '../store/cart'
 
 export class SingleNoodle extends Component {
   componentDidMount() {
@@ -16,7 +17,13 @@ export class SingleNoodle extends Component {
         <img src={imageUrl} />
         <h3>{description}</h3>
         <h3>{`$${price}`}</h3>
-        <button className="addNoodle" />
+        <button
+          type="button"
+          className="addNoodle"
+          onClick={() => this.props.addToCart(this.props.noodle)}
+        >
+          Add Noodle
+        </button>
       </div>
     )
   }
@@ -27,7 +34,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getSingleNoodle: id => dispatch(getSingleNoodle(id))
+  getSingleNoodle: id => dispatch(getSingleNoodle(id)),
+  addToCart: noodle => dispatch(addToCart(noodle))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleNoodle)

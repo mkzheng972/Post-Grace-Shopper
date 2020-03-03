@@ -4,7 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
-
+import Cart from './components/Cart'
 import AllNoodles from './components/AllNoodles'
 import SingleNoodle from './components/SingleNoodle'
 
@@ -26,11 +26,10 @@ class Routes extends Component {
         <Route path="/noodles/:noodleId" component={SingleNoodle} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/cart" component={Cart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/menu" component={AllNoodles} />
-            <Route path="/noodles/:noodleId" component={SingleNoodle} />
             <Route path="/home" component={UserHome} />
           </Switch>
         )}

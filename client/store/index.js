@@ -4,8 +4,10 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import {noodlesReducer, noodleReducer} from './noodles'
+import cart from './cart'
 
 const reducer = combineReducers({
+  cart,
   user,
   noodles: noodlesReducer,
   noodle: noodleReducer
