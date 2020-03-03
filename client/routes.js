@@ -30,8 +30,6 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/menu" component={AllNoodles} />
-            <Route path="/noodles/:noodleId" component={SingleNoodle} />
             <Route path="/home" component={UserHome} />
           </Switch>
         )}

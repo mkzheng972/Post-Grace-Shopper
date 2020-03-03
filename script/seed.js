@@ -35,111 +35,6 @@ const dummyUsers = [
     email: 'vdufaire4@china.com.cn',
     imageUrl: 'http://dummyimage.com/177x221.png/ff4444/ffffff',
     password: '6eCxcZatAZu'
-  },
-  {
-    firstName: 'Karil',
-    lastName: 'Jakubowski',
-    email: 'kjakubowski5@soundcloud.com',
-    imageUrl: 'http://dummyimage.com/239x178.jpg/dddddd/000000',
-    password: 'AQI9GtF'
-  },
-  {
-    firstName: 'Harmony',
-    lastName: 'Hollyer',
-    email: 'hhollyer6@reference.com',
-    imageUrl: 'http://dummyimage.com/205x195.bmp/dddddd/000000',
-    password: '5AwnTq'
-  },
-  {
-    firstName: 'Jeannie',
-    lastName: 'McGaraghan',
-    email: 'jmcgaraghan7@livejournal.com',
-    imageUrl: 'http://dummyimage.com/130x230.bmp/5fa2dd/ffffff',
-    password: 'rEPSGDE0i88'
-  },
-  {
-    firstName: 'Pooh',
-    lastName: 'Zemler',
-    email: 'pzemler8@qq.com',
-    imageUrl: 'http://dummyimage.com/208x170.bmp/dddddd/000000',
-    password: 'MJYfaf'
-  },
-  {
-    firstName: 'Alec',
-    lastName: 'Bartalot',
-    email: 'abartalot9@examiner.com',
-    imageUrl: 'http://dummyimage.com/240x111.bmp/dddddd/000000',
-    password: 's5fB8el7oa'
-  },
-  {
-    firstName: 'Cece',
-    lastName: 'Haylands',
-    email: 'chaylandsa@state.gov',
-    imageUrl: 'http://dummyimage.com/237x191.bmp/cc0000/ffffff',
-    password: 'AgSybaoj60X'
-  },
-  {
-    firstName: 'Forrester',
-    lastName: 'Westley',
-    email: 'fwestleyb@fastcompany.com',
-    imageUrl: 'http://dummyimage.com/175x142.jpg/cc0000/ffffff',
-    password: '34wwb1'
-  },
-  {
-    firstName: 'Mack',
-    lastName: 'Dallemore',
-    email: 'mdallemorec@skyrock.com',
-    imageUrl: 'http://dummyimage.com/226x211.bmp/ff4444/ffffff',
-    password: 'Q7MLWLeWvM1m'
-  },
-  {
-    firstName: 'Milicent',
-    lastName: 'Priestland',
-    email: 'mpriestlandd@360.cn',
-    imageUrl: 'http://dummyimage.com/119x220.jpg/ff4444/ffffff',
-    password: 'pw4qd8O7'
-  },
-  {
-    firstName: 'Linn',
-    lastName: 'Frowde',
-    email: 'lfrowdee@ezinearticles.com',
-    imageUrl: 'http://dummyimage.com/235x153.png/cc0000/ffffff',
-    password: 'Q5oVYoh1geT'
-  },
-  {
-    firstName: 'Natka',
-    lastName: 'Dudliston',
-    email: 'ndudlistonf@oracle.com',
-    imageUrl: 'http://dummyimage.com/204x156.png/5fa2dd/ffffff',
-    password: '0yAkBQqqABkT'
-  },
-  {
-    firstName: 'Elle',
-    lastName: 'Chippindale',
-    email: 'echippindaleg@webmd.com',
-    imageUrl: 'http://dummyimage.com/178x241.jpg/5fa2dd/ffffff',
-    password: 'rxrEcwjYtnx9'
-  },
-  {
-    firstName: 'Briana',
-    lastName: 'Brolechan',
-    email: 'bbrolechanh@infoseek.co.jp',
-    imageUrl: 'http://dummyimage.com/112x244.bmp/dddddd/000000',
-    password: 'XOUTDb7pe'
-  },
-  {
-    firstName: 'Chester',
-    lastName: 'Rougier',
-    email: 'crougieri@webmd.com',
-    imageUrl: 'http://dummyimage.com/207x248.jpg/ff4444/ffffff',
-    password: 'lPKUhZ2pk'
-  },
-  {
-    firstName: 'Cynthy',
-    lastName: 'Jonah',
-    email: 'cjonahj@tuttocitta.it',
-    imageUrl: 'http://dummyimage.com/127x104.bmp/dddddd/000000',
-    password: '4RECgOgtf6'
   }
 ]
 
@@ -213,115 +108,7 @@ const dummyOrders = [
     instructions: 'Robust tangible matrix'
   },
   {status: 'completed', date: '2019-03-24', instructions: null},
-  {status: 'pending', date: '2019-08-11', instructions: null},
-  {
-    status: 'pending',
-    date: '2019-08-04',
-    instructions: 'Polarised regional hub'
-  },
-  {status: 'completed', date: '2019-10-12', instructions: null},
-  {
-    status: 'pending',
-    date: '2019-07-23',
-    instructions: 'Proactive impactful methodology'
-  },
-  {
-    status: 'pending',
-    date: '2019-09-01',
-    instructions: 'Re-engineered multimedia capacity'
-  },
-  {status: 'completed', date: '2020-02-19', instructions: null},
-  {
-    status: 'pending',
-    date: '2019-05-24',
-    instructions: 'Mandatory asymmetric utilisation'
-  },
-  {
-    status: 'pending',
-    date: '2019-12-05',
-    instructions: 'Inverse optimal extranet'
-  },
-  {status: 'completed', date: '2019-06-30', instructions: null},
-  {status: 'pending', date: '2019-07-03', instructions: null},
-  {status: 'completed', date: '2019-03-11', instructions: null},
-  {status: 'pending', date: '2019-08-30', instructions: null},
-  {status: 'pending', date: '2019-04-20', instructions: null},
-  {status: 'pending', date: '2019-06-09', instructions: null},
-  {status: 'completed', date: '2019-10-31', instructions: null},
-  {status: 'pending', date: '2019-08-18', instructions: null},
-  {status: 'pending', date: '2020-02-07', instructions: null},
-  {status: 'completed', date: '2020-01-26', instructions: null},
-  {
-    status: 'completed',
-    date: '2019-07-23',
-    instructions: 'Integrated intermediate emulation'
-  },
-  {status: 'completed', date: '2019-05-05', instructions: null},
-  {status: 'pending', date: '2019-06-25', instructions: null},
-  {status: 'pending', date: '2019-05-21', instructions: null},
-  {status: 'completed', date: '2019-12-16', instructions: null},
-  {
-    status: 'completed',
-    date: '2019-05-04',
-    instructions: 'Integrated full-range toolset'
-  },
-  {status: 'completed', date: '2019-08-09', instructions: null},
-  {
-    status: 'pending',
-    date: '2020-01-29',
-    instructions: 'Implemented executive toolset'
-  },
-  {
-    status: 'completed',
-    date: '2019-10-27',
-    instructions: 'Adaptive uniform projection'
-  },
-  {status: 'completed', date: '2019-04-17', instructions: null},
-  {
-    status: 'completed',
-    date: '2020-01-12',
-    instructions: 'Multi-layered motivating secured line'
-  },
-  {status: 'pending', date: '2019-08-07', instructions: null},
-  {status: 'completed', date: '2019-04-20', instructions: null},
-  {status: 'pending', date: '2019-11-08', instructions: null},
-  {status: 'pending', date: '2019-04-16', instructions: null},
-  {status: 'completed', date: '2019-05-05', instructions: null},
-  {
-    status: 'pending',
-    date: '2019-12-24',
-    instructions: 'Versatile eco-centric throughput'
-  },
-  {status: 'completed', date: '2019-12-29', instructions: null},
-  {
-    status: 'pending',
-    date: '2019-04-23',
-    instructions: 'Mandatory human-resource collaboration'
-  },
-  {status: 'pending', date: '2020-01-13', instructions: null},
-  {
-    status: 'pending',
-    date: '2019-07-04',
-    instructions: 'Enterprise-wide stable adapter'
-  },
-  {status: 'pending', date: '2019-04-22', instructions: null},
-  {status: 'pending', date: '2019-07-22', instructions: null},
-  {
-    status: 'completed',
-    date: '2019-06-02',
-    instructions: 'Function-based directional initiative'
-  },
-  {
-    status: 'completed',
-    date: '2020-01-30',
-    instructions: 'Re-contextualized contextually-based frame'
-  },
-  {status: 'completed', date: '2019-06-16', instructions: null},
-  {
-    status: 'pending',
-    date: '2020-02-05',
-    instructions: 'Digitized context-sensitive database'
-  }
+  {status: 'pending', date: '2019-08-11', instructions: null}
 ]
 
 const dummyIngredients = [
@@ -354,76 +141,6 @@ const dummyIngredients = [
     name: 'Ice Cream Bar - Oreo Sandwich',
     isVeggie: false,
     description: 'Decentralized clear-thinking local area network'
-  },
-  {
-    name: 'Pastry - Raisin Muffin - Mini',
-    isVeggie: true,
-    description: 'Polarised interactive matrix'
-  },
-  {
-    name: 'Wine - Vouvray Cuvee Domaine',
-    isVeggie: false,
-    description: 'Reactive leading edge function'
-  },
-  {
-    name: 'Gooseberry',
-    isVeggie: true,
-    description: 'Enterprise-wide client-driven infrastructure'
-  },
-  {
-    name: 'Snapple Lemon Tea',
-    isVeggie: true,
-    description: 'Front-line asynchronous leverage'
-  },
-  {
-    name: 'Marjoram - Fresh',
-    isVeggie: false,
-    description: 'Distributed global ability'
-  },
-  {
-    name: 'French Pastries',
-    isVeggie: true,
-    description: 'Universal intangible open architecture'
-  },
-  {
-    name: 'Scallops 60/80 Iqf',
-    isVeggie: false,
-    description: 'Self-enabling static collaboration'
-  },
-  {
-    name: 'Sesame Seed',
-    isVeggie: true,
-    description: 'Future-proofed multi-tasking flexibility'
-  },
-  {
-    name: 'Pepper - Scotch Bonnet',
-    isVeggie: true,
-    description: 'Up-sized value-added extranet'
-  },
-  {
-    name: 'Shrimp - Black Tiger 8 - 12',
-    isVeggie: true,
-    description: 'Profound empowering concept'
-  },
-  {
-    name: 'Lettuce - California Mix',
-    isVeggie: true,
-    description: 'Expanded fault-tolerant approach'
-  },
-  {
-    name: 'Strawberries',
-    isVeggie: true,
-    description: 'Automated incremental knowledge base'
-  },
-  {
-    name: 'Soupcontfoam16oz 116con',
-    isVeggie: true,
-    description: 'Grass-roots neutral methodology'
-  },
-  {
-    name: 'Petit Baguette',
-    isVeggie: true,
-    description: 'Organized upward-trending service-desk'
   }
 ]
 
@@ -460,7 +177,7 @@ async function seed() {
 
   await Promise.all(
     orders.map(order => {
-      return order.setUser(users[Math.round(Math.random() * 20)])
+      return order.setUser(users[Math.round(Math.random() * 5)])
     }),
     orders.map(order => {
       if (Math.round(Math.random()) === 1) {
@@ -474,12 +191,12 @@ async function seed() {
     }),
     ingredients.map(ingredient => {
       if (Math.round(Math.random()) === 1) {
-        return ingredient.addNoodle(noodles[Math.round(Math.random() * 6)])
+        return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
       }
     }),
     ingredients.map(ingredient => {
       if (Math.round(Math.random()) === 1) {
-        return ingredient.addNoodle(noodles[Math.round(Math.random() * 6)])
+        return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
       }
     })
   )
