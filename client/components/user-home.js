@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
@@ -11,10 +10,8 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>Welcome {`${firstName} ${lastName}`}</h3>
-      <Link to="/usersettings">
-        <p>Your Settings</p>
-      </Link>
+      <h2>Welcome back {`${firstName} ${lastName}`}</h2>
+      <p>Your email: {email}</p>
     </div>
   )
 }
