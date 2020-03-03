@@ -11,7 +11,9 @@ export class AllNoodles extends Component {
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  noodles: state.noodles
+})
 
 const mapDispatchToProps = {}
 
