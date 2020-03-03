@@ -222,11 +222,11 @@ async function seed() {
     status: 'pending'
   })
 
-  const noodles = await Promise.all([
+  const noodles = await Promise.all(
     dummyNoodles.map(noodle => {
       return Noodle.create(noodle)
     })
-  ])
+  )
 
   const ingredient = await Ingredient.create({
     name: 'beef',
@@ -235,7 +235,8 @@ async function seed() {
   })
 
   // THERE IS AN ERROR
-  // await orders.addNoodle(dummyNoodles[0])
+
+  await orders.addNoodle(noodles[0])
   // await dummyNoodles[0].addIngredient(ingredient)
 
   console.log(`seeded ${users.length} users`)
