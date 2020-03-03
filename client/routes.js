@@ -6,6 +6,8 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import Cart from './components/Cart'
 import AllNoodles from './components/AllNoodles'
+import SingleNoodle from './components/SingleNoodle'
+
 /**
  * COMPONENT
  */
@@ -21,6 +23,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/menu" component={AllNoodles} />
+        <Route path="/noodles/:noodleId" component={SingleNoodle} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
@@ -28,6 +31,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/menu" component={AllNoodles} />
+            <Route path="/noodles/:noodleId" component={SingleNoodle} />
             <Route path="/home" component={UserHome} />
           </Switch>
         )}
