@@ -143,6 +143,63 @@ const dummyUsers = [
   }
 ]
 
+const dummyNoodles = [
+  {
+    name: 'Spicy Beef Noodle Soup',
+    noodleType: 'hand-pulled',
+    imageUrl: '',
+    description: 'Beef noodle soup with spice and veggies',
+    price: 10.99,
+    quantity: 1,
+    isCustom: false
+  },
+  {
+    name: 'Spicy Pork Noodle Soup',
+    noodleType: 'hand-pulled',
+    imageUrl: '',
+    description: 'Pork with noodles and soup',
+    price: 10.99,
+    quantity: 1,
+    isCustom: false
+  },
+  {
+    name: 'Spicy Lamb Noodle Soup',
+    noodleType: 'hand-pulled',
+    imageUrl: '',
+    description: 'Lamb with noodles and soup',
+    price: 10.99,
+    quantity: 1,
+    isCustom: false
+  },
+  {
+    name: 'Spicy Chicken Noodle Soup',
+    noodleType: 'hand-pulled',
+    imageUrl: '',
+    description: 'Chicken with noodle soup and spice',
+    price: 10.99,
+    quantity: 1,
+    isCustom: false
+  },
+  {
+    name: 'Spicy Vegetable Noodle Soup',
+    noodleType: 'hand-pulled',
+    imageUrl: '',
+    description: 'Vegetables with a mix of spicy noodle and soup',
+    price: 10.99,
+    quantity: 1,
+    isCustom: false
+  },
+  {
+    name: 'Spicy Seafood Noodle Soup',
+    noodleType: 'hand-pulled',
+    imageUrl: '',
+    description: 'Seafood mix of shrimp and others with noodle and soup',
+    price: 10.99,
+    quantity: 1,
+    isCustom: false
+  }
+]
+
 const db = require('../server/db')
 const {User, Order, Noodle, Ingredient} = require('../server/db/models')
 
@@ -153,15 +210,11 @@ async function seed() {
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'}),
+    User.create({email: 'testemail@email.com', password: '1', googleId: 1}),
     dummyUsers.map(user => {
       return User.create(user)
     })
   ])
-
-  const user = await User.create({
-    email: 'testemail@email.com',
-    googleId: 1
-  })
 
   const orders = await Order.create({
     instructions: 'No cilantro',
@@ -169,23 +222,21 @@ async function seed() {
     status: 'pending'
   })
 
-  const noodles = await Noodle.create({
-    name: 'Flat Noodles',
-    noodleType: 'flat',
-    description: 'Spicy beef flat noods',
-    price: 10.99,
-    quantity: 1,
-    isCustom: false
-  })
+  const noodles = await Promise.all([
+    dummyNoodles.map(noodle => {
+      return Noodle.create(noodle)
+    })
+  ])
 
   const ingredient = await Ingredient.create({
     name: 'beef',
-    description: 'this is beed from nyc',
+    description: 'this is beef from nyc',
     isVeggie: false
   })
 
-  await orders.addNoodle(noodles)
-  await noodles.addIngredient(ingredient)
+  // THERE IS AN ERROR
+  // await orders.addNoodle(dummyNoodles[0])
+  // await dummyNoodles[0].addIngredient(ingredient)
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
