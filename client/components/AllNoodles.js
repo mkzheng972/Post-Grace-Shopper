@@ -2,10 +2,16 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getAllNoodles} from '../store/noodles'
 import {Link} from 'react-router-dom'
+import {me} from '../store/user'
 
 export class AllNoodles extends Component {
+  componentDidMount() {
+    this.props.getAllNoodles()
+    this.props.me()
+  }
   render() {
     const {noodles} = this.props
+    console.log(this)
     return (
       <div>
         {noodles.map(noodle => (
@@ -28,7 +34,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getAllNoodles: dispatch(getAllNoodles())
+  getAllNoodles: () => dispatch(getAllNoodles()),
+  me: () => dispatch(me())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllNoodles)
