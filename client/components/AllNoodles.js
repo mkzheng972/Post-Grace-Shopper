@@ -1,22 +1,19 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getAllNoodles} from '../store/noodles'
+import {Link} from 'react-router-dom'
 
 export class AllNoodles extends Component {
-  // componentDidMount() {
-
-  // }
-
   render() {
     const {noodles} = this.props
-    console.log(noodles)
     return (
       <div>
         {noodles.map(noodle => (
           <div key={noodle.id}>
-            <h4>{noodle.name}</h4>
+            <Link to={`/noodles/${noodle.id}`}>
+              <h4>{noodle.name}</h4>
+            </Link>
             <img src={noodle.imageUrl} />
-            <p>image Placeholder</p>
             <p>{noodle.description}</p>
             <p>{noodle.price}</p>
           </div>
