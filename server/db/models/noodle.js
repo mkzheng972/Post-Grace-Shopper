@@ -19,10 +19,12 @@ const Noodle = db.define('noodle', {
     type: Sequelize.FLOAT
   },
   quantity: {
-    type: Sequelize.STRING
+    type: Sequelize.INTEGER,
+    defaultValue: 1
   },
   isCustom: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
