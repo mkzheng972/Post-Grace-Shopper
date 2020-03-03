@@ -13,16 +13,18 @@ notifications:
 install:
   - npm ci # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "spicyNoods-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 script:
-  - npm test             # test the code
+  - npm test # test the code
   - npm run build-client # make the bundle
-
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: spicynood
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: GFOz30Ik6vzXQWkuX9k7VVjIAsCOrY2uTOm70JWcpwVC6V2X3LBAJmlCdnhGd8agh9KZQ2uwvSp9f4Sc0J2Ih5BaLuamg9JFDurDqruSwdqrjT/TMLj9INy6pQkqt41W3KEmC0++oSVwmOPcoKD26LOSKS7b1DROxgGAv0GutJfYk6NQcioR7LbzBHl+vnx1yLfGCuIT2i/FPY5yURgWmvpmDxNzFMEcGFI1jcqUTMqe9souhYKWb06yLo0zt+47uCCMH60mg9DJENewz6fAo91KriuJ6o0/cIr1IZsrc7AIoiAZuABOdiR+nvmSzJNA7ZTJqPBCD+5uI/4Bxgfmjks7O2PYNhpUyHVtfLC/YuHUsRUo/97dbjkSpFQk2ARCr5USTklFppDq/JlCHL1rPexzGKbRrOlo9DWpD/saYttW6cNc0l0cVAZGGNuryK0mr/ViTxrtEOGsaz1WBCHlDEyCwqhTbZAjPikPMH9vUm2CJphS9i4Wh0cSqJe/gRHblVfLv29Qo9wiS8liT9G4qzvzcMXlgs+51w+a2MRwOI0UqnzZtCKp8OXcYTbUKfvc/7pNVRNa6HMYASwphJIL2FqW/wvUYioevCpkF3oKSvaO15IjqNN1a7D0cIqdFX7Aqo7KwEfZ+DBJorj153/wnUgU5QglPpx3wlBJCJWcJfE=
