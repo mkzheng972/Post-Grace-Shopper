@@ -147,7 +147,7 @@ const dummyNoodles = [
   {
     name: 'Spicy Beef Noodle Soup',
     noodleType: 'hand-pulled',
-    imageUrl: '',
+    imageUrl: '../public/spicyBeefNoodleSoup.jpg',
     description: 'Beef noodle soup with spice and veggies',
     price: 10.99,
     quantity: 1,
@@ -156,7 +156,7 @@ const dummyNoodles = [
   {
     name: 'Spicy Pork Noodle Soup',
     noodleType: 'hand-pulled',
-    imageUrl: '',
+    imageUrl: '../public/spicyPorkNoodleSoup.jpg',
     description: 'Pork with noodles and soup',
     price: 10.99,
     quantity: 1,
@@ -165,7 +165,7 @@ const dummyNoodles = [
   {
     name: 'Spicy Lamb Noodle Soup',
     noodleType: 'hand-pulled',
-    imageUrl: '',
+    imageUrl: '../public/spicyLambNoodleSoup.jpg',
     description: 'Lamb with noodles and soup',
     price: 10.99,
     quantity: 1,
@@ -174,7 +174,9 @@ const dummyNoodles = [
   {
     name: 'Spicy Chicken Noodle Soup',
     noodleType: 'hand-pulled',
-    imageUrl: '',
+    // imageUrl: '../public/spicyChickenNoodleSoup.jpeg',
+    imageUrl:
+      'https://res.cloudinary.com/hksqkdlah/image/upload/ar_1:1,c_fill,dpr_2.0,f_auto,fl_lossy.progressive.strip_profile,g_faces:auto,q_auto:low,w_344/SFS_CurriedChickenNoodleSoup-42_bqbizi',
     description: 'Chicken with noodle soup and spice',
     price: 10.99,
     quantity: 1,
@@ -183,7 +185,7 @@ const dummyNoodles = [
   {
     name: 'Spicy Vegetable Noodle Soup',
     noodleType: 'hand-pulled',
-    imageUrl: '',
+    imageUrl: '../public/spicyVegetableNoodleSoup.jpg',
     description: 'Vegetables with a mix of spicy noodle and soup',
     price: 10.99,
     quantity: 1,
@@ -192,7 +194,8 @@ const dummyNoodles = [
   {
     name: 'Spicy Seafood Noodle Soup',
     noodleType: 'hand-pulled',
-    imageUrl: '',
+    imageUrl:
+      'https://previews.123rf.com/images/bbtreesubmission/bbtreesubmission1902/bbtreesubmission190209644/117880688-korean-chinese-cuisine-jjambbong-spicy-seafood-noodle-soup-with-octopus-crab-and-shrimp.jpg',
     description: 'Seafood mix of shrimp and others with noodle and soup',
     price: 10.99,
     quantity: 1,
