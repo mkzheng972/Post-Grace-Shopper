@@ -2,11 +2,11 @@
 
 const dummyUsers = [
   {
-    firstName: 'Deanna',
-    lastName: 'Aynold',
-    email: 'daynold0@cisco.com',
+    firstName: 'Cody',
+    lastName: 'Cafe',
+    email: 'cody@email.com',
     imageUrl: 'http://dummyimage.com/119x183.bmp/cc0000/ffffff',
-    password: 'CDQ2CbQ6KRT'
+    password: '123'
   },
   {
     firstName: 'Chip',
@@ -200,6 +200,230 @@ const dummyNoodles = [
   }
 ]
 
+const dummyOrders = [
+  {status: 'completed', date: '2019-09-16', instructions: null},
+  {status: 'pending', date: '2019-07-09', instructions: null},
+  {status: 'pending', date: '2019-10-07', instructions: null},
+  {
+    status: 'pending',
+    date: '2019-08-25',
+    instructions: 'Robust tangible matrix'
+  },
+  {status: 'completed', date: '2019-03-24', instructions: null},
+  {status: 'pending', date: '2019-08-11', instructions: null},
+  {
+    status: 'pending',
+    date: '2019-08-04',
+    instructions: 'Polarised regional hub'
+  },
+  {status: 'completed', date: '2019-10-12', instructions: null},
+  {
+    status: 'pending',
+    date: '2019-07-23',
+    instructions: 'Proactive impactful methodology'
+  },
+  {
+    status: 'pending',
+    date: '2019-09-01',
+    instructions: 'Re-engineered multimedia capacity'
+  },
+  {status: 'completed', date: '2020-02-19', instructions: null},
+  {
+    status: 'pending',
+    date: '2019-05-24',
+    instructions: 'Mandatory asymmetric utilisation'
+  },
+  {
+    status: 'pending',
+    date: '2019-12-05',
+    instructions: 'Inverse optimal extranet'
+  },
+  {status: 'completed', date: '2019-06-30', instructions: null},
+  {status: 'pending', date: '2019-07-03', instructions: null},
+  {status: 'completed', date: '2019-03-11', instructions: null},
+  {status: 'pending', date: '2019-08-30', instructions: null},
+  {status: 'pending', date: '2019-04-20', instructions: null},
+  {status: 'pending', date: '2019-06-09', instructions: null},
+  {status: 'completed', date: '2019-10-31', instructions: null},
+  {status: 'pending', date: '2019-08-18', instructions: null},
+  {status: 'pending', date: '2020-02-07', instructions: null},
+  {status: 'completed', date: '2020-01-26', instructions: null},
+  {
+    status: 'completed',
+    date: '2019-07-23',
+    instructions: 'Integrated intermediate emulation'
+  },
+  {status: 'completed', date: '2019-05-05', instructions: null},
+  {status: 'pending', date: '2019-06-25', instructions: null},
+  {status: 'pending', date: '2019-05-21', instructions: null},
+  {status: 'completed', date: '2019-12-16', instructions: null},
+  {
+    status: 'completed',
+    date: '2019-05-04',
+    instructions: 'Integrated full-range toolset'
+  },
+  {status: 'completed', date: '2019-08-09', instructions: null},
+  {
+    status: 'pending',
+    date: '2020-01-29',
+    instructions: 'Implemented executive toolset'
+  },
+  {
+    status: 'completed',
+    date: '2019-10-27',
+    instructions: 'Adaptive uniform projection'
+  },
+  {status: 'completed', date: '2019-04-17', instructions: null},
+  {
+    status: 'completed',
+    date: '2020-01-12',
+    instructions: 'Multi-layered motivating secured line'
+  },
+  {status: 'pending', date: '2019-08-07', instructions: null},
+  {status: 'completed', date: '2019-04-20', instructions: null},
+  {status: 'pending', date: '2019-11-08', instructions: null},
+  {status: 'pending', date: '2019-04-16', instructions: null},
+  {status: 'completed', date: '2019-05-05', instructions: null},
+  {
+    status: 'pending',
+    date: '2019-12-24',
+    instructions: 'Versatile eco-centric throughput'
+  },
+  {status: 'completed', date: '2019-12-29', instructions: null},
+  {
+    status: 'pending',
+    date: '2019-04-23',
+    instructions: 'Mandatory human-resource collaboration'
+  },
+  {status: 'pending', date: '2020-01-13', instructions: null},
+  {
+    status: 'pending',
+    date: '2019-07-04',
+    instructions: 'Enterprise-wide stable adapter'
+  },
+  {status: 'pending', date: '2019-04-22', instructions: null},
+  {status: 'pending', date: '2019-07-22', instructions: null},
+  {
+    status: 'completed',
+    date: '2019-06-02',
+    instructions: 'Function-based directional initiative'
+  },
+  {
+    status: 'completed',
+    date: '2020-01-30',
+    instructions: 'Re-contextualized contextually-based frame'
+  },
+  {status: 'completed', date: '2019-06-16', instructions: null},
+  {
+    status: 'pending',
+    date: '2020-02-05',
+    instructions: 'Digitized context-sensitive database'
+  }
+]
+
+const dummyIngredients = [
+  {
+    name: 'Cookies - Amaretto',
+    isVeggie: true,
+    description: 'Self-enabling non-volatile methodology'
+  },
+  {
+    name: 'Mustard - Individual Pkg',
+    isVeggie: false,
+    description: 'Up-sized logistical attitude'
+  },
+  {
+    name: 'Pastry - Apple Large',
+    isVeggie: true,
+    description: 'Polarised zero administration info-mediaries'
+  },
+  {
+    name: 'Cake - Box Window 10x10x2.5',
+    isVeggie: false,
+    description: 'Sharable zero defect definition'
+  },
+  {
+    name: 'Cafe Royale',
+    isVeggie: false,
+    description: 'Profound bottom-line matrices'
+  },
+  {
+    name: 'Ice Cream Bar - Oreo Sandwich',
+    isVeggie: false,
+    description: 'Decentralized clear-thinking local area network'
+  },
+  {
+    name: 'Pastry - Raisin Muffin - Mini',
+    isVeggie: true,
+    description: 'Polarised interactive matrix'
+  },
+  {
+    name: 'Wine - Vouvray Cuvee Domaine',
+    isVeggie: false,
+    description: 'Reactive leading edge function'
+  },
+  {
+    name: 'Gooseberry',
+    isVeggie: true,
+    description: 'Enterprise-wide client-driven infrastructure'
+  },
+  {
+    name: 'Snapple Lemon Tea',
+    isVeggie: true,
+    description: 'Front-line asynchronous leverage'
+  },
+  {
+    name: 'Marjoram - Fresh',
+    isVeggie: false,
+    description: 'Distributed global ability'
+  },
+  {
+    name: 'French Pastries',
+    isVeggie: true,
+    description: 'Universal intangible open architecture'
+  },
+  {
+    name: 'Scallops 60/80 Iqf',
+    isVeggie: false,
+    description: 'Self-enabling static collaboration'
+  },
+  {
+    name: 'Sesame Seed',
+    isVeggie: true,
+    description: 'Future-proofed multi-tasking flexibility'
+  },
+  {
+    name: 'Pepper - Scotch Bonnet',
+    isVeggie: true,
+    description: 'Up-sized value-added extranet'
+  },
+  {
+    name: 'Shrimp - Black Tiger 8 - 12',
+    isVeggie: true,
+    description: 'Profound empowering concept'
+  },
+  {
+    name: 'Lettuce - California Mix',
+    isVeggie: true,
+    description: 'Expanded fault-tolerant approach'
+  },
+  {
+    name: 'Strawberries',
+    isVeggie: true,
+    description: 'Automated incremental knowledge base'
+  },
+  {
+    name: 'Soupcontfoam16oz 116con',
+    isVeggie: true,
+    description: 'Grass-roots neutral methodology'
+  },
+  {
+    name: 'Petit Baguette',
+    isVeggie: true,
+    description: 'Organized upward-trending service-desk'
+  }
+]
+
 const db = require('../server/db')
 const {User, Order, Noodle, Ingredient} = require('../server/db/models')
 
@@ -207,20 +431,17 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'}),
-    User.create({email: 'testemail@email.com', password: '1', googleId: 1}),
+  const users = await Promise.all(
     dummyUsers.map(user => {
       return User.create(user)
     })
-  ])
+  )
 
-  const orders = await Order.create({
-    instructions: 'No cilantro',
-    userId: 1,
-    status: 'pending'
-  })
+  const orders = await Promise.all(
+    dummyOrders.map(order => {
+      return Order.create(order)
+    })
+  )
 
   const noodles = await Promise.all(
     dummyNoodles.map(noodle => {
@@ -228,16 +449,37 @@ async function seed() {
     })
   )
 
-  const ingredient = await Ingredient.create({
-    name: 'beef',
-    description: 'this is beef from nyc',
-    isVeggie: false
-  })
+  const ingredients = await Promise.all(
+    dummyIngredients.map(ingredient => {
+      return Ingredient.create(ingredient)
+    })
+  )
 
-  // THERE IS AN ERROR
-
-  await orders.addNoodle(noodles[0])
-  // await dummyNoodles[0].addIngredient(ingredient)
+  await Promise.all(
+    orders.map(order => {
+      return order.setUser(users[Math.round(Math.random() * 20)])
+    }),
+    orders.map(order => {
+      if (Math.round(Math.random()) === 1) {
+        return order.addNoodle(noodles[Math.round(Math.random() * 6)])
+      }
+    }),
+    orders.map(order => {
+      if (Math.round(Math.random()) === 1) {
+        return order.addNoodle(noodles[Math.round(Math.random() * 6)])
+      }
+    }),
+    ingredients.map(ingredient => {
+      if (Math.round(Math.random()) === 1) {
+        return ingredient.addNoodle(noodles[Math.round(Math.random() * 6)])
+      }
+    }),
+    ingredients.map(ingredient => {
+      if (Math.round(Math.random()) === 1) {
+        return ingredient.addNoodle(noodles[Math.round(Math.random() * 6)])
+      }
+    })
+  )
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
