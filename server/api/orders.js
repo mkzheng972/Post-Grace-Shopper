@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order} = require('../db/models')
+const {Order, Noodle, User} = require('../db/models')
 module.exports = router
 
 //Yan - what does this do? Is this for your cart?
@@ -23,6 +23,32 @@ router.get('/', async (req, res, next) => {
       res.json(users)
     } else {
       res.sendStatus(403)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    const order = await Order.create({
+      total: req.body.total,
+      date: new Date(),
+      status: 'completed',
+      instructions: req.body.instructions
+    })
+    if (order) {
+      const noodles = await Promise.all(
+        req.body.noodles.map(noodle => {
+          return Noodle.findOne({where: {id: noodle.id}})
+        })
+      )
+      console.log('noodles in route', noodles)
+      await Promise.all(
+        noodles.map(noodle => {
+          return noodle.addOrder(order, {through: {quantity: 20}})
+        })
+      )
     }
   } catch (error) {
     next(error)

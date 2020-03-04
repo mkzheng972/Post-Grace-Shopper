@@ -4,22 +4,39 @@ const GOT_CART = 'GOT_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const COUNT_CHANGE = 'COUNT_CHANGE'
+const CHECKEDOUT = 'CHECKEDOUT'
 
-// const gotCart = (cart) => ({
-// 	type: GOT_CART,
-// 	cart
-// });
+const gotCart = cart => ({
+  type: GOT_CART,
+  cart
+})
 
-// export const getCart = (id) => {
-// 	return async (dispatch) => {
-// 		try {
-// 			const { data } = await axios.get(`/api/orders/${id}`);
-// 			if (data) dispatch(gotCart(data));
-// 		} catch (error) {
-// 			console.log('no cart', error);
-// 		}
-// 	};
-// };
+const checkedOut = () => ({
+  type: CHECKEDOUT
+})
+
+export const checkout = cart => {
+  console.log(cart)
+  return async dispatch => {
+    try {
+      await axios.post(`/api/orders`, cart)
+      dispatch(checkedOut())
+    } catch (error) {
+      console.log('you got punk', error)
+    }
+  }
+}
+
+export const getCart = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/orders/${id}`)
+      if (data) dispatch(gotCart(data))
+    } catch (error) {
+      console.log('no cart', error)
+    }
+  }
+}
 
 const defaultCart = {noodles: [], total: 0}
 
@@ -58,6 +75,8 @@ export default function(state = defaultCart, action) {
         ...state,
         noodles: state.noodles.filter(noodle => noodle.id !== action.id)
       }
+    case CHECKEDOUT:
+      return defaultCart
     // case COUNT_CHANGE:
     // 	return state.map((noodle) => {
     // 		if (noodle.id === action.id) noodle.count = action.count;
