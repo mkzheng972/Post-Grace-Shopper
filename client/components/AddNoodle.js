@@ -2,14 +2,14 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {addNoodle} from '../store/noodles'
 
-export default class AddNoodle extends Component {
+class AddNoodle extends Component {
   constructor() {
     super()
     this.state = {
       name: '',
       imageUrl: '',
       description: '',
-      price: 0
+      price: ''
     }
   }
 
@@ -26,7 +26,7 @@ export default class AddNoodle extends Component {
       name: '',
       imageUrl: '',
       description: '',
-      price: 0
+      price: ''
     })
   }
   render() {
@@ -64,14 +64,20 @@ export default class AddNoodle extends Component {
             Price:
             <input
               type="number"
-              name="imageUrl"
+              name="price"
               value={this.state.price}
               onChange={this.handleChange}
             />
           </label>
-          <button type="submit">Add Noodle</button>
+          <button type="submit">Submit Noodle</button>
         </form>
       </div>
     )
   }
 }
+
+const mapDisptachToProps = dispatch => ({
+  addNoodle: noodle => dispatch(addNoodle(noodle))
+})
+
+export default connect(null, mapDisptachToProps)(AddNoodle)
