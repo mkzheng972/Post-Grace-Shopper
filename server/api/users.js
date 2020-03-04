@@ -5,17 +5,35 @@ module.exports = router
 //Only for admin later development
 router.get('/', async (req, res, next) => {
   try {
-    if (req.user.isAdmin) {
-      const allUsers = await User.findAll({
-        // explicitly select only the id and email fields - even though
-        // users' passwords are encrypted, it won't help if we just
-        // send everything to anyone who asks!
-        attributes: ['id', 'email']
-      })
-      res.json(allUsers)
-    } else {
-      res.sendStatus(403)
-    }
+    // if (req.user.isAdmin) {
+    //   const allUsers = await User.findAll({
+    //     // explicitly select only the id and email fields - even though
+    //     // users' passwords are encrypted, it won't help if we just
+    //     // send everything to anyone who asks!
+    //     attributes: ['id', 'email']
+    //   })
+    //   res.json(allUsers)
+    // } else {
+    //   res.sendStatus(403)
+    // }
+    // if (!req.user.isAdmin) {
+    //   res.sendStatus(403)
+    // } else {
+    //   const allUsers = await User.findAll({
+    //     // explicitly select only the id and email fields - even though
+    //     // users' passwords are encrypted, it won't help if we just
+    //     // send everything to anyone who asks!
+    //     attributes: ['id', 'email']
+    //   })
+    //   res.json(allUsers)
+    // }
+    const allUsers = await User.findAll({
+      // explicitly select only the id and email fields - even though
+      // users' passwords are encrypted, it won't help if we just
+      // send everything to anyone who asks!
+      attributes: ['id', 'email']
+    })
+    res.json(allUsers)
   } catch (err) {
     next(err)
   }

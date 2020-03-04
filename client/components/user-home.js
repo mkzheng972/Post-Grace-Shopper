@@ -11,7 +11,7 @@ export const UserHome = props => {
   return (
     <div>
       <h2>Welcome back {firstName}!</h2>
-      <p>Your email: {email}</p>
+      <h3>Welcome, {email}</h3>
     </div>
   )
 }
