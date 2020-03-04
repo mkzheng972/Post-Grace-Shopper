@@ -43,7 +43,6 @@ router.post('/', async (req, res, next) => {
           return Noodle.findOne({where: {id: noodle.id}})
         })
       )
-      console.log('noodles in route', noodles)
       await Promise.all(
         noodles.map(noodle => {
           return noodle.addOrder(order, {through: {quantity: 20}})

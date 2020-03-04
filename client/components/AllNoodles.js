@@ -51,50 +51,55 @@ export class AllNoodles extends Component {
         ) : (
           <div />
         )}
-        {noodles.map(noodle => (
-          <div key={noodle.id}>
-            <Link to={`/noodles/${noodle.id}`}>
-              <h4>{noodle.name}</h4>
-            </Link>
-            <img src={noodle.imageUrl} />
-            <p>{noodle.description}</p>
-            <p>{noodle.price}</p>
-            {user.isAdmin ? (
-              <div>
+        <div className="row">
+          {noodles.map(noodle => (
+            <div className="d-flex p-2 bd-highlight col-6" key={noodle.id}>
+              <img
+                className="img-fluid img-thumbnail"
+                width="150"
+                heigth="150"
+                src={noodle.imageUrl}
+              />
+              <div className="d-flex flex-column bd-highlight mb-3 ">
+                <ul className="list-group">
+                  <Link to={`/noodles/${noodle.id}`}>
+                    <li className="text-center list-group-item active">
+                      {noodle.name}
+                    </li>
+                  </Link>
+                  <li className="list-group-item">{noodle.description}</li>
+                  <li className="list-group-item">$ {noodle.price}</li>
+                </ul>
+              </div>
+              {user.isAdmin ? (
                 <div>
+                  <div>
+                    <button
+                      type="button"
+                      className="updateNoodle"
+                      name="updateNoodle"
+                      onClick={this.handleClick}
+                    >
+                      Update Noodle
+                    </button>
+                    {this.state.showUpdateNoodle ? (
+                      <UpdateNoodle id={noodle.id} />
+                    ) : null}
+                  </div>
                   <button
                     type="button"
-                    className="updateNoodle"
-                    name="updateNoodle"
-                    onClick={this.handleClick}
+                    className="removeNoodle"
+                    onClick={() => this.props.deleteNoodle(noodle.id)}
                   >
-                    Update Noodle
+                    Remove Noodle
                   </button>
-                  {this.state.showUpdateNoodle ? (
-                    <UpdateNoodle id={noodle.id} />
-                  ) : null}
                 </div>
-                {/* <button
-                  type="button"
-                  className="updateNoodle"
-                  name="updateNoodle"
-                  onClick={() => this.props.updateNoodle(noodle, noodle.id)}
-                >
-                  Update Noodle
-                </button> */}
-                <button
-                  type="button"
-                  className="removeNoodle"
-                  onClick={() => this.props.deleteNoodle(noodle.id)}
-                >
-                  Remove Noodle
-                </button>
-              </div>
-            ) : (
-              <div />
-            )}
-          </div>
-        ))}
+              ) : (
+                <div />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
