@@ -24,6 +24,9 @@ router.post('/login', async (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   try {
     const {email, imageUrl, firstName, lastName, password} = req.body
+    if (email.length === 0) {
+      res.status(401).send('Invalid Email')
+    }
     const [instance, wasCreated] = await User.findOrCreate({
       where: {email}
     })

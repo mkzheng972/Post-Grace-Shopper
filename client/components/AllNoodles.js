@@ -28,18 +28,22 @@ export class AllNoodles extends Component {
     console.log(this.state)
     return (
       <div>
-        <div>
-          {!this.state.showNoodle ? (
-            <button
-              type="button"
-              className="addNoodle"
-              onClick={this.handleClick}
-            >
-              Add Noodle
-            </button>
-          ) : null}
-          {this.state.showNoodle ? <AddNoodle /> : null}
-        </div>
+        {user.isAdmin ? (
+          <div>
+            {!this.state.showNoodle ? (
+              <button
+                type="button"
+                className="addNoodle"
+                onClick={this.handleClick}
+              >
+                Add Noodle
+              </button>
+            ) : null}
+            {this.state.showNoodle ? <AddNoodle /> : null}
+          </div>
+        ) : (
+          <div />
+        )}
         {noodles.map(noodle => (
           <div key={noodle.id}>
             <Link to={`/noodles/${noodle.id}`}>
