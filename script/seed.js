@@ -46,7 +46,7 @@ const dummyNoodles = [
     imageUrl:
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/32/cf/39/spicy-beef-noodle-soup.jpg',
     description: 'Beef noodle soup with spice and veggies',
-    price: 10.99,
+    price: 1099,
     quantity: 1,
     isCustom: false
   },
@@ -56,7 +56,7 @@ const dummyNoodles = [
     imageUrl:
       'https://img.delicious.com.au/OqmFaoLj/w759-h506-cfill/del/2017/07/japanese-spicy-miso-pork-ramen-49051-1.jpg',
     description: 'Pork with noodles and soup',
-    price: 10.99,
+    price: 1099,
     quantity: 1,
     isCustom: false
   },
@@ -66,7 +66,7 @@ const dummyNoodles = [
     imageUrl:
       'https://i.pinimg.com/originals/63/de/ad/63deada440ecd5b4bd40c503f26df6a0.jpg',
     description: 'Lamb with noodles and soup',
-    price: 10.99,
+    price: 1099,
     quantity: 1,
     isCustom: false
   },
@@ -76,7 +76,7 @@ const dummyNoodles = [
     imageUrl:
       'https://res.cloudinary.com/hksqkdlah/image/upload/ar_1:1,c_fill,dpr_2.0,f_auto,fl_lossy.progressive.strip_profile,g_faces:auto,q_auto:low,w_344/SFS_CurriedChickenNoodleSoup-42_bqbizi',
     description: 'Chicken with noodle soup and spice',
-    price: 10.99,
+    price: 1099,
     quantity: 1,
     isCustom: false
   },
@@ -86,7 +86,7 @@ const dummyNoodles = [
     imageUrl:
       'https://heatherchristo.com/wp-content/uploads/2014/01/Spicy-Thai-Curry-Noodle-Soup1.jpg',
     description: 'Vegetables with a mix of spicy noodle and soup',
-    price: 10.99,
+    price: 1099,
     quantity: 1,
     isCustom: false
   },
@@ -96,7 +96,7 @@ const dummyNoodles = [
     imageUrl:
       'https://previews.123rf.com/images/bbtreesubmission/bbtreesubmission1902/bbtreesubmission190209644/117880688-korean-chinese-cuisine-jjambbong-spicy-seafood-noodle-soup-with-octopus-crab-and-shrimp.jpg',
     description: 'Seafood mix of shrimp and others with noodle and soup',
-    price: 10.99,
+    price: 1099,
     quantity: 1,
     isCustom: false
   }

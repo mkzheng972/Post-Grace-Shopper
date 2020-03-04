@@ -13,7 +13,7 @@ const Order = db.define('order', {
   },
   // subTotal: Sequelize.FLOAT,
   // tax: Sequelize.FLOAT,
-  total: Sequelize.FLOAT
+  total: Sequelize.INTEGER
 })
 
 module.exports = Order
