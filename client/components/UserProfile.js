@@ -10,6 +10,9 @@ export class UserProfile extends Component {
         <Link to="/user/settings">
           <p>Your Settings</p>
         </Link>
+        <Link to="/user/orders">
+          <p>Your Order History</p>
+        </Link>
       </div>
     )
   }

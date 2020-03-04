@@ -6,11 +6,11 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email, firstName, lastName} = props
+  const {email, firstName} = props
 
   return (
     <div>
-      <h2>Welcome back {`${firstName} ${lastName}`}</h2>
+      <h2>Welcome back {firstName}!</h2>
       <p>Your email: {email}</p>
     </div>
   )
