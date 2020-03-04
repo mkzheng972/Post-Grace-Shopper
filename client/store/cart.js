@@ -54,12 +54,15 @@ export default function(state = defaultCart, action) {
         total: state.total + action.noodle.price
       }
     case REMOVE_FROM_CART:
-      return state.filter(noodle => noodle.id !== action.id)
-    case COUNT_CHANGE:
-      return state.map(noodle => {
-        if (noodle.id === action.id) noodle.count = action.count
-        return noodle
-      })
+      return {
+        ...state,
+        noodles: state.noodles.filter(noodle => noodle.id !== action.id)
+      }
+    // case COUNT_CHANGE:
+    // 	return state.map((noodle) => {
+    // 		if (noodle.id === action.id) noodle.count = action.count;
+    // 		return noodle;
+    // 	});
     default:
       return state
   }
