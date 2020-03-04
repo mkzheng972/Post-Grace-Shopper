@@ -8,7 +8,6 @@ import {auth} from '../store'
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-  console.log('displayName', displayName)
 
   let form =
     displayName == 'Sign Up' ? (

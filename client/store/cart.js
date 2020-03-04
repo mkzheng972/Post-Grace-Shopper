@@ -28,9 +28,11 @@ export const checkout = cart => {
 }
 
 export const getCart = id => {
+  console.log('inGetCart', id)
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/orders/${id}`)
+      const {data} = await axios.get(`/api/orders/history/${id}`)
+      console.log('data', data)
       if (data) dispatch(gotCart(data))
     } catch (error) {
       console.log('no cart', error)
@@ -62,8 +64,8 @@ export const countChange = (id, count) => ({
 
 export default function(state = defaultCart, action) {
   switch (action.type) {
-    // case GOT_CART:
-    // 	return { ...state, NoodlesInCart: action.cart };
+    case GOT_CART:
+      return action.cart
     case ADD_TO_CART:
       return {
         ...state,

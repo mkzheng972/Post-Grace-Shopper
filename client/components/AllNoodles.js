@@ -68,7 +68,7 @@ export class AllNoodles extends Component {
                     </li>
                   </Link>
                   <li className="list-group-item">{noodle.description}</li>
-                  <li className="list-group-item">$ {noodle.price}</li>
+                  <li className="list-group-item">$ {noodle.price / 100}</li>
                 </ul>
               </div>
               {user.isAdmin ? (
