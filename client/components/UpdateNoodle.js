@@ -21,7 +21,6 @@ export class UpdateNoodle extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log('handle submit', this.state, this.props.id)
     this.props.updateNoodle(this.state, this.props.id)
     this.setState({
       name: '',

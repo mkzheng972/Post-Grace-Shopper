@@ -58,3 +58,17 @@ router.get('/:id', adminOrUser, async (req, res, next) => {
     next(error)
   }
 })
+
+router.get('/history/:id', async (req, res, next) => {
+  try {
+    const cart = await Order.findOne({
+      where: {
+        userId: req.params.id
+      }
+    })
+    console.log('becart', cart)
+    res.json(cart)
+  } catch (error) {
+    next(error)
+  }
+})
