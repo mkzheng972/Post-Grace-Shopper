@@ -2,31 +2,17 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
-router.param('id', async (req, res, next, id) => {
-  try {
-    const foundUser = await User.findById(id)
-    if (!foundUser) {
-      res.sendStatus(404)
-    } else {
-      req.requestedUser = foundUser
-    }
-  } catch (error) {
-    next(error)
-  }
-})
-
 //Only for admin later development
 router.get('/', async (req, res, next) => {
-  console.log(req.user.isAdmin)
   try {
     if (req.user.isAdmin) {
-      const users = await User.findAll({
+      const allUsers = await User.findAll({
         // explicitly select only the id and email fields - even though
         // users' passwords are encrypted, it won't help if we just
         // send everything to anyone who asks!
         attributes: ['id', 'email']
       })
-      res.json(users)
+      res.json(allUsers)
     } else {
       res.sendStatus(403)
     }
@@ -37,9 +23,9 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    if (req.user.isAdmin || (req.user && req.user.id === req.params.id)) {
-      const foundUser = req.requestedUser
-      res.json(foundUser)
+    if (req.user.isAdmin || (req.user && req.user.id == req.params.id)) {
+      const user = await User.findByPk(req.params.id)
+      res.json(user)
     } else {
       res.sendStatus(403)
     }
@@ -64,9 +50,10 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    if (req.user.isAdmin || (req.user && req.user.id === req.params.id)) {
-      const updatedUser = await req.requestedUser.update(req.body)
-      res.json(updatedUser)
+    if (req.user.isAdmin || (req.user && req.user.id == req.params.id)) {
+      const updateUser = await User.findByPk(req.params.id)
+      updateUser.update(req.body)
+      res.json(updateUser)
     } else {
       res.sendStatus(403)
     }
@@ -78,7 +65,11 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     if ((req.user.isAdmin && req.user) || req.user.user) {
-      await req.requestedUser.destroy()
+      const deleteUser = await User.findByPk(req.params.id)
+      if (!deleteUser) {
+        return res.sendStatus(404)
+      }
+      await deleteUser.destroy()
       res.sendStatus(204)
     } else {
       res.sendStatus(403)

@@ -4,8 +4,8 @@ import axios from 'axios'
 //ACTION TYPES
 const GET_NOODLES = 'GET_NOODLES'
 const GET_SINGLE_NOODLE = 'GET_SINGLE_NOODLE'
-// const ADD_NOODLE = 'ADD_NOODLE'
-// const DELETE_NOODLE = 'DELETE_NOODLE'
+const ADD_NOODLE = 'ADD_NOODLE'
+const DELETE_NOODLE = 'DELETE_NOODLE'
 // const UPDATE_NOODLE = 'UPDATE_NOODLE'
 
 //ACTION CREATOR
@@ -19,15 +19,15 @@ const gotSingleNoodle = noodle => ({
   noodle
 })
 
-// const addedNoodle = noodle => ({
-//   type: ADD_NOODLE,
-//   noodle
-// })
+const addedNoodle = noodle => ({
+  type: ADD_NOODLE,
+  noodle
+})
 
-// const deletedNoodle = id => ({
-//   type: DELETE_NOODLE,
-//   id
-// })
+const deletedNoodle = id => ({
+  type: DELETE_NOODLE,
+  id
+})
 
 // const updatedNoodle = id => ({
 //   type: UPDATE_NOODLE,
@@ -53,32 +53,23 @@ export const getSingleNoodle = id => async dispatch => {
   }
 }
 
-// export const addNoodle = noodle => async dispatch => {
-//   try {
-//     const { data } = await axios.post(`/api/noodles/`, noodle)
-//     dispatch(addedNoodle(data))
-//   } catch (error) {
-//     console.error('Error Adding A Nood', error)
-//   }
-// }
+export const addNoodle = noodle => async dispatch => {
+  try {
+    const {data} = await axios.post(`/api/noodles/`, noodle)
+    dispatch(addedNoodle(data))
+  } catch (error) {
+    console.error('Error Adding A Nood', error)
+  }
+}
 
-// export const deleteNoodle = id => async dispatch => {
-//   try {
-//     await axios.delete(`/api/noodles/${id}`)
-//     dispatch(deletedNoodle(id))
-//   } catch (error) {
-//     console.error('Error Adding A Nood', error)
-//   }
-// }
-
-// export const deleteNoodle = id => async dispatch => {
-//   try {
-//     await axios.delete(`/api/noodles/${id}`)
-//     dispatch(deletedNoodle(id))
-//   } catch (error) {
-//     console.error('Error Adding A Nood', error)
-//   }
-// }
+export const deleteNoodle = id => async dispatch => {
+  try {
+    await axios.delete(`/api/noodles/${id}`)
+    dispatch(deletedNoodle(id))
+  } catch (error) {
+    console.error('Error Deleting A Nood', error)
+  }
+}
 
 // export const updateNoodle = (noodle, id) => async dispatch => {
 //   try {
@@ -97,13 +88,11 @@ export const getSingleNoodle = id => async dispatch => {
 export const noodlesReducer = (state = [], action) => {
   switch (action.type) {
     case GET_NOODLES:
-      console.log('NoodReducer', action)
       return action.noodles
-    // case ADD_NOODLE:
-    //   return [...state, action.noodle]
-    // case DELETE_NOODLE:
-    //   const filteredNoodle = state.filter(noodle => noodle.id !== action.id)
-    // return filteredNoodle
+    case ADD_NOODLE:
+      return [...state, action.noodle]
+    case DELETE_NOODLE:
+      return state.filter(noodle => noodle.id !== action.id)
     default:
       return state
   }

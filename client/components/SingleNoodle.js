@@ -19,10 +19,10 @@ export class SingleNoodle extends Component {
         <h3>{`$${price}`}</h3>
         <button
           type="button"
-          className="addNoodle"
+          className="addToCart"
           onClick={() => this.props.addToCart(this.props.noodle)}
         >
-          Add Noodle
+          Add To Cart
         </button>
       </div>
     )

@@ -11,10 +11,10 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:noodleId', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const noodle = await Noodle.findOne({
-      where: {id: req.params.noodleId}
+      where: {id: req.params.id}
     })
     if (!noodle) {
       res.sendStatus(404)
@@ -45,6 +45,27 @@ router.put('/:id', async (req, res, next) => {
       const updateNoodle = await Noodle.findByPk(req.params.id)
       updateNoodle.update(req.body)
       res.json(updateNoodle)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+// deleteNoodle - Admin access only
+router.delete('/:id', async (req, res, next) => {
+  try {
+    if (req.user.isAdmin) {
+      // find by id first then destroy the found response
+      const deleteNoodle = await Noodle.findByPk(req.params.id)
+      if (!deleteNoodle) {
+        return res.sendStatus(404)
+      }
+      await deleteNoodle.destroy()
+      res.sendStatus(204)
+      // await Noodle.destroy({
+      //   where: {
+      //     id: req.params.id
+      //   }
+      // })
     }
   } catch (error) {
     next(error)
