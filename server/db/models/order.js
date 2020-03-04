@@ -10,7 +10,10 @@ const Order = db.define('order', {
   },
   date: {
     type: Sequelize.DATEONLY
-  }
+  },
+  // subTotal: Sequelize.FLOAT,
+  // tax: Sequelize.FLOAT,
+  total: Sequelize.FLOAT
 })
 
 module.exports = Order

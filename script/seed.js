@@ -43,7 +43,7 @@ const dummyNoodles = [
   {
     name: 'Spicy Beef Noodle Soup',
     noodleType: 'hand-pulled',
-    imageUrl: '../public/spicyBeefNoodleSoup.jpg',
+    // imageUrl: '../public/spicyBeefNoodleSoup.jpg',
     description: 'Beef noodle soup with spice and veggies',
     price: 10.99,
     quantity: 1,
@@ -52,7 +52,7 @@ const dummyNoodles = [
   {
     name: 'Spicy Pork Noodle Soup',
     noodleType: 'hand-pulled',
-    imageUrl: '../public/spicyPorkNoodleSoup.jpg',
+    // imageUrl: '../public/spicyPorkNoodleSoup.jpg',
     description: 'Pork with noodles and soup',
     price: 10.99,
     quantity: 1,
@@ -61,7 +61,7 @@ const dummyNoodles = [
   {
     name: 'Spicy Lamb Noodle Soup',
     noodleType: 'hand-pulled',
-    imageUrl: '../public/spicyLambNoodleSoup.jpg',
+    // imageUrl: '../public/spicyLambNoodleSoup.jpg',
     description: 'Lamb with noodles and soup',
     price: 10.99,
     quantity: 1,
@@ -81,7 +81,7 @@ const dummyNoodles = [
   {
     name: 'Spicy Vegetable Noodle Soup',
     noodleType: 'hand-pulled',
-    imageUrl: '../public/spicyVegetableNoodleSoup.jpg',
+    // imageUrl: '../public/spicyVegetableNoodleSoup.jpg',
     description: 'Vegetables with a mix of spicy noodle and soup',
     price: 10.99,
     quantity: 1,

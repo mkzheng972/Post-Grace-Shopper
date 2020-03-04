@@ -6,12 +6,13 @@ import CartList from './CartList'
 export class Cart extends Component {
   render() {
     const {cart} = this.props
+    const {noodles} = cart
     return (
       <div>
-        {cart.length ? (
+        {noodles.length ? (
           <div>
             <CartColumns />
-            <CartList cart={cart} />
+            <CartList noodles={noodles} />
           </div>
         ) : (
           <h1>Your Cart is Currently empty</h1>
