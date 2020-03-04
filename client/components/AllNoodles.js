@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllNoodles} from '../store/noodles'
+import {getAllNoodles, deleteNoodle, updateNoodle} from '../store/noodles'
 import {Link} from 'react-router-dom'
-import {deleteNoodle} from '../store/noodles'
-import AddNoodle, {addNoodle} from './AddNoodle'
+import AddNoodle from './AddNoodle'
+import UpdateNoodle from './UpdateNoodle'
 
 export class AllNoodles extends Component {
   constructor() {
     super()
     this.state = {
-      showNoodle: false
+      showAddNoodle: false,
+      showUpdateNoodle: false
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -17,15 +18,22 @@ export class AllNoodles extends Component {
     this.props.getAllNoodles()
   }
 
-  handleClick() {
-    this.setState({
-      showNoodle: !this.state.showNoodle
-    })
+  handleClick(event) {
+    // console.log(event.target.name)
+    if (event.target.name === 'addNoodle') {
+      this.setState({
+        showAddNoodle: !this.state.showAddNoodle
+      })
+    }
+    if (event.target.name === 'updateNoodle') {
+      this.setState({
+        showUpdateNoodle: !this.state.showUpdateNoodle
+      })
+    }
   }
 
   render() {
     const {noodles, user} = this.props
-    console.log(this.state)
     return (
       <div>
         {user.isAdmin ? (
@@ -54,13 +62,27 @@ export class AllNoodles extends Component {
             <p>{noodle.price}</p>
             {user.isAdmin ? (
               <div>
-                <button
+                <div>
+                  <button
+                    type="button"
+                    className="updateNoodle"
+                    name="updateNoodle"
+                    onClick={this.handleClick}
+                  >
+                    Update Noodle
+                  </button>
+                  {this.state.showUpdateNoodle ? (
+                    <UpdateNoodle id={noodle.id} />
+                  ) : null}
+                </div>
+                {/* <button
                   type="button"
-                  className="editNoodle"
-                  onClick={() => this.props.editNoodle(this.props.noodle)}
+                  className="updateNoodle"
+                  name="updateNoodle"
+                  onClick={() => this.props.updateNoodle(noodle, noodle.id)}
                 >
-                  Edit Noodle
-                </button>
+                  Update Noodle
+                </button> */}
                 <button
                   type="button"
                   className="removeNoodle"
@@ -86,7 +108,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getAllNoodles: () => dispatch(getAllNoodles()),
-  deleteNoodle: id => dispatch(deleteNoodle(id))
+  deleteNoodle: id => dispatch(deleteNoodle(id)),
+  updateNoodle: (noodle, id) => dispatch(updateNoodle(noodle, id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllNoodles)

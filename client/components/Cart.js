@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import CartColumns from './CartColumns'
 import CartList from './CartList'
+import Checkout from './Checkout'
 
 export class Cart extends Component {
   render() {
@@ -13,6 +14,7 @@ export class Cart extends Component {
           <div>
             <CartColumns />
             <CartList noodles={noodles} />
+            <Checkout />
           </div>
         ) : (
           <h1>Your Cart is Currently empty</h1>

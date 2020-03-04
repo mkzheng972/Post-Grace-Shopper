@@ -6,7 +6,7 @@ const GET_NOODLES = 'GET_NOODLES'
 const GET_SINGLE_NOODLE = 'GET_SINGLE_NOODLE'
 const ADD_NOODLE = 'ADD_NOODLE'
 const DELETE_NOODLE = 'DELETE_NOODLE'
-// const UPDATE_NOODLE = 'UPDATE_NOODLE'
+const UPDATE_NOODLE = 'UPDATE_NOODLE'
 
 //ACTION CREATOR
 const gotNoodles = noodles => ({
@@ -29,10 +29,10 @@ const deletedNoodle = id => ({
   id
 })
 
-// const updatedNoodle = id => ({
-//   type: UPDATE_NOODLE,
-//   id
-// })
+const updatedNoodle = noodle => ({
+  type: UPDATE_NOODLE,
+  noodle
+})
 
 //THUNKS
 export const getAllNoodles = () => async dispatch => {
@@ -71,14 +71,14 @@ export const deleteNoodle = id => async dispatch => {
   }
 }
 
-// export const updateNoodle = (noodle, id) => async dispatch => {
-//   try {
-//     const { data } = axios.put(`api/noodles/${id}`, noodle)
-//     dispatch(updatedNoodle(data))
-//   } catch (error) {
-//     console.error('Error Updating Nood', error)
-//   }
-// }
+export const updateNoodle = (noodle, id) => async dispatch => {
+  try {
+    const {data} = await axios.put(`api/noodles/${id}`, noodle)
+    dispatch(updatedNoodle(data))
+  } catch (error) {
+    console.error('Error Updating Nood', error)
+  }
+}
 
 //REDUCER
 
@@ -93,6 +93,10 @@ export const noodlesReducer = (state = [], action) => {
       return [...state, action.noodle]
     case DELETE_NOODLE:
       return state.filter(noodle => noodle.id !== action.id)
+    case UPDATE_NOODLE:
+      return state.map(
+        noodle => (noodle.id === action.noodle.id ? action.noodle : noodle)
+      )
     default:
       return state
   }
@@ -102,8 +106,6 @@ export const noodleReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_SINGLE_NOODLE:
       return action.noodle
-    // case UPDATE_NOODLE:
-    //   return action.noodle
     default:
       return state
   }
