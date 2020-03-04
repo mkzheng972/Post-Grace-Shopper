@@ -16,7 +16,7 @@ const Noodle = db.define('noodle', {
     type: Sequelize.TEXT
   },
   price: {
-    type: Sequelize.FLOAT
+    type: Sequelize.INTEGER
   },
   quantity: {
     type: Sequelize.INTEGER,
