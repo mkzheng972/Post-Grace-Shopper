@@ -36,17 +36,22 @@ export class AllNoodles extends Component {
     const {noodles, user} = this.props
     return (
       <div>
-        <div>
-          <button
-            type="button"
-            className="addNoodle"
-            name="addNoodle"
-            onClick={this.handleClick}
-          >
-            Add Noodle
-          </button>
-          {this.state.showAddNoodle ? <AddNoodle /> : null}
-        </div>
+        {user.isAdmin ? (
+          <div>
+            {!this.state.showNoodle ? (
+              <button
+                type="button"
+                className="addNoodle"
+                onClick={this.handleClick}
+              >
+                Add Noodle
+              </button>
+            ) : null}
+            {this.state.showNoodle ? <AddNoodle /> : null}
+          </div>
+        ) : (
+          <div />
+        )}
         {noodles.map(noodle => (
           <div key={noodle.id}>
             <Link to={`/noodles/${noodle.id}`}>
