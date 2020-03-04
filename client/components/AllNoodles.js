@@ -2,23 +2,44 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getAllNoodles} from '../store/noodles'
 import {Link} from 'react-router-dom'
-import {deleteNoodle, addNoodle} from '../store/noodles'
+import {deleteNoodle} from '../store/noodles'
+import AddNoodle, {addNoodle} from './AddNoodle'
 
 export class AllNoodles extends Component {
+  constructor() {
+    super()
+    this.state = {
+      showNoodle: false
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
   componentDidMount() {
     this.props.getAllNoodles()
   }
+
+  handleClick() {
+    this.setState({
+      showNoodle: !this.state.showNoodle
+    })
+  }
+
   render() {
     const {noodles, user} = this.props
+    console.log(this.state)
     return (
       <div>
-        <button
-          type="button"
-          className="addNoodle"
-          onClick={() => this.props.addNoodle(noodle)}
-        >
-          Add Noodle
-        </button>
+        <div>
+          {!this.state.showNoodle ? (
+            <button
+              type="button"
+              className="addNoodle"
+              onClick={this.handleClick}
+            >
+              Add Noodle
+            </button>
+          ) : null}
+          {this.state.showNoodle ? <AddNoodle /> : null}
+        </div>
         {noodles.map(noodle => (
           <div key={noodle.id}>
             <Link to={`/noodles/${noodle.id}`}>
