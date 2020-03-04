@@ -38,16 +38,15 @@ export class AllNoodles extends Component {
       <div>
         {user.isAdmin ? (
           <div>
-            {!this.state.showNoodle ? (
-              <button
-                type="button"
-                className="addNoodle"
-                onClick={this.handleClick}
-              >
-                Add Noodle
-              </button>
-            ) : null}
-            {this.state.showNoodle ? <AddNoodle /> : null}
+            <button
+              type="button"
+              className="addNoodle"
+              name="addNoodle"
+              onClick={this.handleClick}
+            >
+              Add Noodle
+            </button>
+            {this.state.showAddNoodle ? <AddNoodle /> : null}
           </div>
         ) : (
           <div />
