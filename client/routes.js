@@ -10,6 +10,7 @@ import SingleNoodle from './components/SingleNoodle'
 import UserSettings from './components/UserSettings'
 import UserOrders from './components/UserOrders'
 import OrderConfirmation from './components/OrderConfirmation'
+import UserProfile from './components/UserProfile'
 /**
  * COMPONENT
  */
@@ -36,6 +37,7 @@ class Routes extends Component {
               path="/user/orders/confirmation"
               component={OrderConfirmation}
             />
+            <Route path="/user/profile" component={UserProfile} />
             <Route path="/user/orders" component={UserOrders} />
             <Route path="/user/settings" component={UserSettings} />
             <Route path="/home" component={UserHome} />

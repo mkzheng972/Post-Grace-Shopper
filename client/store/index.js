@@ -5,10 +5,12 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import {noodlesReducer, noodleReducer} from './noodles'
 import cart from './cart'
+import orders from './orders'
 
 const reducer = combineReducers({
   cart,
   user,
+  orders,
   noodles: noodlesReducer,
   noodle: noodleReducer
 })
