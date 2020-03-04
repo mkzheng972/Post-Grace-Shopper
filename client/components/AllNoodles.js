@@ -12,6 +12,13 @@ export class AllNoodles extends Component {
     const {noodles, user} = this.props
     return (
       <div>
+        <button
+          type="button"
+          className="addNoodle"
+          onClick={() => this.props.addNoodle(noodle)}
+        >
+          Add Noodle
+        </button>
         {noodles.map(noodle => (
           <div key={noodle.id}>
             <Link to={`/noodles/${noodle.id}`}>
@@ -22,18 +29,13 @@ export class AllNoodles extends Component {
             <p>{noodle.price}</p>
             {user.isAdmin ? (
               <div>
-                {/* <button
-                  type="button"
-                  className="addNoodle"
-                  onClick={() => this.props.addNoodle(noodle)}>
-                  Remove Noodle
-                </button> */}
-                {/* <button
+                <button
                   type="button"
                   className="editNoodle"
-                  onClick={() => this.props.editNoodle(this.props.noodle)}>
+                  onClick={() => this.props.editNoodle(this.props.noodle)}
+                >
                   Edit Noodle
-                </button> */}
+                </button>
                 <button
                   type="button"
                   className="removeNoodle"
