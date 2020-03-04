@@ -6,7 +6,8 @@ const dummyUsers = [
     lastName: 'Cafe',
     email: 'cody@email.com',
     imageUrl: 'http://dummyimage.com/119x183.bmp/cc0000/ffffff',
-    password: '123'
+    password: '123',
+    isAdmin: true
   },
   {
     firstName: 'Chip',
