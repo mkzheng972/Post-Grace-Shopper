@@ -25,7 +25,7 @@ export class SingleNoodle extends Component {
           <button
             type="button"
             className="addToCart"
-            onClick={() => this.props.addToCart(this.props.noodle)}
+            onClick={() => this.props.addToCart(this.props.noodle, cart.id)}
           >
             Add To Cart
           </button>
@@ -42,7 +42,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getSingleNoodle: id => dispatch(getSingleNoodle(id)),
-  addToCart: noodle => dispatch(addToCart(noodle))
+  addToCart: (noodle, id) => dispatch(addToCart(noodle, id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleNoodle)

@@ -13,7 +13,18 @@ router.get('/', adminOnly, async (req, res, next) => {
   }
 })
 
-// router.put('/:orderId', self)
+router.put('/:orderId', adminOnly, selfUserOnly, async (req, res, next) => {
+  try {
+    console.log('req.body', req.body)
+    const noodle = await Noodle.findByPk(req.body.id)
+    console.log('instance', noodle)
+    const cart = await Order.findByPk(req.params.orderId)
+    await cart.addNoodle(noodle, {through: {price: noodle.price}})
+    res.json(noodle)
+  } catch (error) {
+    next(error)
+  }
+})
 
 // router.post('/', adminOrUser, async (req, res, next) => {
 // 	try {
@@ -61,7 +72,6 @@ router.get('/:id', adminOnly, selfUserOnly, async (req, res, next) => {
     next(error)
   }
 })
-
 
 //This route needs further work because we need to merge cart with localStore
 router.get('/history/:id', adminOnly, selfUserOnly, async (req, res, next) => {
