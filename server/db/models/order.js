@@ -6,8 +6,8 @@ const Order = db.define('order', {
     type: Sequelize.TEXT
   },
   status: {
-    type: Sequelize.ENUM('PENDING', 'COMPLETED'),
-    defaultValue: 'PENDING',
+    type: Sequelize.ENUM('pending', 'completed'),
+    defaultValue: 'pending',
     allowNull: false
   },
   name: {

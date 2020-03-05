@@ -13,30 +13,32 @@ router.get('/', adminOnly, async (req, res, next) => {
   }
 })
 
-router.post('/', adminOrUser, async (req, res, next) => {
-  try {
-    const order = await Order.create({
-      total: req.body.total,
-      date: new Date(),
-      status: 'completed',
-      instructions: req.body.instructions
-    })
-    if (order) {
-      const noodles = await Promise.all(
-        req.body.noodles.map(noodle => {
-          return Noodle.findOne({where: {id: noodle.id}})
-        })
-      )
-      await Promise.all(
-        noodles.map(noodle => {
-          return noodle.addOrder(order, {through: {quantity: 20}})
-        })
-      )
-    }
-  } catch (error) {
-    next(error)
-  }
-})
+// router.put('/:orderId', self)
+
+// router.post('/', adminOrUser, async (req, res, next) => {
+// 	try {
+// 		const order = await Order.create({
+// 			total: req.body.total,
+// 			date: new Date(),
+// 			status: 'completed',
+// 			instructions: req.body.instructions
+// 		});
+// 		if (order) {
+// 			const noodles = await Promise.all(
+// 				req.body.noodles.map((noodle) => {
+// 					return Noodle.findOne({ where: { id: noodle.id } });
+// 				})
+// 			);
+// 			await Promise.all(
+// 				noodles.map((noodle) => {
+// 					return noodle.addOrder(order, { through: { quantity: 20 } });
+// 				})
+// 			);
+// 		}
+// 	} catch (error) {
+// 		next(error);
+// 	}
+// });
 
 //for specific user with their Id.
 router.get('/:id', adminOrUser, async (req, res, next) => {
@@ -60,12 +62,15 @@ router.get('/:id', adminOrUser, async (req, res, next) => {
   }
 })
 
+//This route needs further work because we need to merge cart with localStore
 router.get('/history/:id', async (req, res, next) => {
   try {
     const cart = await Order.findOne({
       where: {
-        userId: req.params.id
-      }
+        userId: req.params.id,
+        status: 'pending'
+      },
+      include: [{model: Noodle}]
     })
     console.log('becart', cart)
     res.json(cart)

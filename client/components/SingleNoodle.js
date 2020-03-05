@@ -10,27 +10,34 @@ export class SingleNoodle extends Component {
   }
 
   render() {
-    const {name, imageUrl, description, price} = this.props.noodle
+    const {noodle, cart} = this.props
+    const {name, imageUrl, description, price, id} = noodle
+    const show = cart.noodles.filter(nood => nood.id === id)
     return (
       <div>
         <h1>{name}</h1>
         <img src={imageUrl} />
         <h3>{description}</h3>
         <h3>{`$${price}`}</h3>
-        <button
-          type="button"
-          className="addToCart"
-          onClick={() => this.props.addToCart(this.props.noodle)}
-        >
-          Add To Cart
-        </button>
+        {show.length > 0 ? (
+          <button type="button">Already in Cart</button>
+        ) : (
+          <button
+            type="button"
+            className="addToCart"
+            onClick={() => this.props.addToCart(this.props.noodle)}
+          >
+            Add To Cart
+          </button>
+        )}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  noodle: state.noodle
+  noodle: state.noodle,
+  cart: state.cart
 })
 
 const mapDispatchToProps = dispatch => ({
