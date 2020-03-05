@@ -6,22 +6,18 @@ const Order = db.define('order', {
     type: Sequelize.TEXT
   },
   status: {
-    type: Sequelize.ENUM('CREATED', 'PROCESSING', 'CANCELLED', 'COMPLETED'),
-    defaultValue: 'CREATED',
+    type: Sequelize.ENUM('PENDING', 'COMPLETED'),
+    defaultValue: 'PENDING',
     allowNull: false
   },
-  recipientName: {
+  name: {
     type: Sequelize.STRING
   },
-  confirmationEmail: {
+  email: {
     type: Sequelize.STRING
   },
-  recipientAddress: {
+  address: {
     type: Sequelize.STRING
-  },
-  isCart: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
   }
 })
 

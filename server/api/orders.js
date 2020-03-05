@@ -13,38 +13,6 @@ router.get('/', adminOnly, async (req, res, next) => {
   }
 })
 
-router.get('/cart', async (req, res, next) => {
-  try {
-    if (req.user) {
-      const cart = await Order.findOne({
-        where: {
-          userId: req.user.id,
-          isCart: true
-        },
-        include: [
-          {
-            model: Noodle
-          }
-        ]
-      })
-      if (!cart) {
-        return res.json([])
-      }
-      if (!req.session.cart) {
-        req.session.cart = cart.products.map(product => product.lineItem)
-      }
-      return res.json(req.session.cart)
-    }
-    if (req.session.cart) {
-      return res.json(req.session.cart)
-    }
-
-    res.json([])
-  } catch (err) {
-    next(err)
-  }
-})
-
 router.post('/', adminOrUser, async (req, res, next) => {
   try {
     const order = await Order.create({
