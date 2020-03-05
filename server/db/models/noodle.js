@@ -25,9 +25,9 @@ const Noodle = db.define('noodle', {
     }
   },
   price: {
-    type: Sequelize.DECIMAL(10, 2),
+    type: Sequelize.INTEGER,
     validate: {
-      min: 0.0
+      min: 0
     }
   },
   quantity: {

@@ -7,7 +7,7 @@ const OrderItem = db.define('orderItem', {
     defaultValue: 0
   },
   price: {
-    type: Sequelize.DECIMAL(14, 2)
+    type: Sequelize.INTEGER
   }
 })
 
