@@ -22,20 +22,18 @@ export const checkout = cart => {
       await axios.post(`/api/orders`, cart)
       dispatch(checkedOut())
     } catch (error) {
-      console.log('you got punk', error)
+      console.error('Error Checking Out', error)
     }
   }
 }
 
 export const getCart = id => {
-  console.log('inGetCart', id)
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/orders/history/${id}`)
-      console.log('data', data)
       if (data) dispatch(gotCart(data))
     } catch (error) {
-      console.log('no cart', error)
+      console.error('Error Getting Cart', error)
     }
   }
 }
@@ -44,7 +42,7 @@ const defaultCart = {noodles: [], total: 0}
 
 export const addToCart = noodle => {
   noodle.count = 1
-  noodle.total = noodle.price * noodle.count
+  noodle.total = noodle.price * noodle.count / 100
   return {
     type: ADD_TO_CART,
     noodle

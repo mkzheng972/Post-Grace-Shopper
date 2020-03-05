@@ -68,9 +68,28 @@ export const logout = () => async dispatch => {
   }
 }
 
-/**
- * REDUCER
- */
+//REDUCER
+
+//  //Local Storage function
+// function getLocalCart(){
+//   if (localStorage.getItem('cart')) {
+//     console.log("localCart", localStorage.getItem('cart'))
+//   // localStorage.setItem('cart', JSON.stringify(JSON.parse(localStorage.getItem('cart'))));
+//   }
+// }
+// //Local Storage function
+// function addToLocalCart(noodle){
+//   let localCart = [];
+//   if (!localStorage.getItem('cart')) {
+//     console.log("there is a localstorage item")
+//     localCart.push(JSON.parse(localStorage.getItem('cart')));
+//   }
+//   console.log("nooodle", noodle)
+//   localCart.push(noodle);
+//   console.log("localCart", localCart)
+//   localStorage.setItem('cart', localCart);
+// }
+
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
