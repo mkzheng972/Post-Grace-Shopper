@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {removeFromCart, countChange} from '../store/cart'
 
 function CartItem(props) {
-  const {noodle, removeFromCart, countChange} = props
+  const {noodle, removeFromCart, countChange, cart} = props
   const {id, name, price, imageUrl, total} = noodle
   return (
     <div className="row my-1 text-center">
@@ -22,7 +22,7 @@ function CartItem(props) {
       </div>
       <div className="col-10 mx-auto col-lg-2">
         <button
-          onClick={() => removeFromCart(id)}
+          onClick={() => removeFromCart(noodle, cart.id)}
           type="button"
           className="btn btn-danger"
         >
@@ -35,9 +35,13 @@ function CartItem(props) {
   )
 }
 
+const mapStateToProps = state => ({
+  cart: state.cart
+})
+
 const mapDispatchToProps = dispatch => ({
-  removeFromCart: id => dispatch(removeFromCart(id)),
+  removeFromCart: (noodle, id) => dispatch(removeFromCart(noodle, id)),
   countChange: (id, count) => dispatch(countChange(id, count))
 })
 
-export default connect(null, mapDispatchToProps)(CartItem)
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem)

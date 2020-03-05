@@ -11,8 +11,9 @@ const gotCart = cart => ({
   cart
 })
 
-const checkedOut = () => ({
-  type: CHECKEDOUT
+const checkedOut = cart => ({
+  type: CHECKEDOUT,
+  cart
 })
 
 export const addedToCart = noodle => {
@@ -22,12 +23,37 @@ export const addedToCart = noodle => {
   }
 }
 
-export const checkout = cart => {
-  console.log(cart)
+export const removedFromCart = id => ({
+  type: REMOVE_FROM_CART,
+  id
+})
+
+export const countChange = (id, count) => ({
+  type: COUNT_CHANGE,
+  id,
+  count
+})
+
+export const removeFromCart = (noodle, cartId) => {
+  console.log('in the remove thunk', noodle, cartId)
   return async dispatch => {
     try {
-      await axios.post(`/api/orders`, cart)
-      dispatch(checkedOut())
+      await axios.delete(`/api/orders/${cartId}/${noodle.id}`)
+      dispatch(removedFromCart(noodle.id))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const checkout = cart => {
+  console.log(' in the checkout thunk', cart)
+  delete cart.noodles
+  cart.status = 'completed'
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/orders`, cart)
+      dispatch(checkedOut(data))
     } catch (error) {
       console.error('Error Checking Out', error)
     }
@@ -58,18 +84,7 @@ export const addToCart = (noodle, cartId) => {
   }
 }
 
-const defaultCart = {noodles: [], total: 0}
-
-export const removeFromCart = id => ({
-  type: REMOVE_FROM_CART,
-  id
-})
-
-export const countChange = (id, count) => ({
-  type: COUNT_CHANGE,
-  id,
-  count
-})
+const defaultCart = {noodles: []}
 
 export default function(state = defaultCart, action) {
   switch (action.type) {
@@ -87,7 +102,7 @@ export default function(state = defaultCart, action) {
         noodles: state.noodles.filter(noodle => noodle.id !== action.id)
       }
     case CHECKEDOUT:
-      return defaultCart
+      return action.cart
     // case COUNT_CHANGE:
     // 	return state.map((noodle) => {
     // 		if (noodle.id === action.id) noodle.count = action.count;

@@ -41,6 +41,8 @@ router.post('/signup', async (req, res, next) => {
     } else {
       res.status(401).send('User already exists')
     }
+    const cart = await Order.create()
+    instance.addOrder(cart)
     req.login(instance, err => (err ? next(err) : res.json(instance)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {

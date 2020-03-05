@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const {Order, Noodle, User} = require('../db/models')
+const {Order, Noodle, User, OrderItem} = require('../db/models')
 const {adminOnly, selfUserOnly} = require('./utils')
 module.exports = router
 
@@ -15,12 +15,37 @@ router.get('/', adminOnly, async (req, res, next) => {
 
 router.put('/:orderId', adminOnly, selfUserOnly, async (req, res, next) => {
   try {
-    console.log('req.body', req.body)
+    // console.log('req.body', req.body)
     const noodle = await Noodle.findByPk(req.body.id)
-    console.log('instance', noodle)
+    // console.log('instance', noodle)
     const cart = await Order.findByPk(req.params.orderId)
     await cart.addNoodle(noodle, {through: {price: noodle.price}})
     res.json(noodle)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/', async (req, res, next) => {
+  try {
+    console.log('req', req)
+    const cart = await Order.findByPk(req.body.id)
+    cart.update(req.body)
+    const user = await User.findByPk(req.user.id)
+    const newCart = await Order.create()
+    await user.addOrder(newCart)
+    console.log('NEW CART', newCart)
+    const newnewCart = await Order.findOne({
+      where: {
+        id: newCart.id
+      },
+      include: [
+        {
+          model: Noodle
+        }
+      ]
+    })
+    res.json(newnewCart)
   } catch (error) {
     next(error)
   }
@@ -74,7 +99,7 @@ router.get('/:id', adminOnly, selfUserOnly, async (req, res, next) => {
 })
 
 //This route needs further work because we need to merge cart with localStore
-router.get('/history/:id', adminOnly, selfUserOnly, async (req, res, next) => {
+router.get('/history/:id', selfUserOnly, async (req, res, next) => {
   try {
     const cart = await Order.findOne({
       where: {
@@ -83,8 +108,19 @@ router.get('/history/:id', adminOnly, selfUserOnly, async (req, res, next) => {
       },
       include: [{model: Noodle}]
     })
-    console.log('becart', cart)
+    // console.log('becart', cart)
     res.json(cart)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:id/:noodleId', selfUserOnly, async (req, res, next) => {
+  try {
+    const cart = await Order.findByPk(req.params.id)
+    const noodle = await Noodle.findByPk(req.params.noodleId)
+    await cart.removeNoodle(noodle)
+    res.sendStatus(204)
   } catch (error) {
     next(error)
   }
