@@ -28,7 +28,7 @@ export const removedFromCart = id => ({
   id
 })
 
-export const countChange = (id, count) => ({
+export const countedChange = (id, count) => ({
   type: COUNT_CHANGE,
   id,
   count
@@ -71,6 +71,18 @@ export const getCart = id => {
   }
 }
 
+export const countChange = (quantity, cartId, noodleId) => {
+  console.log(' in countChange ', quantity, cartId, noodleId)
+  return async dispatch => {
+    try {
+      await axios.put(`/api/orderItems/${cartId}/${noodleId}/${quantity}`)
+      dispatch(countedChange())
+    } catch (error) {
+      console.error('Error Changing Quantity', error)
+    }
+  }
+}
+
 export const addToCart = (noodle, cartId) => {
   console.log('inside thunk', noodle, cartId)
   return async dispatch => {
@@ -103,11 +115,8 @@ export default function(state = defaultCart, action) {
       }
     case CHECKEDOUT:
       return action.cart
-    // case COUNT_CHANGE:
-    // 	return state.map((noodle) => {
-    // 		if (noodle.id === action.id) noodle.count = action.count;
-    // 		return noodle;
-    // 	});
+    case COUNT_CHANGE:
+      return state
     default:
       return state
   }
