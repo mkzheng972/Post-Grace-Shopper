@@ -46,9 +46,11 @@ export const getCart = id => {
 }
 
 export const addToCart = (noodle, cartId) => {
+  console.log('inside thunk', noodle, cartId)
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/orders/${cartId}`, noodle)
+      console.log(data)
       if (data) dispatch(addedToCart(data))
     } catch (error) {
       console.log('failed', error)

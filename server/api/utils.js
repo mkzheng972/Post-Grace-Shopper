@@ -4,7 +4,7 @@ const adminOnly = (req, res, next) => {
     err.status = 403
     throw err
   }
-  next(err)
+  next()
 }
 
 const selfUserOnly = (req, res, next) => {
@@ -13,7 +13,7 @@ const selfUserOnly = (req, res, next) => {
     err.status = 403
     throw err
   }
-  next(err)
+  next()
 }
 
 module.exports = {
