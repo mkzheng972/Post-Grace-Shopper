@@ -16,12 +16,15 @@ export class UserOrders extends Component {
 
     return (
       <div>
+        <h2>Order History</h2>
         {orders ? (
           orders.map(order => (
             <div key={order.id}>
-              <h2>Order History</h2>
               <p>Order Number: {order.id}</p>
-              <p>Instructions: {order.instructions}</p>
+              <p>
+                Instructions:
+                {order.instructions ? order.instructions : 'No Instructions'}
+              </p>
               <p>Order Date: {order.date}</p>
               {/* Order Items...Need to eager load */}
             </div>
