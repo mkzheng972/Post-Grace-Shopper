@@ -104,8 +104,8 @@ const dummyNoodles = [
 
 const dummyOrders = [
   {status: 'completed', date: '2019-09-16', instructions: null},
-  {status: 'pending', date: '2019-07-09', instructions: null},
-  {status: 'pending', date: '2019-10-07', instructions: null},
+  {status: 'completed', date: '2019-07-09', instructions: null},
+  {status: 'completed', date: '2019-10-07', instructions: null},
   {
     status: 'pending',
     date: '2019-08-25',
@@ -196,17 +196,17 @@ async function seed() {
           through: {quantity: Math.random() * 100}
         })
       }
-    }),
-    ingredients.map(ingredient => {
-      if (Math.round(Math.random()) === 1) {
-        return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
-      }
-    }),
-    ingredients.map(ingredient => {
-      if (Math.round(Math.random()) === 1) {
-        return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
-      }
     })
+    // ingredients.map(ingredient => {
+    //   if (Math.round(Math.random()) === 1) {
+    //     return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
+    //   }
+    // }),
+    // ingredients.map(ingredient => {
+    //   if (Math.round(Math.random()) === 1) {
+    //     return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
+    //   }
+    // })
   )
 
   console.log(`seeded ${users.length} users`)

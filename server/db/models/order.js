@@ -6,14 +6,19 @@ const Order = db.define('order', {
     type: Sequelize.TEXT
   },
   status: {
+    type: Sequelize.ENUM('PENDING', 'COMPLETED'),
+    defaultValue: 'PENDING',
+    allowNull: false
+  },
+  name: {
     type: Sequelize.STRING
   },
-  date: {
-    type: Sequelize.DATEONLY
+  email: {
+    type: Sequelize.STRING
   },
-  // subTotal: Sequelize.FLOAT,
-  // tax: Sequelize.FLOAT
-  total: Sequelize.INTEGER
+  address: {
+    type: Sequelize.STRING
+  }
 })
 
 module.exports = Order

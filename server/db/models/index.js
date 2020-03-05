@@ -33,5 +33,6 @@ module.exports = {
   User,
   Order,
   Noodle,
-  Ingredient
+  Ingredient,
+  OrderItem
 }
