@@ -14,28 +14,28 @@ const dummyUsers = [
     lastName: 'Wabersich',
     email: 'cwabersich1@huffingtonpost.com',
     imageUrl: 'http://dummyimage.com/184x158.png/ff4444/ffffff',
-    password: 'K6VeYQJQOgM'
+    password: '123'
   },
   {
     firstName: 'Denni',
     lastName: 'Fosher',
     email: 'dfosher2@google.it',
     imageUrl: 'http://dummyimage.com/225x226.png/dddddd/000000',
-    password: '751zUPyt'
+    password: '123'
   },
   {
     firstName: 'Abbott',
     lastName: 'Janos',
     email: 'ajanos3@imdb.com',
     imageUrl: 'http://dummyimage.com/241x229.jpg/dddddd/000000',
-    password: 'jyfTqZDa'
+    password: '123'
   },
   {
     firstName: 'Vilma',
     lastName: 'Dufaire',
     email: 'vdufaire4@china.com.cn',
     imageUrl: 'http://dummyimage.com/177x221.png/ff4444/ffffff',
-    password: '6eCxcZatAZu'
+    password: '123'
   }
 ]
 

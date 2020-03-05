@@ -1,16 +1,13 @@
 const router = require('express').Router()
-const {Order, Noodle, User, OrderItem} = require('../db/models')
+
+const {Order, Noodle, User} = require('../db/models')
+const {adminOnly, adminOrUser} = require('./utils')
 module.exports = router
 
-//Only for Admin.
-router.get('/', async (req, res, next) => {
+router.get('/', adminOnly, async (req, res, next) => {
   try {
-    if (req.user.isAdmin) {
-      const users = await Order.findAll({})
-      res.json(users)
-    } else {
-      res.sendStatus(403)
-    }
+    const users = await Order.findAll({})
+    res.json(users)
   } catch (error) {
     next(error)
   }
@@ -48,7 +45,7 @@ router.get('/cart', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', adminOrUser, async (req, res, next) => {
   try {
     const order = await Order.create({
       total: req.body.total,
@@ -74,26 +71,36 @@ router.post('/', async (req, res, next) => {
 })
 
 //for specific user with their Id.
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', adminOrUser, async (req, res, next) => {
   try {
-    if (req.user.isAdmin || (req.user && req.user.id == req.params.id)) {
-      const userHistory = await Order.findAll({
-        where: {
-          userId: req.params.id
-        }
-      })
-      // const userHistory = await Order.findAll({
-      //   include: {
-      //     model: Noodle,
-      //     where: {
-      //       userId: req.params.id
-      //     }
-      //   }
-      // })
-      res.json(userHistory)
-    } else {
-      res.sendStatus(403)
-    }
+    const userHistory = await Order.findAll({
+      where: {
+        userId: req.params.id
+      }
+    })
+    // const userHistory = await Order.findAll({
+    //   include: {
+    //     model: Noodle,
+    //     where: {
+    //       userId: req.params.id
+    //     }
+    //   }
+    // })
+    res.json(userHistory)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/history/:id', async (req, res, next) => {
+  try {
+    const cart = await Order.findOne({
+      where: {
+        userId: req.params.id
+      }
+    })
+    console.log('becart', cart)
+    res.json(cart)
   } catch (error) {
     next(error)
   }
