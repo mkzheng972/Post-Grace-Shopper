@@ -15,6 +15,13 @@ const checkedOut = () => ({
   type: CHECKEDOUT
 })
 
+export const addedToCart = noodle => {
+  return {
+    type: ADD_TO_CART,
+    noodle
+  }
+}
+
 export const checkout = cart => {
   console.log(cart)
   return async dispatch => {
@@ -38,16 +45,18 @@ export const getCart = id => {
   }
 }
 
-const defaultCart = {noodles: [], total: 0}
-
-export const addToCart = noodle => {
-  noodle.count = 1
-  noodle.total = noodle.price * noodle.count / 100
-  return {
-    type: ADD_TO_CART,
-    noodle
+export const addToCart = (noodle, cartId) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/orders/${cartId}`, noodle)
+      if (data) dispatch(addedToCart(data))
+    } catch (error) {
+      console.log('failed', error)
+    }
   }
 }
+
+const defaultCart = {noodles: [], total: 0}
 
 export const removeFromCart = id => ({
   type: REMOVE_FROM_CART,

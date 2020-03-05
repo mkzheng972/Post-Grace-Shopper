@@ -22,21 +22,21 @@ const dummyUsers = [
     email: 'dfosher2@google.it',
     imageUrl: 'http://dummyimage.com/225x226.png/dddddd/000000',
     password: '123'
-  },
-  {
-    firstName: 'Abbott',
-    lastName: 'Janos',
-    email: 'ajanos3@imdb.com',
-    imageUrl: 'http://dummyimage.com/241x229.jpg/dddddd/000000',
-    password: '123'
-  },
-  {
-    firstName: 'Vilma',
-    lastName: 'Dufaire',
-    email: 'vdufaire4@china.com.cn',
-    imageUrl: 'http://dummyimage.com/177x221.png/ff4444/ffffff',
-    password: '123'
   }
+  // {
+  //   firstName: 'Abbott',
+  //   lastName: 'Janos',
+  //   email: 'ajanos3@imdb.com',
+  //   imageUrl: 'http://dummyimage.com/241x229.jpg/dddddd/000000',
+  //   password: '123'
+  // },
+  // {
+  //   firstName: 'Vilma',
+  //   lastName: 'Dufaire',
+  //   email: 'vdufaire4@china.com.cn',
+  //   imageUrl: 'http://dummyimage.com/177x221.png/ff4444/ffffff',
+  //   password: '123'
+  // }
 ]
 
 const dummyNoodles = [
@@ -104,7 +104,7 @@ const dummyNoodles = [
 
 const dummyOrders = [
   {status: 'completed', date: '2019-09-16', instructions: null},
-  {status: 'completed', date: '2019-07-09', instructions: null},
+  {status: 'pending', date: '2019-07-09', instructions: null},
   {status: 'completed', date: '2019-10-07', instructions: null},
   {
     status: 'pending',
@@ -179,35 +179,49 @@ async function seed() {
     })
   )
 
-  await Promise.all(
-    orders.map(order => {
-      return order.setUser(users[Math.round(Math.random() * 5)])
-    }),
-    orders.map(order => {
-      if (Math.round(Math.random()) === 1) {
-        return order.addNoodle(noodles[Math.round(Math.random() * 6)], {
-          through: {quantity: Math.random() * 100}
-        })
-      }
-    }),
-    orders.map(order => {
-      if (Math.round(Math.random()) === 1) {
-        return order.addNoodle(noodles[Math.round(Math.random() * 6)], {
-          through: {quantity: Math.random() * 100}
-        })
-      }
-    })
-    // ingredients.map(ingredient => {
-    //   if (Math.round(Math.random()) === 1) {
-    //     return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
-    //   }
-    // }),
-    // ingredients.map(ingredient => {
-    //   if (Math.round(Math.random()) === 1) {
-    //     return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
-    //   }
-    // })
-  )
+  await users[0].addOrder(orders[0])
+  await users[0].addOrder(orders[1])
+  await users[1].addOrder(orders[2])
+  await users[1].addOrder(orders[3])
+  await users[2].addOrder(orders[4])
+  await users[2].addOrder(orders[5])
+
+  await orders[0].addNoodle(noodles[0], {through: {quantity: 2, price: 10}})
+  await orders[0].addNoodle(noodles[1], {through: {quantity: 2, price: 10}})
+  await orders[1].addNoodle(noodles[2], {through: {quantity: 2, price: 10}})
+  await orders[1].addNoodle(noodles[3], {through: {quantity: 2, price: 10}})
+  await orders[2].addNoodle(noodles[4], {through: {quantity: 2, price: 10}})
+  await orders[2].addNoodle(noodles[5], {through: {quantity: 2, price: 10}})
+
+  // await Promise.all(
+  // 	orders.map((order) => {
+  // 		return order.setUser(users[Math.round(Math.random() * 5)]);
+  // 	}),
+  // 	orders.map((order) => {
+  // 		if (Math.round(Math.random()) === 1) {
+  // 			return order.addNoodle(noodles[Math.round(Math.random() * 6)], {
+  // 				through: { quantity: Math.random() * 100 }
+  // 			});
+  // 		}
+  // 	}),
+  // 	orders.map((order) => {
+  // 		if (Math.round(Math.random()) === 1) {
+  // 			return order.addNoodle(noodles[Math.round(Math.random() * 6)], {
+  // 				through: { quantity: Math.random() * 100 }
+  // 			});
+  // 		}
+  // 	})
+  // ingredients.map(ingredient => {
+  //   if (Math.round(Math.random()) === 1) {
+  //     return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
+  //   }
+  // }),
+  // ingredients.map(ingredient => {
+  //   if (Math.round(Math.random()) === 1) {
+  //     return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
+  //   }
+  // })
+  // );
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
