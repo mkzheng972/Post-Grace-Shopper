@@ -5,6 +5,10 @@ import CartList from './CartList'
 import Checkout from './Checkout'
 
 export class Cart extends Component {
+  // componentDidMount() {
+  //   console.log(this.props)
+  // }
+
   render() {
     const {cart} = this.props
     const {noodles} = cart

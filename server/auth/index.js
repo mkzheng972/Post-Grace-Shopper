@@ -32,15 +32,14 @@ router.post('/signup', async (req, res, next) => {
     const [instance, wasCreated] = await User.findOrCreate({
       where: {email}
     })
-    if (!wasCreated) {
-      res.status(401).send('User already exists')
-    }
     if (wasCreated) {
       instance.firstName = firstName
       instance.imageUrl = imageUrl
       instance.lastName = lastName
       instance.password = password
       await instance.save()
+    } else {
+      res.status(401).send('User already exists')
     }
     req.login(instance, err => (err ? next(err) : res.json(instance)))
   } catch (err) {
