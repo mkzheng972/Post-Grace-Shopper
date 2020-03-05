@@ -16,7 +16,7 @@ export class SingleNoodle extends Component {
         <h1>{name}</h1>
         <img src={imageUrl} />
         <h3>{description}</h3>
-        <h3>{`$${price}`}</h3>
+        <h3>{`$${price / 100}`}</h3>
         <button
           type="button"
           className="addToCart"
