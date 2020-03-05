@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {Order, Noodle, User} = require('../db/models')
-const {adminOnly, adminOrUser} = require('./utils')
+const {adminOnly, selfUserOnly} = require('./utils')
 module.exports = router
 
 router.get('/', adminOnly, async (req, res, next) => {
@@ -12,7 +12,7 @@ router.get('/', adminOnly, async (req, res, next) => {
   }
 })
 
-router.post('/', adminOrUser, async (req, res, next) => {
+router.post('/', adminOnly, selfUserOnly, async (req, res, next) => {
   try {
     const order = await Order.create({
       total: req.body.total,
@@ -38,7 +38,7 @@ router.post('/', adminOrUser, async (req, res, next) => {
 })
 
 //for specific user with their Id.
-router.get('/:id', adminOrUser, async (req, res, next) => {
+router.get('/:id', adminOnly, selfUserOnly, async (req, res, next) => {
   try {
     const userHistory = await Order.findAll({
       where: {
@@ -59,7 +59,7 @@ router.get('/:id', adminOrUser, async (req, res, next) => {
   }
 })
 
-router.get('/history/:id', async (req, res, next) => {
+router.get('/history/:id', adminOnly, selfUserOnly, async (req, res, next) => {
   try {
     const cart = await Order.findOne({
       where: {

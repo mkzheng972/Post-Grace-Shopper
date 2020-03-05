@@ -1,18 +1,22 @@
 const adminOnly = (req, res, next) => {
+  const err = new Error('Not Allowed')
   if (!req.user.isAdmin) {
-    res.status(403).send('Not Allowed')
+    err.status = 403
+    throw err
   }
-  next()
+  next(err)
 }
 
-const adminOrUser = (req, res, next) => {
-  if (!req.user.isAdmin || (!req.user && req.user.id != req.params.id)) {
-    res.status(403).send('Not Allowed')
+const selfUserOnly = (req, res, next) => {
+  const err = new Error('Not Allowed')
+  if (!req.user && req.user.id != req.params.id) {
+    err.status = 403
+    throw err
   }
-  next()
+  next(err)
 }
 
 module.exports = {
   adminOnly,
-  adminOrUser
+  selfUserOnly
 }
