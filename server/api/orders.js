@@ -1,19 +1,6 @@
 const router = require('express').Router()
-const {Order, Noodle, User} = require('../db/models')
+const {Order, Noodle, User, OrderItem} = require('../db/models')
 module.exports = router
-
-//Yan - what does this do? Is this for your cart?
-//There is another get request below that might/will conflict with yours so i commented it out for now
-// router.get('/:id', async (req, res, next) => {
-//   try {
-//     const [instance, wasCreated] = await Order.findOrCreate({
-//       where: {userId: req.params.id}
-//     })
-//     res.json(allNoodle)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
 
 //Only for Admin.
 router.get('/', async (req, res, next) => {
@@ -26,6 +13,38 @@ router.get('/', async (req, res, next) => {
     }
   } catch (error) {
     next(error)
+  }
+})
+
+router.get('/cart', async (req, res, next) => {
+  try {
+    if (req.user) {
+      const cart = await Order.findOne({
+        where: {
+          userId: req.user.id,
+          isCart: true
+        },
+        include: [
+          {
+            model: Noodle
+          }
+        ]
+      })
+      if (!cart) {
+        return res.json([])
+      }
+      if (!req.session.cart) {
+        req.session.cart = cart.products.map(product => product.lineItem)
+      }
+      return res.json(req.session.cart)
+    }
+    if (req.session.cart) {
+      return res.json(req.session.cart)
+    }
+
+    res.json([])
+  } catch (err) {
+    next(err)
   }
 })
 

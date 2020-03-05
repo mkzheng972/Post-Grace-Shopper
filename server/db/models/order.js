@@ -6,14 +6,23 @@ const Order = db.define('order', {
     type: Sequelize.TEXT
   },
   status: {
+    type: Sequelize.ENUM('CREATED', 'PROCESSING', 'CANCELLED', 'COMPLETED'),
+    defaultValue: 'CREATED',
+    allowNull: false
+  },
+  recipientName: {
     type: Sequelize.STRING
   },
-  date: {
-    type: Sequelize.DATEONLY
+  confirmationEmail: {
+    type: Sequelize.STRING
   },
-  // subTotal: Sequelize.FLOAT,
-  // tax: Sequelize.FLOAT
-  total: Sequelize.INTEGER
+  recipientAddress: {
+    type: Sequelize.STRING
+  },
+  isCart: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
 })
 
 module.exports = Order
