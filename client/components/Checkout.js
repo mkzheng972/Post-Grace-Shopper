@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {checkout} from '../store/cart'
+import Checkouts from '../../react-express-stripe/frontend/Checkout'
 
 function Checkout(props) {
   return (
@@ -8,6 +9,7 @@ function Checkout(props) {
       <button type="button" onClick={() => props.checkout(props.cart)}>
         Pay
       </button>
+      <Checkouts />
     </div>
   )
 }
