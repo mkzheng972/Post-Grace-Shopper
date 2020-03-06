@@ -20,13 +20,25 @@ export class UserOrders extends Component {
         {orders ? (
           orders.map(order => (
             <div key={order.id}>
-              <p>Order Number: {order.id}</p>
+              <h4>Order Number: {order.id}</h4>
+              <p>Status: {order.status}</p>
               <p>
-                Instructions:
-                {order.instructions ? order.instructions : 'No Instructions'}
+                Instructions:{' '}
+                {order.instructions
+                  ? order.instructions
+                  : 'No Instructions Provided'}
               </p>
-              <p>Order Date: {order.date}</p>
+              {/* <p>Order Date: {order.date}</p> */}
+              <p>Order Date: {order.createdAt.slice(0, 10)}</p>
               {/* Order Items...Need to eager load */}
+              {order.noodles.map(noodle => (
+                <div key={noodle.id}>
+                  <p>Noodle: {noodle.name}</p>
+                  <p>Noodle Type: {noodle.noodleType}</p>
+                  <p>Quantity: {noodle.quantity}</p>
+                  <p>Price: ${noodle.price / 100}</p>
+                </div>
+              ))}
             </div>
           ))
         ) : (
