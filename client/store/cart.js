@@ -5,6 +5,11 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const COUNT_CHANGE = 'COUNT_CHANGE'
 const CHECKEDOUT = 'CHECKEDOUT'
+const REMOVE_CART = 'REMOVE_CART'
+
+export const removeCart = () => ({
+  type: REMOVE_CART
+})
 
 const gotCart = cart => ({
   type: GOT_CART,
@@ -38,8 +43,10 @@ export const removeFromCart = (noodle, cartId) => {
   console.log('in the remove thunk', noodle, cartId)
   return async dispatch => {
     try {
-      await axios.delete(`/api/orders/${cartId}/${noodle.id}`)
-      dispatch(removedFromCart(noodle.id))
+      if (cartId) {
+        await axios.delete(`/api/orders/${cartId}/${noodle.id}`)
+        dispatch(removedFromCart(noodle.id))
+      } else dispatch(removedFromCart(noodle.id))
     } catch (error) {
       console.error(error)
     }
@@ -87,9 +94,11 @@ export const addToCart = (noodle, cartId) => {
   console.log('inside thunk', noodle, cartId)
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/orders/${cartId}`, noodle)
-      console.log(data)
-      if (data) dispatch(addedToCart(data))
+      if (cartId) {
+        const {data} = await axios.put(`/api/orders/${cartId}`, noodle)
+        console.log(data)
+        if (data) dispatch(addedToCart(data))
+      } else dispatch(addedToCart(noodle))
     } catch (error) {
       console.log('failed', error)
     }
@@ -117,6 +126,8 @@ export default function(state = defaultCart, action) {
       return action.cart
     case COUNT_CHANGE:
       return state
+    case REMOVE_CART:
+      return defaultCart
     default:
       return state
   }
