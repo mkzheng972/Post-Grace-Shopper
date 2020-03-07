@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import {getCart, removeCart} from './cart'
+import {getCart, removeCart, gotCart} from './cart'
 
 /**
  * ACTION TYPES
@@ -26,9 +26,16 @@ const removeUser = () => ({type: REMOVE_USER})
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    console.log(res)
     dispatch(getUser(res.data || defaultUser))
     if (res.data) dispatch(getCart(res.data.id))
+    else {
+      const noodles = JSON.parse(localStorage.getItem('noodles'))
+      if (!noodles) localStorage.setItem('noodles', JSON.stringify('[]'))
+      else {
+        dispatch(gotCart({noodles}))
+      }
+      console.log(localStorage)
+    }
   } catch (err) {
     console.error(err)
   }
