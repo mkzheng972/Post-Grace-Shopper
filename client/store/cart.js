@@ -47,6 +47,13 @@ export const removeFromCart = (noodle, cartId) => {
         await axios.delete(`/api/orders/${cartId}/${noodle.id}`)
         dispatch(removedFromCart(noodle.id))
       } else {
+        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        const newCartNoodles = localCartNoodles.filter(
+          cartNoodle => cartNoodle.id !== noodle.id
+        )
+        localStorage.setItem('noodles', JSON.stringify(newCartNoodles))
+        console.log(newCartNoodles)
+        console.log(localStorage)
         dispatch(removedFromCart(noodle.id))
       }
     } catch (error) {
@@ -69,29 +76,6 @@ export const checkout = cart => {
   }
 }
 
-export const getCart = id => {
-  return async dispatch => {
-    try {
-      const {data} = await axios.get(`/api/orders/history/${id}`)
-      if (data) dispatch(gotCart(data))
-    } catch (error) {
-      console.error('Error Getting Cart', error)
-    }
-  }
-}
-
-export const countChange = (quantity, cartId, noodleId) => {
-  console.log(' in countChange ', quantity, cartId, noodleId)
-  return async dispatch => {
-    try {
-      await axios.put(`/api/orderItems/${cartId}/${noodleId}/${quantity}`)
-      dispatch(countedChange())
-    } catch (error) {
-      console.error('Error Changing Quantity', error)
-    }
-  }
-}
-
 export const addToCart = (noodle, cartId) => {
   console.log('inside thunk', noodle, cartId)
   return async dispatch => {
@@ -110,6 +94,46 @@ export const addToCart = (noodle, cartId) => {
       }
     } catch (error) {
       console.log('failed', error)
+    }
+  }
+}
+
+export const getCart = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/orders/history/${id}`)
+      if (data) {
+        console.log(data)
+        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        if (localCartNoodles.length) {
+          const serverCartNoodlesIds = data.noodles.map(noodle => noodle.id)
+          localCartNoodles.forEach(noodle => {
+            if (!serverCartNoodlesIds.includes(noodle.id)) {
+              dispatch(addToCart(noodle, data.id))
+              data.noodles.push(noodle)
+            }
+          })
+          dispatch(gotCart(data))
+          localStorage.setItem('noodles', JSON.stringify([]))
+        } else {
+          dispatch(gotCart(data))
+          localStorage.setItem('noodles', JSON.stringify([]))
+        }
+      }
+    } catch (error) {
+      console.error('Error Getting Cart', error)
+    }
+  }
+}
+
+export const countChange = (quantity, cartId, noodleId) => {
+  console.log(' in countChange ', quantity, cartId, noodleId)
+  return async dispatch => {
+    try {
+      await axios.put(`/api/orderItems/${cartId}/${noodleId}/${quantity}`)
+      dispatch(countedChange())
+    } catch (error) {
+      console.error('Error Changing Quantity', error)
     }
   }
 }
