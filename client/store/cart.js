@@ -105,15 +105,14 @@ export const getCart = id => {
       if (data) {
         console.log(data)
         const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        dispatch(gotCart(data))
         if (localCartNoodles.length) {
           const serverCartNoodlesIds = data.noodles.map(noodle => noodle.id)
           localCartNoodles.forEach(noodle => {
             if (!serverCartNoodlesIds.includes(noodle.id)) {
               dispatch(addToCart(noodle, data.id))
-              data.noodles.push(noodle)
             }
           })
-          dispatch(gotCart(data))
           localStorage.setItem('noodles', JSON.stringify([]))
         } else {
           dispatch(gotCart(data))
