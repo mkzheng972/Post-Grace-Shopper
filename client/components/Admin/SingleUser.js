@@ -11,9 +11,9 @@ export class SingleUser extends Component {
     const {email, firstName, lastName, imageUrl} = this.props.user
     return (
       <div>
-        <h1>{email}</h1>
-        <h1>{firstName}</h1>
-        <h1>{lastName}</h1>
+        <h1>Email: {email}</h1>
+        <h1>First Name: {firstName}</h1>
+        <h1>Last Name: {lastName}</h1>
         <img src={imageUrl} />
       </div>
     )

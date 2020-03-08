@@ -13,6 +13,9 @@ export class UserProfile extends Component {
         <Link to="/user/orders">
           <p>Your Order History</p>
         </Link>
+        <Link to="/admin/userList">
+          <p>Admin Page User List</p>
+        </Link>
       </div>
     )
   }

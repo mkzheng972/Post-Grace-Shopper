@@ -59,7 +59,7 @@ export const getSingleUser = id => async dispatch => {
 
 export const getAllUsers = () => async dispatch => {
   try {
-    const {data} = await axios.get('/api/users', user)
+    const {data} = await axios.get('/api/users')
     dispatch(gotAllUsers(data))
   } catch (error) {
     console.error('Error Getting All Users', error)
