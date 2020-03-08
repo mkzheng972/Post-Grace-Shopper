@@ -104,22 +104,21 @@ export const getCart = id => {
       const {data} = await axios.get(`/api/orders/history/${id}`)
       if (data) {
         console.log(data)
-        // const localCartNoodles = JSON.parse(localStorage.getItem('noodles'));
-        // if (localCartNoodles.length) {
-        // 	// const serverCartNoodlesIds = data.noodles.map((noodle) => noodle.id);
-        // 	// const localCartNoodlesIds = localCartNoodles.map(noodle=>noodle.id)
-        // 	// localCartNoodles.forEach((noodle) => {
-        // 	// 	// if (!serverCartNoodlesIds.includes(noodle.id)) {
-        // 	// 	// 	dispatch(addToCart(noodle, data.id));
-        // 	// 	// 	data.noodles.push(noodle);
-        // 	// 	// }
-        // 	// });
-        // 	dispatch(gotCart(data));
-        // 	// localStorage.setItem('noodles', JSON.stringify('[]'));
-        // } else {
-        dispatch(gotCart(data))
-        // localStorage.setItem('noodles', JSON.stringify('[]'));
-        // }
+        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        if (localCartNoodles.length) {
+          const serverCartNoodlesIds = data.noodles.map(noodle => noodle.id)
+          localCartNoodles.forEach(noodle => {
+            if (!serverCartNoodlesIds.includes(noodle.id)) {
+              dispatch(addToCart(noodle, data.id))
+              data.noodles.push(noodle)
+            }
+          })
+          dispatch(gotCart(data))
+          localStorage.setItem('noodles', JSON.stringify([]))
+        } else {
+          dispatch(gotCart(data))
+          localStorage.setItem('noodles', JSON.stringify([]))
+        }
       }
     } catch (error) {
       console.error('Error Getting Cart', error)

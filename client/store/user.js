@@ -30,7 +30,7 @@ export const me = () => async dispatch => {
     if (res.data) dispatch(getCart(res.data.id))
     else {
       const noodles = JSON.parse(localStorage.getItem('noodles'))
-      if (!noodles) localStorage.setItem('noodles', JSON.stringify('[]'))
+      if (!noodles) localStorage.setItem('noodles', JSON.stringify([]))
       else {
         dispatch(gotCart({noodles}))
       }
