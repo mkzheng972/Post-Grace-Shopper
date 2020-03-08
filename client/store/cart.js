@@ -11,7 +11,7 @@ export const removeCart = () => ({
   type: REMOVE_CART
 })
 
-const gotCart = cart => ({
+export const gotCart = cart => ({
   type: GOT_CART,
   cart
 })
@@ -46,7 +46,9 @@ export const removeFromCart = (noodle, cartId) => {
       if (cartId) {
         await axios.delete(`/api/orders/${cartId}/${noodle.id}`)
         dispatch(removedFromCart(noodle.id))
-      } else dispatch(removedFromCart(noodle.id))
+      } else {
+        dispatch(removedFromCart(noodle.id))
+      }
     } catch (error) {
       console.error(error)
     }
@@ -98,7 +100,14 @@ export const addToCart = (noodle, cartId) => {
         const {data} = await axios.put(`/api/orders/${cartId}`, noodle)
         console.log(data)
         if (data) dispatch(addedToCart(data))
-      } else dispatch(addedToCart(noodle))
+      } else {
+        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        localCartNoodles.push(noodle)
+        localStorage.setItem('noodles', JSON.stringify(localCartNoodles))
+        console.log(localCartNoodles)
+        console.log(localStorage)
+        dispatch(addedToCart(noodle))
+      }
     } catch (error) {
       console.log('failed', error)
     }

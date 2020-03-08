@@ -13,7 +13,7 @@ router.get('/', adminOnly, async (req, res, next) => {
   }
 })
 
-router.put('/:orderId', adminOnly, selfUserOnly, async (req, res, next) => {
+router.put('/:orderId', selfUserOnly, async (req, res, next) => {
   try {
     // console.log('req.body', req.body)
     const noodle = await Noodle.findByPk(req.body.id)
