@@ -13,11 +13,9 @@ router.get('/', adminOnly, async (req, res, next) => {
   }
 })
 
-router.put('/:orderId', selfUserOnly, async (req, res, next) => {
+router.put('/:orderId', async (req, res, next) => {
   try {
-    // console.log('req.body', req.body)
     const noodle = await Noodle.findByPk(req.body.id)
-    // console.log('instance', noodle)
     const cart = await Order.findByPk(req.params.orderId)
     await cart.addNoodle(noodle, {through: {price: noodle.price}})
     res.json(noodle)
@@ -28,13 +26,11 @@ router.put('/:orderId', selfUserOnly, async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
   try {
-    console.log('req', req)
     const cart = await Order.findByPk(req.body.id)
     cart.update(req.body)
     const user = await User.findByPk(req.user.id)
     const newCart = await Order.create()
     await user.addOrder(newCart)
-    console.log('NEW CART', newCart)
     const newnewCart = await Order.findOne({
       where: {
         id: newCart.id
@@ -88,7 +84,6 @@ router.get('/history/:id', selfUserOnly, async (req, res, next) => {
       },
       include: [{model: Noodle}]
     })
-    // console.log('becart', cart)
     res.json(cart)
   } catch (error) {
     next(error)

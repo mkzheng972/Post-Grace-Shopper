@@ -6,30 +6,47 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>Spicy Noods</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/menu">Menu</Link>
-          <Link to="/user/profile">Profile</Link>
-          <Link to="/cart">Cart</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/menu">Menu</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/cart">Cart</Link>
-        </div>
-      )}
+    <nav className="navbar navbar-default navbar-fixed-top bg-warning lighten(@gray-base, 33.5%)">
+      <div className="container-fluid">
+        <Link to="/home" className="btn btn-outline-primary">
+          Spicy Noods
+        </Link>
+        <Link to="/menu" className="btn btn-outline-primary">
+          Noodles
+        </Link>
+        {isLoggedIn ? (
+          <div>
+            {/* The navbar will show these links after you log in */}
+            <Link to="/cart" className="btn btn-outline-primary">
+              Cart
+            </Link>
+            <Link to="/user/profile" className="btn btn-outline-primary">
+              Profile
+            </Link>
+            <a
+              href="#"
+              className="btn btn-outline-secondary"
+              onClick={handleClick}
+            >
+              Logout
+            </a>
+          </div>
+        ) : (
+          <div>
+            {/* The navbar will show these links before you log in */}
+            <Link to="/cart" className="btn btn-outline-primary">
+              Cart
+            </Link>
+            <Link to="/login" className="btn btn-outline-primary">
+              Login
+            </Link>
+            <Link to="/signup" className="btn btn-outline-primary">
+              Sign Up
+            </Link>
+          </div>
+        )}
+      </div>
     </nav>
-    <hr />
   </div>
 )
 
