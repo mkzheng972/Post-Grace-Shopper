@@ -14,7 +14,7 @@ router.get('/', adminOnly, async (req, res, next) => {
   }
 })
 
-router.get('/:id', adminOnly, selfUserOnly, async (req, res, next) => {
+router.get('/:id', selfUserOnly, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id)
     res.json(user)
@@ -33,7 +33,7 @@ router.post('/', adminOnly, async (req, res, next) => {
   }
 })
 
-router.put('/:id', adminOnly, selfUserOnly, async (req, res, next) => {
+router.put('/:id', selfUserOnly, async (req, res, next) => {
   try {
     const updateUser = await User.findByPk(req.params.id)
     updateUser.update(req.body)
@@ -43,7 +43,7 @@ router.put('/:id', adminOnly, selfUserOnly, async (req, res, next) => {
   }
 })
 
-router.delete('/:id', adminOnly, selfUserOnly, async (req, res, next) => {
+router.delete('/:id', adminOnly, async (req, res, next) => {
   try {
     const deleteUser = await User.findByPk(req.params.id)
     if (!deleteUser) {
