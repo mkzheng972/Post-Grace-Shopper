@@ -13,7 +13,7 @@ import OrderConfirmation from './components/OrderConfirmation'
 import UserProfile from './components/UserProfile'
 import UserList from './components/Admin/UserList'
 import SingleUser from './components/Admin/SingleUser'
-import Admin from './components/Admin/Admin'
+
 /**
  * COMPONENT
  */
@@ -43,7 +43,7 @@ class Routes extends Component {
             <Route path="/user/orders" component={UserOrders} />
             <Route path="/user/settings" component={UserSettings} />
             <Route path="/home" component={UserHome} />
-            <Route path="/admin" component={Admin} />
+            <Route path="/admin/userList" component={UserList} />
             <Route path="/users/:userId" component={SingleUser} />
           </Switch>
         )}
