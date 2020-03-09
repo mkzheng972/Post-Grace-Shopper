@@ -8,11 +8,7 @@ export class Admin extends Component {
     this.props.getAllUsers()
   }
   render() {
-    return (
-      <div>
-        <UserList users={this.props.users} />
-      </div>
-    )
+    return <div />
   }
 }
 

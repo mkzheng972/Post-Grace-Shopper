@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {addNoodle} from '../store/noodles'
+import {addNoodle} from '../../store/noodles'
 
 class AddNoodle extends Component {
   constructor() {

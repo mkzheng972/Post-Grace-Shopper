@@ -4,13 +4,13 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
-import Cart from './components/Cart'
-import AllNoodles from './components/AllNoodles'
-import SingleNoodle from './components/SingleNoodle'
-import UserSettings from './components/UserSettings'
-import UserOrders from './components/UserOrders'
-import OrderConfirmation from './components/OrderConfirmation'
-import UserProfile from './components/UserProfile'
+import Cart from './components/Cart/Cart'
+import AllNoodles from './components/Noodle/AllNoodles'
+import SingleNoodle from './components/Noodle/SingleNoodle'
+import UserSettings from './components/User/UserSettings'
+import UserOrders from './components/User/UserOrders'
+import OrderConfirmation from './components/Cart/OrderConfirmation'
+import UserProfile from './components/User/UserProfile'
 import UserList from './components/Admin/UserList'
 import SingleUser from './components/Admin/SingleUser'
 
@@ -23,6 +23,7 @@ class Routes extends Component {
   }
 
   render() {
+    console.log(this.props)
     const {isLoggedIn} = this.props
     return (
       <Switch>

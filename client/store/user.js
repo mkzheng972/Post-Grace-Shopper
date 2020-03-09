@@ -1,6 +1,7 @@
 import axios from 'axios'
 import history from '../history'
 import {getCart, removeCart, gotCart} from './cart'
+import {combineReducers} from 'redux'
 
 /**
  * ACTION TYPES
@@ -141,28 +142,6 @@ export const logout = () => async dispatch => {
   }
 }
 
-//REDUCER
-
-//  //Local Storage function
-// function getLocalCart(){
-//   if (localStorage.getItem('cart')) {
-//     console.log("localCart", localStorage.getItem('cart'))
-//   // localStorage.setItem('cart', JSON.stringify(JSON.parse(localStorage.getItem('cart'))));
-//   }
-// }
-// //Local Storage function
-// function addToLocalCart(noodle){
-//   let localCart = [];
-//   if (!localStorage.getItem('cart')) {
-//     console.log("there is a localstorage item")
-//     localCart.push(JSON.parse(localStorage.getItem('cart')));
-//   }
-//   console.log("nooodle", noodle)
-//   localCart.push(noodle);
-//   console.log("localCart", localCart)
-//   localStorage.setItem('cart', localCart);
-// }
-
 export const userReducer = (state = defaultUser, action) => {
   switch (action.type) {
     case GET_USER:
@@ -188,3 +167,7 @@ export const usersReducer = (state = [], action) => {
       return state
   }
 }
+
+const user = combineReducers({userReducer, usersReducer})
+
+export default user
