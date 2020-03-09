@@ -30,7 +30,7 @@ const Noodle = db.define('noodle', {
       min: 0
     }
   },
-  quantity: {
+  stock: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     validate: {
