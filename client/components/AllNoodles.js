@@ -35,12 +35,12 @@ export class AllNoodles extends Component {
   render() {
     const {noodles, user} = this.props
     return (
-      <div>
+      <div className="container">
         {user.isAdmin ? (
           <div>
             <button
               type="button"
-              className="addNoodle"
+              className="btn btn-primary"
               name="addNoodle"
               onClick={this.handleClick}
             >
@@ -76,7 +76,7 @@ export class AllNoodles extends Component {
                   <div>
                     <button
                       type="button"
-                      className="updateNoodle"
+                      className="btn btn-primary"
                       name="updateNoodle"
                       onClick={this.handleClick}
                     >
@@ -88,7 +88,7 @@ export class AllNoodles extends Component {
                   </div>
                   <button
                     type="button"
-                    className="removeNoodle"
+                    className="btn btn-outline-danger"
                     onClick={() => this.props.deleteNoodle(noodle.id)}
                   >
                     Remove Noodle
