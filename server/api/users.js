@@ -3,7 +3,7 @@ const {User} = require('../db/models')
 const {adminOnly, selfUserOnly} = require('./utils')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminOnly, async (req, res, next) => {
   try {
     const allUsers = await User.findAll({
       attributes: ['id', 'email']
