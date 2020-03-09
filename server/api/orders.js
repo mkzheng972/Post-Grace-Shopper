@@ -47,7 +47,6 @@ router.put('/', async (req, res, next) => {
   }
 })
 
-//This route needs further work because we need to merge cart with localStore
 router.get('/pending/:id', async (req, res, next) => {
   try {
     const cart = await Order.findOne({
