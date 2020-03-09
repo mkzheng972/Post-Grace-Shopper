@@ -28,13 +28,13 @@ const selfUserOnly = (req, res, next) => {
 }
 
 // const selfUserOnly = (req, res, next) => {
-// 	const err = new Error('Not Allowed');
-// 	if (req.user.id !== Number(req.params.id) || !req.user.isAdmin) {
-// 		err.status = 403;
-// 		throw err;
-// 	}
-// 	next();
-// };
+//   const err = new Error('Not Allowed')
+//   if (req.user.id !== Number(req.params.id) || (!req.user.isAdmin)) {
+//     err.status = 403
+//     throw err
+//   }
+//   next()
+// }
 
 // if user is admin --> everything is allowed
 
