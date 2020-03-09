@@ -6,7 +6,11 @@ import Checkouts from '../../react-express-stripe/frontend/Checkout'
 function Checkout(props) {
   return (
     <div>
-      <button type="button" onClick={() => props.checkout(props.cart)}>
+      <button
+        type="button"
+        className="btn btn-outline-primary"
+        onClick={() => props.checkout(props.cart)}
+      >
         Pay
       </button>
       <Checkouts />
