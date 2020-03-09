@@ -10,7 +10,7 @@ const gotOrders = orders => ({
 export const getOrders = id => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/orders/${id}`)
+      const {data} = await axios.get(`/api/users/history/${id}`)
       dispatch(gotOrders(data))
     } catch (error) {
       console.error('Error getting Orders', error)

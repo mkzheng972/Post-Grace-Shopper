@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Noodle, Order} = require('../db/models')
 const {adminOnly, selfUserOnly} = require('./utils')
 module.exports = router
 
@@ -51,6 +51,24 @@ router.delete('/:id', adminOnly, async (req, res, next) => {
     }
     await deleteUser.destroy()
     res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/history/:id', async (req, res, next) => {
+  try {
+    const userHistory = await Order.findAll({
+      where: {
+        userId: req.params.id
+      },
+      include: [
+        {
+          model: Noodle
+        }
+      ]
+    })
+    res.json(userHistory)
   } catch (error) {
     next(error)
   }

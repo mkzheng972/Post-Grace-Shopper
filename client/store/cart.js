@@ -40,7 +40,6 @@ export const countedChange = (id, count) => ({
 })
 
 export const removeFromCart = (noodle, cartId) => {
-  console.log('in the remove thunk', noodle, cartId)
   return async dispatch => {
     try {
       if (cartId) {
@@ -52,8 +51,6 @@ export const removeFromCart = (noodle, cartId) => {
           cartNoodle => cartNoodle.id !== noodle.id
         )
         localStorage.setItem('noodles', JSON.stringify(newCartNoodles))
-        console.log(newCartNoodles)
-        console.log(localStorage)
         dispatch(removedFromCart(noodle.id))
       }
     } catch (error) {
@@ -63,7 +60,6 @@ export const removeFromCart = (noodle, cartId) => {
 }
 
 export const checkout = cart => {
-  console.log(' in the checkout thunk', cart)
   delete cart.noodles
   cart.status = 'completed'
   return async dispatch => {
@@ -77,19 +73,15 @@ export const checkout = cart => {
 }
 
 export const addToCart = (noodle, cartId) => {
-  console.log('inside thunk', noodle, cartId)
   return async dispatch => {
     try {
       if (cartId) {
         const {data} = await axios.put(`/api/orders/${cartId}`, noodle)
-        console.log(data)
         if (data) dispatch(addedToCart(data))
       } else {
         const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
         localCartNoodles.push(noodle)
         localStorage.setItem('noodles', JSON.stringify(localCartNoodles))
-        console.log(localCartNoodles)
-        console.log(localStorage)
         dispatch(addedToCart(noodle))
       }
     } catch (error) {
@@ -101,9 +93,8 @@ export const addToCart = (noodle, cartId) => {
 export const getCart = id => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/orders/history/${id}`)
+      const {data} = await axios.get(`/api/orders/pending/${id}`)
       if (data) {
-        console.log(data)
         const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
         dispatch(gotCart(data))
         if (localCartNoodles.length) {
@@ -126,7 +117,6 @@ export const getCart = id => {
 }
 
 export const countChange = (quantity, cartId, noodleId) => {
-  console.log(' in countChange ', quantity, cartId, noodleId)
   return async dispatch => {
     try {
       await axios.put(`/api/orderItems/${cartId}/${noodleId}/${quantity}`)
