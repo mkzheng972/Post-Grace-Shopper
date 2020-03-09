@@ -64,7 +64,7 @@ router.get('/pending/:id', async (req, res, next) => {
 
 router.delete('/:orderId/:noodleId', async (req, res, next) => {
   try {
-    const cart = await Order.findByPk(req.params.id)
+    const cart = await Order.findByPk(req.params.orderId)
     const noodle = await Noodle.findByPk(req.params.noodleId)
     await cart.removeNoodle(noodle)
     res.sendStatus(204)
