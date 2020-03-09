@@ -13,15 +13,19 @@ export class UserProfile extends Component {
         <Link to="/user/orders">
           <p>Your Order History</p>
         </Link>
-        <Link to="/admin/userList">
-          <p>Admin Page User List</p>
-        </Link>
+        {this.props.user.isAdmin ? (
+          <Link to="/admin/userList">
+            <p>Admin Page User List</p>
+          </Link>
+        ) : null}
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  user: state.user
+})
 
 const mapDispatchToProps = {}
 
