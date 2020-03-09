@@ -47,35 +47,8 @@ router.put('/', async (req, res, next) => {
   }
 })
 
-//for specific user with their Id.
-router.get('/:id', adminOnly, selfUserOnly, async (req, res, next) => {
-  try {
-    const userHistory = await Order.findAll({
-      where: {
-        userId: req.params.id
-      },
-      include: [
-        {
-          model: Noodle
-        }
-      ]
-    })
-    // const userHistory = await Order.findAll({
-    //   include: {
-    //     model: Noodle,
-    //     where: {
-    //       userId: req.params.id
-    //     }
-    //   }
-    // })
-    res.json(userHistory)
-  } catch (error) {
-    next(error)
-  }
-})
-
 //This route needs further work because we need to merge cart with localStore
-router.get('/history/:id', selfUserOnly, async (req, res, next) => {
+router.get('/pending/:id', async (req, res, next) => {
   try {
     const cart = await Order.findOne({
       where: {
@@ -90,7 +63,7 @@ router.get('/history/:id', selfUserOnly, async (req, res, next) => {
   }
 })
 
-router.delete('/:id/:noodleId', selfUserOnly, async (req, res, next) => {
+router.delete('/:id/:noodleId', async (req, res, next) => {
   try {
     const cart = await Order.findByPk(req.params.id)
     const noodle = await Noodle.findByPk(req.params.noodleId)

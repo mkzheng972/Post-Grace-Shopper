@@ -96,7 +96,6 @@ export const me = () => async dispatch => {
       else {
         dispatch(gotCart({noodles}))
       }
-      console.log(localStorage)
     }
   } catch (err) {
     console.error(err)
