@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 const {Order, Noodle, User, OrderItem} = require('../db/models')
-const {adminOnly, selfUserOnly} = require('./utils')
+const {adminOnly, selfUserOrderOnly} = require('./utils')
 module.exports = router
 
 router.get('/', adminOnly, async (req, res, next) => {
@@ -13,7 +13,7 @@ router.get('/', adminOnly, async (req, res, next) => {
   }
 })
 
-router.put('/:orderId', async (req, res, next) => {
+router.put('/:orderId', selfUserOrderOnly, async (req, res, next) => {
   try {
     const noodle = await Noodle.findByPk(req.body.id)
     const cart = await Order.findByPk(req.params.orderId)
@@ -62,9 +62,9 @@ router.get('/pending/:id', async (req, res, next) => {
   }
 })
 
-router.delete('/:id/:noodleId', async (req, res, next) => {
+router.delete('/:orderId/:noodleId', async (req, res, next) => {
   try {
-    const cart = await Order.findByPk(req.params.id)
+    const cart = await Order.findByPk(req.params.orderId)
     const noodle = await Noodle.findByPk(req.params.noodleId)
     await cart.removeNoodle(noodle)
     res.sendStatus(204)

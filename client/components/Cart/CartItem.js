@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {removeFromCart, countChange} from '../store/cart'
+import {removeFromCart, countChange} from '../../store/cart'
 
 class CartItem extends React.Component {
   constructor() {

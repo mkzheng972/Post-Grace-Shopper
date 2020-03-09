@@ -82,9 +82,6 @@ export const updateNoodle = (noodle, id) => async dispatch => {
 
 //REDUCER
 
-//DID NOT EXPORT DEFAULT(or reg export) REDUCERS YET
-//Talk over with team
-
 export const noodlesReducer = (state = [], action) => {
   switch (action.type) {
     case GET_NOODLES:

@@ -1,15 +1,19 @@
-// const adminOnly = (req, res, next) => {
-//   const err = new Error('Not Allowed')
-//   if (!req.user.isAdmin) {
-//     err.status = 403
-//     throw err
-//   }
-//   next()
-// }
+const {Order} = require('../db/models')
 
 const adminOnly = (req, res, next) => {
   const err = new Error('Not Allowed - Admin Only')
   if (req.user.isAdmin) {
+    next()
+  } else {
+    err.status = 403
+    throw err
+  }
+}
+
+const selfUserOrderOnly = async (req, res, next) => {
+  const err = new Error('Not Allowed - Self User Only')
+  const order = await Order.findByPk(req.params.orderId)
+  if (req.user.id === order.userId) {
     next()
   } else {
     err.status = 403
@@ -27,6 +31,14 @@ const selfUserOnly = (req, res, next) => {
   }
 }
 
+// const adminOnly = (req, res, next) => {
+//   const err = new Error('Not Allowed')
+//   if (!req.user.isAdmin) {
+//     err.status = 403
+//     throw err
+//   }
+//   next()
+// }
 // const selfUserOnly = (req, res, next) => {
 // 	const err = new Error('Not Allowed');
 // 	if (req.user.id !== Number(req.params.id) || !req.user.isAdmin) {
@@ -42,5 +54,6 @@ const selfUserOnly = (req, res, next) => {
 
 module.exports = {
   adminOnly,
-  selfUserOnly
+  selfUserOnly,
+  selfUserOrderOnly
 }

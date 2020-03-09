@@ -12,12 +12,14 @@ const reducer = combineReducers({
   user: userReducer,
   users: usersReducer,
   orders,
-  noodles: noodlesReducer,
-  noodle: noodleReducer
+  noodle: noodleReducer,
+  noodles: noodlesReducer
 })
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
+
 const store = createStore(reducer, middleware)
 
 export default store

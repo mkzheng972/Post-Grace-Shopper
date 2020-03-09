@@ -1,18 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {getCart} from '../store/cart'
+import {getCart} from '../../store/cart'
 
 /**
  * COMPONENT
  */
 export class UserHome extends React.Component {
   componentDidMount() {
-    console.log('userprops', this.props.user)
+    // console.log('userprops', this.props.user)
     // this.props.getCart(this.props.user.id)
   }
   render() {
-    console.log('render-userhome', this.props)
+    console.log(this.props)
+    // console.log('render-userhome', this.props)
     const {email, firstName} = this.props
     return (
       <div>
