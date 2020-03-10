@@ -7,6 +7,7 @@ const GET_SINGLE_NOODLE = 'GET_SINGLE_NOODLE'
 const ADD_NOODLE = 'ADD_NOODLE'
 const DELETE_NOODLE = 'DELETE_NOODLE'
 const UPDATE_NOODLE = 'UPDATE_NOODLE'
+const SORT_NOODLES = 'SORT_NOODLES'
 
 //ACTION CREATOR
 const gotNoodles = noodles => ({
@@ -34,10 +35,25 @@ const updatedNoodle = noodle => ({
   noodle
 })
 
+const sortedNoodles = noodles => ({
+  type: SORT_NOODLES,
+  noodles
+})
+
+export const sortNoodles = type => async dispatch => {
+  try {
+    const {data} = await axios.get('/api/noodles')
+    const sorted = data.filter(noodle => noodle.noodleType === type)
+    dispatch(sortedNoodles(sorted))
+  } catch (error) {
+    console.error('Error Sorting All Noodles', error)
+  }
+}
+
 //THUNKS
 export const getAllNoodles = () => async dispatch => {
   try {
-    const {data} = await axios.get(`/api/noodles`)
+    const {data} = await axios.get('/api/noodles')
     dispatch(gotNoodles(data))
   } catch (error) {
     console.error('Error Getting All Noods', error)
@@ -94,6 +110,8 @@ export const noodlesReducer = (state = [], action) => {
       return state.map(
         noodle => (noodle.id === action.noodle.id ? action.noodle : noodle)
       )
+    case SORT_NOODLES:
+      return action.noodles
     default:
       return state
   }

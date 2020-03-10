@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllNoodles, deleteNoodle, updateNoodle} from '../../store/noodles'
+import {
+  getAllNoodles,
+  deleteNoodle,
+  updateNoodle,
+  sortNoodles
+} from '../../store/noodles'
 import {Link} from 'react-router-dom'
 import AddNoodle from './AddNoodle'
 import UpdateNoodle from './UpdateNoodle'
@@ -29,10 +34,21 @@ export class AllNoodles extends Component {
         showUpdateNoodle: !this.state.showUpdateNoodle
       })
     }
+    if (event.target.name === 'handPulledNoodle') {
+      this.setState({
+        noodles: this.props.sortNoodles('hand-pulled')
+      })
+    }
+    if (event.target.name === 'dryNoodle') {
+      this.setState({
+        noodles: this.props.sortNoodles('dry')
+      })
+    }
   }
 
   render() {
     const {noodles, user} = this.props
+
     const userAdmin = user.isAdmin ? (
       <div>
         <button
@@ -46,8 +62,24 @@ export class AllNoodles extends Component {
         {this.state.showAddNoodle ? <AddNoodle /> : null}
       </div>
     ) : null
+
     return (
       <div className="container">
+        <div className="card text-center">
+          <h4>Sort By Noodle Type</h4>
+          <div className="sort-products">
+            <button
+              type="button"
+              name="handPulledNoodle"
+              onClick={this.handleClick}
+            >
+              Hand-Pulled Noodles
+            </button>
+            <button type="button" name="dryNoodle" onClick={this.handleClick}>
+              Dry Noodles
+            </button>
+          </div>
+        </div>
         {userAdmin}
         <div className="row">
           {noodles.map(noodle => (
@@ -63,6 +95,7 @@ export class AllNoodles extends Component {
                   src={noodle.imageUrl}
                 />
               </Link>
+
               <div className="card-content">
                 <Link to={`/noodles/${noodle.id}`}>
                   <h4 className="card-title">{noodle.name}</h4>
@@ -72,6 +105,7 @@ export class AllNoodles extends Component {
                   ${noodle.price / 100}
                 </p>
               </div>
+
               {user.isAdmin ? (
                 <div>
                   <div>
@@ -87,6 +121,7 @@ export class AllNoodles extends Component {
                       <UpdateNoodle id={noodle.id} />
                     ) : null}
                   </div>
+
                   <button
                     type="button"
                     className="btn btn-outline-danger"
@@ -112,7 +147,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getAllNoodles: () => dispatch(getAllNoodles()),
   deleteNoodle: id => dispatch(deleteNoodle(id)),
-  updateNoodle: (noodle, id) => dispatch(updateNoodle(noodle, id))
+  updateNoodle: (noodle, id) => dispatch(updateNoodle(noodle, id)),
+  sortNoodles: type => dispatch(sortNoodles(type))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllNoodles)
