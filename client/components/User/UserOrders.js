@@ -9,9 +9,7 @@ export class UserOrders extends Component {
   }
 
   render() {
-    // console.log("Order History", this.props)
     const {orders} = this.props ? this.props : []
-    // const {orders} = []
     console.log('orders', orders)
 
     return (

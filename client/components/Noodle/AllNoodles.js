@@ -33,42 +33,44 @@ export class AllNoodles extends Component {
 
   render() {
     const {noodles, user} = this.props
+    const userAdmin = user.isAdmin ? (
+      <div>
+        <button
+          type="button"
+          className="btn btn-primary"
+          name="addNoodle"
+          onClick={this.handleClick}
+        >
+          Add Noodle
+        </button>
+        {this.state.showAddNoodle ? <AddNoodle /> : null}
+      </div>
+    ) : null
     return (
       <div className="container">
-        {user.isAdmin ? (
-          <div>
-            <button
-              type="button"
-              className="btn btn-primary"
-              name="addNoodle"
-              onClick={this.handleClick}
-            >
-              Add Noodle
-            </button>
-            {this.state.showAddNoodle ? <AddNoodle /> : null}
-          </div>
-        ) : (
-          <div />
-        )}
+        {userAdmin}
         <div className="row">
           {noodles.map(noodle => (
-            <div className="d-flex p-2 bd-highlight col-6" key={noodle.id}>
-              <img
-                className="img-fluid img-thumbnail"
-                width="150"
-                heigth="150"
-                src={noodle.imageUrl}
-              />
-              <div className="d-flex flex-column bd-highlight mb-3 ">
-                <ul className="list-group">
-                  <Link to={`/noodles/${noodle.id}`}>
-                    <li className="text-center list-group-item active">
-                      {noodle.name}
-                    </li>
-                  </Link>
-                  <li className="list-group-item">{noodle.description}</li>
-                  <li className="list-group-item">$ {noodle.price / 100}</li>
-                </ul>
+            <div
+              className="card text-center"
+              style={{width: '20rem', height: '30rem', margin: '10px'}}
+              key={noodle.id}
+            >
+              <Link to={`/noodles/${noodle.id}`}>
+                <img
+                  className="card-img-top img-fluid"
+                  style={{height: '300px'}}
+                  src={noodle.imageUrl}
+                />
+              </Link>
+              <div className="card-content">
+                <Link to={`/noodles/${noodle.id}`}>
+                  <h4 className="card-title">{noodle.name}</h4>
+                </Link>
+                <div className="center">{noodle.description}</div>
+                <p className="card-text list-group-item">
+                  ${noodle.price / 100}
+                </p>
               </div>
               {user.isAdmin ? (
                 <div>
@@ -93,9 +95,7 @@ export class AllNoodles extends Component {
                     Remove Noodle
                   </button>
                 </div>
-              ) : (
-                <div />
-              )}
+              ) : null}
             </div>
           ))}
         </div>

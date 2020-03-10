@@ -14,22 +14,31 @@ export class SingleNoodle extends Component {
     const {name, imageUrl, description, price, id} = noodle
     const show = cart.noodles.filter(nood => nood.id === id)
     return (
-      <div>
-        <h1>{name}</h1>
-        <img width="250px" height="250px" src={imageUrl} />
-        <h3>{description}</h3>
-        <h3>{`$${price / 100}`}</h3>
-        {show.length > 0 ? (
-          <button type="button">Already in Cart</button>
-        ) : (
-          <button
-            type="button"
-            className="addToCart"
-            onClick={() => this.props.addToCart(this.props.noodle, cart.id)}
-          >
-            Add To Cart
-          </button>
-        )}
+      <div className="container">
+        <div className="card horizontal" style={{margin: '10px'}}>
+          <img
+            className="card-img-top"
+            width="250px"
+            height="250px"
+            src={imageUrl}
+          />
+          <div>
+            <h1>{name}</h1>
+            <h3>{description}</h3>
+            <h3>{`$${price / 100}`}</h3>
+            {show.length > 0 ? (
+              <button type="button">Already in Cart</button>
+            ) : (
+              <button
+                type="button"
+                className="addToCart"
+                onClick={() => this.props.addToCart(this.props.noodle, cart.id)}
+              >
+                Add To Cart
+              </button>
+            )}
+          </div>
+        </div>
       </div>
     )
   }

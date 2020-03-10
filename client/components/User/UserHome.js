@@ -16,8 +16,8 @@ export class UserHome extends React.Component {
     const {email, firstName} = this.props
     return (
       <div>
-        <h2>Welcome back {firstName}!</h2>
-        <h3>Welcome, {email}</h3>
+        <h2>Welcome To Spicy Noods!</h2>
+        <p>We have all kindsss of noodles for your liking!</p>
       </div>
     )
   }
