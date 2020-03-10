@@ -3,6 +3,7 @@ const {User, Noodle, Order} = require('../db/models')
 const {adminOnly, selfUserOnly} = require('./utils')
 module.exports = router
 
+//Get all users 'admin only'
 router.get('/', adminOnly, async (req, res, next) => {
   try {
     const allUsers = await User.findAll({
@@ -14,6 +15,7 @@ router.get('/', adminOnly, async (req, res, next) => {
   }
 })
 
+//Get single user 'selfUserOnly'
 router.get('/:id', selfUserOnly, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id)
@@ -23,9 +25,12 @@ router.get('/:id', selfUserOnly, async (req, res, next) => {
   }
 })
 
+//Create a new user by an admin 'admin only'
 router.post('/', adminOnly, async (req, res, next) => {
   try {
     const createdUser = await User.create(req.body)
+    const newOrder = await Order.create()
+    createdUser.addOrder(newOrder)
     res.status(201)
     res.json(createdUser)
   } catch (error) {
@@ -33,6 +38,7 @@ router.post('/', adminOnly, async (req, res, next) => {
   }
 })
 
+//Updating user 'selfUserOnly'
 router.put('/:id', selfUserOnly, async (req, res, next) => {
   try {
     const updateUser = await User.findByPk(req.params.id)
@@ -43,6 +49,7 @@ router.put('/:id', selfUserOnly, async (req, res, next) => {
   }
 })
 
+//Deleting an user 'admin only'
 router.delete('/:id', adminOnly, async (req, res, next) => {
   try {
     const deleteUser = await User.findByPk(req.params.id)
@@ -56,6 +63,7 @@ router.delete('/:id', adminOnly, async (req, res, next) => {
   }
 })
 
+//We might need to move this route to orders
 router.get('/history/:id', async (req, res, next) => {
   try {
     const userHistory = await Order.findAll({

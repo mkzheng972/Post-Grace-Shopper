@@ -3,6 +3,7 @@ const {Noodle} = require('../db/models')
 const {adminOnly} = require('./utils')
 module.exports = router
 
+//For all noodles
 router.get('/', async (req, res, next) => {
   try {
     const allNoodle = await Noodle.findAll()
@@ -12,6 +13,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//For single noodle
 router.get('/:id', async (req, res, next) => {
   try {
     const noodle = await Noodle.findOne({
@@ -27,6 +29,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+//Creating a new noodle 'admin only'
 router.post('/', adminOnly, async (req, res, next) => {
   try {
     const customNoodle = await Noodle.create(req.body)
@@ -36,6 +39,7 @@ router.post('/', adminOnly, async (req, res, next) => {
   }
 })
 
+//Editing an existing noodle 'admin only'
 router.put('/:id', adminOnly, async (req, res, next) => {
   try {
     const updateNoodle = await Noodle.findByPk(req.params.id)
@@ -46,6 +50,8 @@ router.put('/:id', adminOnly, async (req, res, next) => {
   }
 })
 
+//Editing an existing noodle 'admin only'
+//Needs further work in logic
 router.delete('/:id', adminOnly, async (req, res, next) => {
   try {
     const deleteNoodle = await Noodle.findByPk(req.params.id)
