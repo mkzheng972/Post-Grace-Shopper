@@ -13,7 +13,7 @@ function Checkout(props) {
       >
         Pay with Cash
       </button>
-      <Checkouts />
+      <Checkouts cart={props.cart} checkout={props.checkout} />
     </div>
   )
 }
