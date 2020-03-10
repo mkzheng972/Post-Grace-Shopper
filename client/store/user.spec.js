@@ -1,92 +1,94 @@
 // /* global describe beforeEach afterEach it */
 
-// import {expect} from 'chai'
-// import {me, logout} from './user'
-// import axios from 'axios'
-// import MockAdapter from 'axios-mock-adapter'
-// import configureMockStore from 'redux-mock-store'
-// import thunkMiddleware from 'redux-thunk'
-// import history from '../history'
-// import {gotCart} from './cart'
-// import {getAllNoodles} from './noodles'
+import {expect} from 'chai'
+import {me, logout} from './user'
+import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter'
+import configureMockStore from 'redux-mock-store'
+import thunkMiddleware from 'redux-thunk'
+import history from '../history'
+import {getAllNoodles} from '../components/Noodle/AddNoodle'
+import {gotCart} from './cart'
 
-// const middlewares = [thunkMiddleware]
-// const mockStore = configureMockStore(middlewares)
+const middlewares = [thunkMiddleware]
+const mockStore = configureMockStore(middlewares)
 
-// describe('thunk creators', () => {
-//   let store
-//   let mockAxios
+describe('thunk creators', () => {
+  let store
+  let mockAxios
 
-//   const initialState = {user: {}}
+  const initialState = {user: {}}
 
-//   beforeEach(() => {
-//     mockAxios = new MockAdapter(axios)
-//     store = mockStore(initialState)
-//   })
+  beforeEach(() => {
+    mockAxios = new MockAdapter(axios)
+    store = mockStore(initialState)
+  })
 
-//   afterEach(() => {
-//     mockAxios.restore()
-//     store.clearActions()
-//   })
+  afterEach(() => {
+    mockAxios.restore()
+    store.clearActions()
+  })
 
-//   describe('me', () => {
-//     it('eventually dispatches the GET USER action', async () => {
-//       const fakeUser = {email: 'Cody'}
-//       mockAxios.onGet('/auth/me').replyOnce(200, fakeUser)
-//       await store.dispatch(me())
-//       const actions = store.getActions()
-//       expect(actions[0].type).to.be.equal('GET_USER')
-//       expect(actions[0].user).to.be.deep.equal(fakeUser)
-//     })
-//   })
+  // xdescribe('me', () => {
+  //   it('eventually dispatches the GET USER action', async () => {
+  //     const fakeUser = {email: 'Cody'}
+  //     mockAxios.onGet('/auth/me').replyOnce(200, fakeUser)
+  //     await store.dispatch(me())
+  //     const actions = store.getActions()
+  //     expect(actions[0].type).to.be.equal('GET_USER')
+  //     expect(actions[0].user).to.be.deep.equal(fakeUser)
+  //   })
+  // })
 
-//   describe('logout', () => {
-//     it('logout: eventually dispatches the REMOVE_USER action', async () => {
-//       mockAxios.onPost('/auth/logout').replyOnce(204)
-//       await store.dispatch(logout())
-//       const actions = store.getActions()
-//       expect(actions[0].type).to.be.equal('REMOVE_USER')
-//       expect(history.location.pathname).to.be.equal('/login')
-//     })
-//   })
-// })
+  describe('logout', () => {
+    it('logout: eventually dispatches the REMOVE_USER action', async () => {
+      mockAxios.onPost('/auth/logout').replyOnce(204)
+      await store.dispatch(logout())
+      const actions = store.getActions()
+      expect(actions[0].type).to.be.equal('REMOVE_USER')
+      expect(history.location.pathname).to.be.equal('/login')
+    })
+  })
+})
 
-// //Leslie's Test Specs
-// describe('thunk creators for All Noodles', () => {
-//   let store
-//   let mockAxios
+//Leslie's Test Specs
+describe('thunk creators for All Noodles', () => {
+  let store
+  let mockAxios
 
-//   const initialState = {noodles: []}
+  const initialState = {noodles: []}
 
-//   beforeEach(() => {
-//     mockAxios = new MockAdapter(axios)
-//     store = mockStore(initialState)
-//   })
+  beforeEach(() => {
+    mockAxios = new MockAdapter(axios)
+    store = mockStore(initialState)
+  })
 
-//   afterEach(() => {
-//     mockAxios.restore()
-//     store.clearActions()
-//   })
+  afterEach(() => {
+    mockAxios.restore()
+    store.clearActions()
+  })
 
-//   describe('All Noodles', () => {
-//     it('gets all noodles product', async () => {
-//       const fakeUser = {email: 'Cody', isAdmin: true}
-//       mockAxios.onGet('/api/noodles').replyOnce(200, fakeUser)
-//       await store.dispatch(getAllNoodles())
-//       const actions = store.getActions()
-//       console.log('actions', actions)
-//       expect(actions[0].type).to.be.equal('GET_NOODLES')
-//       expect(actions[0].noodles).to.be.deep.equal(fakeUser)
-//     })
-//   })
+  describe('All Noodles', () => {
+    it('gets all noodles product', async () => {
+      const fakeUser = {email: 'Cody', isAdmin: true}
+      mockAxios.onGet('/api/noodles').replyOnce(200, fakeUser)
+      await store.dispatch(getAllNoodles())
+      const actions = store.getActions()
+      const noodles = store.getCart()
+      console.log('actions', actions)
+      console.log('noodles', noodles)
+      expect(actions[0].type).to.be.equal('GET_NOODLES')
+      expect(actions[0].noodles).to.be.deep.equal(fakeUser)
+    })
+  })
 
-//   // describe('logout', () => {
-//   //   it('logout: eventually dispatches the REMOVE_USER action', async () => {
-//   //     mockAxios.onPost('/auth/logout').replyOnce(204)
-//   //     await store.dispatch(logout())
-//   //     const actions = store.getActions()
-//   //     expect(actions[0].type).to.be.equal('REMOVE_USER')
-//   //     expect(history.location.pathname).to.be.equal('/login')
-//   //   })
-//   // })
-// })
+  describe('logout', () => {
+    it('logout: eventually dispatches the REMOVE_USER action', async () => {
+      mockAxios.onPost('/auth/logout').replyOnce(204)
+      await store.dispatch(logout())
+      const actions = store.getActions()
+      expect(actions[0].type).to.be.equal('REMOVE_USER')
+      expect(history.location.pathname).to.be.equal('/login')
+    })
+  })
+})
