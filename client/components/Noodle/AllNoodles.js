@@ -34,21 +34,26 @@ export class AllNoodles extends Component {
         showUpdateNoodle: !this.state.showUpdateNoodle
       })
     }
-    if (event.target.name === 'handPulledNoodle') {
+    if (event.target.name === 'soup') {
       this.setState({
-        noodles: this.props.sortNoodles('hand-pulled')
+        noodles: this.props.sortNoodles('soup')
       })
     }
-    if (event.target.name === 'dryNoodle') {
+    if (event.target.name === 'dry') {
       this.setState({
         noodles: this.props.sortNoodles('dry')
+      })
+    }
+    if (event.target.name === 'veggie') {
+      this.setState({
+        noodles: this.props.sortNoodles('veggie')
       })
     }
   }
 
   render() {
     const {noodles, user} = this.props
-    
+
     const userAdmin = user.isAdmin ? (
       <div>
         <button
@@ -66,20 +71,20 @@ export class AllNoodles extends Component {
     return (
       <div className="container">
         <div className="card text-center">
-          <h4>Sort By Noodle Type</h4>
+          <h4>Filter By Noodle Type</h4>
           <div className="sort-products">
-            <button
-              type="button"
-              name="handPulledNoodle"
-              onClick={this.handleClick}
-            >
-              Hand-Pulled Noodles
+            <button type="button" name="soup" onClick={this.handleClick}>
+              Soup Noodles
             </button>
-            <button type="button" name="dryNoodle" onClick={this.handleClick}>
+            <button type="button" name="dry" onClick={this.handleClick}>
               Dry Noodles
+            </button>
+            <button type="button" name="veggie" onClick={this.handleClick}>
+              Veggie Noodles
             </button>
           </div>
         </div>
+
         {userAdmin}
         <div className="row">
           {noodles.map(noodle => (
