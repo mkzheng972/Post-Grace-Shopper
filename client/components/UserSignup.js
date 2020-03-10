@@ -1,14 +1,14 @@
 /* eslint-disable react/display-name */
 import React from 'react'
 
-export default function({name, displayname, handleSubmit, error}) {
+export default function({name, displayName, handleSubmit, error}) {
   return (
     <div>
       <form
         onSubmit={handleSubmit}
         name={name}
         error={error}
-        displayname={displayname}
+        displayName={displayName}
       >
         <div>
           <label htmlFor="firstName">
@@ -35,11 +35,11 @@ export default function({name, displayname, handleSubmit, error}) {
           <input name="password" type="password" />
         </div>
         <div>
-          <button type="submit">{displayname}</button>
+          <button type="submit">{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayname} with Google</a>
+      <a href="/auth/google">{displayName} with Google</a>
     </div>
   )
 }
