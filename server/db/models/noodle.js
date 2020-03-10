@@ -40,6 +40,10 @@ const Noodle = db.define('noodle', {
   isCustom: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  isVeggie: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 

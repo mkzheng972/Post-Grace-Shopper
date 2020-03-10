@@ -43,7 +43,12 @@ const sortedNoodles = noodles => ({
 export const sortNoodles = type => async dispatch => {
   try {
     const {data} = await axios.get('/api/noodles')
-    const sorted = data.filter(noodle => noodle.noodleType === type)
+    let sorted
+    if (type === 'veggie') {
+      sorted = data.filter(noodle => noodle.isVeggie)
+    } else {
+      sorted = data.filter(noodle => noodle.noodleType === type)
+    }
     dispatch(sortedNoodles(sorted))
   } catch (error) {
     console.error('Error Sorting All Noodles', error)
