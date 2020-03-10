@@ -1,9 +1,10 @@
 const router = require('express').Router()
 
 const {Order, Noodle, User, OrderItem} = require('../db/models')
-const {adminOnly, selfUserOrderOnly} = require('./utils')
+const {adminOnly, selfUserOrderOnly, selfUserOnly} = require('./utils')
 module.exports = router
 
+//Getting all orders in DB 'admin only'
 router.get('/', adminOnly, async (req, res, next) => {
   try {
     const users = await Order.findAll({})
@@ -13,6 +14,7 @@ router.get('/', adminOnly, async (req, res, next) => {
   }
 })
 
+//To establish relationship between an order and a noodle. Add a Noodle to Cart functionality. 'selfUserOrderOnly'
 router.put('/:orderId', selfUserOrderOnly, async (req, res, next) => {
   try {
     const noodle = await Noodle.findByPk(req.body.id)
@@ -24,16 +26,17 @@ router.put('/:orderId', selfUserOrderOnly, async (req, res, next) => {
   }
 })
 
+//Checkout Route
 router.put('/', async (req, res, next) => {
   try {
     const cart = await Order.findByPk(req.body.id)
     cart.update(req.body)
     const user = await User.findByPk(req.user.id)
-    const newCart = await Order.create()
-    await user.addOrder(newCart)
-    const newnewCart = await Order.findOne({
+    const newOrder = await Order.create()
+    await user.addOrder(newOrder)
+    const newCart = await Order.findOne({
       where: {
-        id: newCart.id
+        id: newOrder.id
       },
       include: [
         {
@@ -41,13 +44,14 @@ router.put('/', async (req, res, next) => {
         }
       ]
     })
-    res.json(newnewCart)
+    res.json(newCart)
   } catch (error) {
     next(error)
   }
 })
 
-router.get('/pending/:id', async (req, res, next) => {
+//Get user only pending cart
+router.get('/pending/:id', selfUserOnly, async (req, res, next) => {
   try {
     const cart = await Order.findOne({
       where: {
@@ -62,13 +66,21 @@ router.get('/pending/:id', async (req, res, next) => {
   }
 })
 
-router.delete('/:orderId/:noodleId', async (req, res, next) => {
-  try {
-    const cart = await Order.findByPk(req.params.orderId)
-    const noodle = await Noodle.findByPk(req.params.noodleId)
-    await cart.removeNoodle(noodle)
-    res.sendStatus(204)
-  } catch (error) {
-    next(error)
+//Removing a noodle from the order
+router.delete(
+  '/:orderId/:noodleId',
+  selfUserOrderOnly,
+  async (req, res, next) => {
+    try {
+      await OrderItem.destroy({
+        where: {
+          orderId: req.params.orderId,
+          noodleId: req.params.noodleId
+        }
+      })
+      res.sendStatus(204)
+    } catch (error) {
+      next(error)
+    }
   }
-})
+)
