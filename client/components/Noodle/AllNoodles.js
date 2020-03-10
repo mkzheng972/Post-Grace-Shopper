@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllNoodles, deleteNoodle, updateNoodle} from '../store/noodles'
+import {getAllNoodles, deleteNoodle, updateNoodle} from '../../store/noodles'
 import {Link} from 'react-router-dom'
 import AddNoodle from './AddNoodle'
 import UpdateNoodle from './UpdateNoodle'

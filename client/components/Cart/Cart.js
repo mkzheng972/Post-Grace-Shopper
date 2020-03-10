@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import CartColumns from './CartColumns'
 import CartList from './CartList'
 import Checkout from './Checkout'
+import {Link} from 'react-router-dom'
 
 export class Cart extends Component {
   // componentDidMount() {
@@ -10,7 +11,7 @@ export class Cart extends Component {
   // }
 
   render() {
-    const {cart} = this.props
+    const {cart, user} = this.props
     const {noodles} = cart
     return (
       <div>
@@ -18,7 +19,13 @@ export class Cart extends Component {
           <div>
             <CartColumns />
             <CartList noodles={noodles} />
-            <Checkout />
+            {user.id ? (
+              <Checkout />
+            ) : (
+              <Link to="/signup" className="btn btn-outline-primary">
+                Sign Up to Checkout
+              </Link>
+            )}
           </div>
         ) : (
           <h1>Your Cart is Currently empty</h1>
@@ -29,6 +36,7 @@ export class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.user,
   cart: state.cart
 })
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getSingleNoodle} from '../store/noodles'
-import {addToCart} from '../store/cart'
+import {getSingleNoodle} from '../../store/noodles'
+import {addToCart} from '../../store/cart'
 
 export class SingleNoodle extends Component {
   componentDidMount() {
