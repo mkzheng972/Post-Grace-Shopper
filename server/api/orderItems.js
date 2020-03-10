@@ -3,6 +3,7 @@ const {OrderItem} = require('../db/models')
 module.exports = router
 const {selfUserOrderOnly} = require('./utils')
 
+//Change quantity of an noodle in the join table
 router.put(
   '/:cartId/:noodleId/:quantity',
   selfUserOrderOnly,
