@@ -22,6 +22,7 @@ export class UserHome extends React.Component {
             : null}!
         </h2>
         <p>We have all kindsss of noodles for your liking!</p>
+        <div />
       </div>
     )
   }

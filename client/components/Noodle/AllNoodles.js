@@ -33,6 +33,7 @@ export class AllNoodles extends Component {
 
   render() {
     const {noodles, user} = this.props
+    console.log(noodles)
     const userAdmin = user.isAdmin ? (
       <div>
         <button
@@ -67,10 +68,9 @@ export class AllNoodles extends Component {
                 <Link to={`/noodles/${noodle.id}`}>
                   <h4 className="card-title">{noodle.name}</h4>
                 </Link>
-                <div className="center">{noodle.description}</div>
-                <p className="card-text list-group-item">
-                  ${noodle.price / 100}
-                </p>
+                <p className="card-text">{noodle.description}</p>
+                <p className="card-text">Type: {noodle.noodleType}</p>
+                <p className="card-text">${noodle.price / 100}</p>
               </div>
               {user.isAdmin ? (
                 <div>
