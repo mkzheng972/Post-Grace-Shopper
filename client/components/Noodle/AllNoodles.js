@@ -19,7 +19,6 @@ export class AllNoodles extends Component {
   }
 
   handleClick(event) {
-    // console.log(event.target.name)
     if (event.target.name === 'addNoodle') {
       this.setState({
         showAddNoodle: !this.state.showAddNoodle
