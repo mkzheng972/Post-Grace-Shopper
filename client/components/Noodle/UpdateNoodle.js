@@ -13,6 +13,7 @@ export class UpdateNoodle extends Component {
       price: ''
     }
   }
+
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -29,6 +30,7 @@ export class UpdateNoodle extends Component {
       price: ''
     })
   }
+
   render() {
     return (
       <div className="updateNoodle">

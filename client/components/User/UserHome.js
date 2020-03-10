@@ -12,7 +12,6 @@ export class UserHome extends React.Component {
     // this.props.getCart(this.props.user.id)
   }
   render() {
-    console.log(this.props)
     // console.log('render-userhome', this.props)
     const {email, firstName} = this.props
     return (

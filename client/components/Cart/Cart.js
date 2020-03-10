@@ -19,13 +19,15 @@ export class Cart extends Component {
           <div>
             <CartColumns />
             <CartList noodles={noodles} />
-            {user.id ? (
-              <Checkout />
-            ) : (
-              <Link to="/signup" className="btn btn-outline-primary">
-                Sign Up to Checkout
-              </Link>
-            )}
+            <div className="float-right">
+              {user.id ? (
+                <Checkout />
+              ) : (
+                <Link to="/signup" className="btn btn-outline-primary">
+                  Sign Up to Checkout
+                </Link>
+              )}
+            </div>
           </div>
         ) : (
           <h1>Your Cart is Currently empty</h1>

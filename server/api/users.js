@@ -63,8 +63,8 @@ router.delete('/:id', adminOnly, async (req, res, next) => {
   }
 })
 
-//We might need to move this route to orders
-router.get('/history/:id', async (req, res, next) => {
+//get all order for a specific user
+router.get('/history/:id', selfUserOnly, async (req, res, next) => {
   try {
     const userHistory = await Order.findAll({
       where: {

@@ -8,7 +8,11 @@ export class Admin extends Component {
     this.props.getAllUsers()
   }
   render() {
-    return <div />
+    return (
+      <Link to="/admin/userList">
+        <p>Admin Page User List</p>
+      </Link>
+    )
   }
 }
 

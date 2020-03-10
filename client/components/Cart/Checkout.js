@@ -8,12 +8,12 @@ function Checkout(props) {
     <div>
       <button
         type="button"
-        className="btn btn-outline-primary"
+        className="btn btn-primary"
         onClick={() => props.checkout(props.cart)}
       >
-        Pay
+        Pay with Cash
       </button>
-      <Checkouts />
+      <Checkouts cart={props.cart} checkout={props.checkout} />
     </div>
   )
 }

@@ -4,9 +4,21 @@ import {Link} from 'react-router-dom'
 
 export class UserProfile extends Component {
   render() {
+    const {user} = this.props
     return (
       <div>
-        <h2>Your Profile</h2>
+        <div>
+          <h2>Hello {user.firstName}!</h2>
+          <h4>Your current profile</h4>
+          {user.imageUrl === null ? (
+            <p>No Image Available</p>
+          ) : (
+            <img src={user.imageUrl} />
+          )}
+          <p>Current First Name: {user.firstName}</p>
+          <p>Current Last Name: {user.lastName}</p>
+          <p>Email: {user.email}</p>
+        </div>
         <Link to="/user/settings">
           <p>Your Settings</p>
         </Link>
