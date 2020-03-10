@@ -6,12 +6,12 @@ const db = require('../db')
 const app = require('../index')
 const User = db.model('user')
 
-describe('User routes', () => {
+xdescribe('User routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/users/', () => {
+  describe('/api/users', () => {
     const codysEmail = 'cody@puppybook.com'
 
     beforeEach(() => {
