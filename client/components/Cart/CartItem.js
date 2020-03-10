@@ -25,7 +25,7 @@ class CartItem extends React.Component {
 
   render() {
     const {noodle, removeFromCart, countChange, cart} = this.props
-    const {id, name, price, imageUrl, total} = noodle
+    const {id, name, price, imageUrl} = noodle
     return (
       <div className="row my-1 text-center">
         <div className="col-10 mx-auto col-lg-2">
@@ -35,7 +35,7 @@ class CartItem extends React.Component {
           <p>{name}</p>
         </div>
         <div className="col-10 mx-auto col-lg-2">
-          <p>{price}</p>
+          <p>$ {price / 100}</p>
         </div>
         <div className="col-10 mx-auto col-lg-2">
           <input
@@ -55,7 +55,9 @@ class CartItem extends React.Component {
             X{' '}
           </button>
         </div>
-        <div className="col-10 mx-auto col-lg-2">{total}</div>
+        <div className="col-10 mx-auto col-lg-2">
+          $ {price * this.state.quantity / 100}
+        </div>
       </div>
     )
   }

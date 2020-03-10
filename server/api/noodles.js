@@ -50,8 +50,7 @@ router.put('/:id', adminOnly, async (req, res, next) => {
   }
 })
 
-//Editing an existing noodle 'admin only'
-//Needs further work in logic
+//Delete an existing noodle 'admin only'
 router.delete('/:id', adminOnly, async (req, res, next) => {
   try {
     const deleteNoodle = await Noodle.findByPk(req.params.id)
