@@ -8,8 +8,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <nav className="navbar navbar-default navbar-fixed-top bg-warning lighten(@gray-base, 33.5%)">
       <div className="container-fluid">
-        <Link to="/home" className="btn btn-outline-primary">
-          Spicy Noods
+        <Link to="/home" className="">
+          <img src="/images/ramen.svg" width="80" />
         </Link>
         <Link to="/menu" className="btn btn-outline-primary">
           Noodles

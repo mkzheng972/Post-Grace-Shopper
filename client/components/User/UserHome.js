@@ -16,7 +16,11 @@ export class UserHome extends React.Component {
     const {email, firstName} = this.props
     return (
       <div>
-        <h2>Welcome To Spicy Noods!</h2>
+        <h2>
+          Welcome {firstName ? `Back` : null} To Spicy Noods{firstName
+            ? `, ${firstName}`
+            : null}!
+        </h2>
         <p>We have all kindsss of noodles for your liking!</p>
       </div>
     )
