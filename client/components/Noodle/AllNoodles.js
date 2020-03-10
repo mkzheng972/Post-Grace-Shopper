@@ -28,25 +28,25 @@ export class AllNoodles extends Component {
       this.setState({
         showAddNoodle: !this.state.showAddNoodle
       })
-    }
-    if (event.target.name === 'updateNoodle') {
+    } else if (event.target.name === 'updateNoodle') {
       this.setState({
         showUpdateNoodle: !this.state.showUpdateNoodle
       })
-    }
-    if (event.target.name === 'soup') {
+    } else if (event.target.name === 'soup') {
       this.setState({
         noodles: this.props.sortNoodles('soup')
       })
-    }
-    if (event.target.name === 'dry') {
+    } else if (event.target.name === 'dry') {
       this.setState({
         noodles: this.props.sortNoodles('dry')
       })
-    }
-    if (event.target.name === 'veggie') {
+    } else if (event.target.name === 'veggie') {
       this.setState({
         noodles: this.props.sortNoodles('veggie')
+      })
+    } else {
+      this.setState({
+        noodles: this.props.getAllNoodles()
       })
     }
   }
@@ -73,14 +73,37 @@ export class AllNoodles extends Component {
         <div className="card text-center">
           <h4>Filter By Noodle Type</h4>
           <div className="sort-products">
-            <button type="button" name="soup" onClick={this.handleClick}>
+            <button
+              type="button"
+              className="btn btn-info"
+              name="soup"
+              onClick={this.handleClick}
+            >
               Soup Noodles
             </button>
-            <button type="button" name="dry" onClick={this.handleClick}>
+            <button
+              type="button"
+              className="btn btn-info"
+              name="dry"
+              onClick={this.handleClick}
+            >
               Dry Noodles
             </button>
-            <button type="button" name="veggie" onClick={this.handleClick}>
+            <button
+              type="button"
+              className="btn btn-info"
+              name="veggie"
+              onClick={this.handleClick}
+            >
               Veggie Noodles
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              name="all"
+              onClick={this.handleClick}
+            >
+              No Filter
             </button>
           </div>
         </div>
