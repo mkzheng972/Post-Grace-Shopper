@@ -16,14 +16,14 @@ const AuthForm = props => {
         handleSubmit={handleSubmit}
         error={error}
         name={name}
-        displayName={displayName}
+        displayname={displayName}
       />
     ) : (
       <UserLogin
         handleSubmit={handleSubmit}
         error={error}
         name={name}
-        displayName={displayName}
+        displayname={displayName}
       />
     )
   // let form =
