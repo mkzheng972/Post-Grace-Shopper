@@ -16,7 +16,7 @@ export class SingleNoodle extends Component {
     return (
       <div>
         <h1>{name}</h1>
-        <img src={imageUrl} />
+        <img width="250px" height="250px" src={imageUrl} />
         <h3>{description}</h3>
         <h3>{`$${price / 100}`}</h3>
         {show.length > 0 ? (
