@@ -7,8 +7,8 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
 import history from '../history'
+import {getAllNoodles} from '../components/Noodle/AddNoodle'
 import {gotCart} from './cart'
-import {getAllNoodles} from './noodles'
 
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
@@ -74,19 +74,21 @@ describe('thunk creators for All Noodles', () => {
       mockAxios.onGet('/api/noodles').replyOnce(200, fakeUser)
       await store.dispatch(getAllNoodles())
       const actions = store.getActions()
+      const noodles = store.getCart()
       console.log('actions', actions)
+      console.log('noodles', noodles)
       expect(actions[0].type).to.be.equal('GET_NOODLES')
       expect(actions[0].noodles).to.be.deep.equal(fakeUser)
     })
   })
 
-  // describe('logout', () => {
-  //   it('logout: eventually dispatches the REMOVE_USER action', async () => {
-  //     mockAxios.onPost('/auth/logout').replyOnce(204)
-  //     await store.dispatch(logout())
-  //     const actions = store.getActions()
-  //     expect(actions[0].type).to.be.equal('REMOVE_USER')
-  //     expect(history.location.pathname).to.be.equal('/login')
-  //   })
-  // })
+  describe('logout', () => {
+    it('logout: eventually dispatches the REMOVE_USER action', async () => {
+      mockAxios.onPost('/auth/logout').replyOnce(204)
+      await store.dispatch(logout())
+      const actions = store.getActions()
+      expect(actions[0].type).to.be.equal('REMOVE_USER')
+      expect(history.location.pathname).to.be.equal('/login')
+    })
+  })
 })
