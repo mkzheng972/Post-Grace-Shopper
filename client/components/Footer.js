@@ -3,10 +3,10 @@ import React from 'react'
 export default function Footer() {
   return (
     <div>
-      <footer className="">
+      <nav className="navbar navbar-fixed-bottom bg-warning lighten(@gray-base, 33.5%)">
         <img src="/images/ramen.svg" width="60" />
-        <p className="">Copyright SPICYNOODS.INC</p>
-      </footer>
+        <p className="">Copyright SPICYNOODS LLC</p>
+      </nav>
     </div>
   )
 }
