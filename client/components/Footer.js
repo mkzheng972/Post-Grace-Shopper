@@ -5,7 +5,7 @@ export default function Footer() {
     <div>
       <nav className="navbar navbar-fixed-bottom bg-warning lighten(@gray-base, 33.5%)">
         <img src="/images/ramen.svg" width="60" />
-        <p className="">Copyright SPICYNOODS LLC</p>
+        <p className="">SPICYNOODS LLC © 2020</p>
       </nav>
     </div>
   )
