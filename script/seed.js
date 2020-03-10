@@ -45,7 +45,7 @@ const dummyNoodles = [
     noodleType: 'hand-pulled',
     imageUrl:
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/32/cf/39/spicy-beef-noodle-soup.jpg',
-    description: 'Beef noodle soup with spice and veggies',
+    description: 'Beef noodle soup with spices and veggies',
     price: 1099,
     quantity: 1,
     isCustom: false
@@ -55,7 +55,7 @@ const dummyNoodles = [
     noodleType: 'hand-pulled',
     imageUrl:
       'https://img.delicious.com.au/OqmFaoLj/w759-h506-cfill/del/2017/07/japanese-spicy-miso-pork-ramen-49051-1.jpg',
-    description: 'Pork with noodles and soup',
+    description: 'ground Pork with noodles and spicy soup',
     price: 1099,
     quantity: 1,
     isCustom: false
@@ -65,7 +65,7 @@ const dummyNoodles = [
     noodleType: 'hand-pulled',
     imageUrl:
       'https://i.pinimg.com/originals/63/de/ad/63deada440ecd5b4bd40c503f26df6a0.jpg',
-    description: 'Lamb with noodles and soup',
+    description: 'sliced Lamb with noodles and spicy soup',
     price: 1099,
     quantity: 1,
     isCustom: false
@@ -75,7 +75,7 @@ const dummyNoodles = [
     noodleType: 'hand-pulled',
     imageUrl:
       'https://res.cloudinary.com/hksqkdlah/image/upload/ar_1:1,c_fill,dpr_2.0,f_auto,fl_lossy.progressive.strip_profile,g_faces:auto,q_auto:low,w_344/SFS_CurriedChickenNoodleSoup-42_bqbizi',
-    description: 'Chicken with noodle soup and spice',
+    description: 'chopped Chicken with noodle and spicy soup',
     price: 1099,
     quantity: 1,
     isCustom: false
@@ -85,20 +85,59 @@ const dummyNoodles = [
     noodleType: 'hand-pulled',
     imageUrl:
       'https://heatherchristo.com/wp-content/uploads/2014/01/Spicy-Thai-Curry-Noodle-Soup1.jpg',
-    description: 'Vegetables with a mix of spicy noodle and soup',
+    description: 'Vegetables with spicy noodle and spicy soup',
     price: 1099,
     quantity: 1,
-    isCustom: false
+    isCustom: false,
+    isVeggie: true
   },
   {
     name: 'Spicy Seafood Noodle Soup',
     noodleType: 'hand-pulled',
     imageUrl:
       'https://previews.123rf.com/images/bbtreesubmission/bbtreesubmission1902/bbtreesubmission190209644/117880688-korean-chinese-cuisine-jjambbong-spicy-seafood-noodle-soup-with-octopus-crab-and-shrimp.jpg',
-    description: 'Seafood mix of shrimp and others with noodle and soup',
+    description: 'Seafood mix with noodle and spicy soup',
     price: 1099,
     quantity: 1,
     isCustom: false
+  },
+  {
+    name: 'Spicy Cold Noodles',
+    noodleType: 'dry',
+    imageUrl: '/images/spicyColdNoodles.jpg',
+    description: 'Spicy cold noodles with peanut sauce',
+    price: 1099,
+    quantity: 1,
+    isCustom: false,
+    isVeggie: true
+  },
+  {
+    name: 'Spicy DanDan Noodles',
+    noodleType: 'dry',
+    imageUrl: '/images/spicyDanDanNoodles.jpg',
+    description: 'Chinese DANDAN noodles with pork',
+    price: 1099,
+    quantity: 1,
+    isCustom: false
+  },
+  {
+    name: 'Spicy Egg Noodles',
+    noodleType: 'dry',
+    imageUrl: '/images/spicySweetWontonNoodlesWithEgg.jpeg',
+    description: 'Spicy egg noodles with a soft boiled egg',
+    price: 999,
+    quantity: 1,
+    isCustom: false
+  },
+  {
+    name: 'Spicy Udon Noodles',
+    noodleType: 'dry',
+    imageUrl: '/images/spicyUdonNoodlesWithTofu.jpeg',
+    description: 'Spicy Udon noodles with herbs',
+    price: 1099,
+    quantity: 1,
+    isCustom: false,
+    isVeggie: true
   }
 ]
 
