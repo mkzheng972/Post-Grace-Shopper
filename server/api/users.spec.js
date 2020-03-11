@@ -15,10 +15,11 @@ xdescribe('User routes', () => {
     const codysEmail = 'cody@puppybook.com'
 
     beforeEach(() => {
-      return User.create({
+      let user = User.create({
         email: codysEmail,
         isAdmin: true
       })
+      return user
     })
 
     it('GET /api/users', async () => {
@@ -27,7 +28,7 @@ xdescribe('User routes', () => {
         .expect(200)
 
       expect(res.body).to.be.an('array')
-      expect(res.body[0].email).to.be.equal(codysEmail)
+      expect(res.body).to.have.length(1)
     })
   }) // end describe('/api/users')
 }) // end describe('User routes')

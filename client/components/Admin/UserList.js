@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import {getAllUsers} from '../../store/user'
 import SingleUser from './SingleUser'
 export class UserList extends Component {

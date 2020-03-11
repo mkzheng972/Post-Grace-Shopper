@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import UserList from './UserList'
 import {getAllUsers} from '../../store/user'
+import {Link} from 'react-router-dom'
 
 export class Admin extends Component {
   componentDidMount() {
