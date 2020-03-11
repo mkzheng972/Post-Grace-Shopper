@@ -9,7 +9,8 @@ export class UpdateUser extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      password: this.props.user.password
+      password: this.props.user.password,
+      imageUrl: ''
     }
   }
 
@@ -22,12 +23,13 @@ export class UpdateUser extends Component {
   handleSubmit = async event => {
     event.preventDefault()
     await this.props.updateUser(this.state, this.props.user.id)
+    await this.props.getSingleUser(this.props.user.id)
     this.setState({
       firstName: '',
       lastName: '',
-      password: ''
+      password: '',
+      imageUrl: ''
     })
-    await this.props.getSingleUser(this.props.user.id)
   }
 
   render() {
@@ -36,7 +38,7 @@ export class UpdateUser extends Component {
         <form onSubmit={this.handleSubmit}>
           <h4>Change Name Below</h4>
           <label>
-            First Name:
+            New First Name:
             <input
               type="text"
               name="firstName"
@@ -44,8 +46,9 @@ export class UpdateUser extends Component {
               onChange={this.handleChange}
             />
           </label>
+          <br />
           <label>
-            Last Name:
+            New Last Name:
             <input
               type="text"
               name="lastName"
@@ -53,8 +56,9 @@ export class UpdateUser extends Component {
               onChange={this.handleChange}
             />
           </label>
+          <br />
           <label>
-            Password:
+            New Password:
             <input
               type="password"
               name="password"
@@ -63,6 +67,17 @@ export class UpdateUser extends Component {
               placeholder="same as old password"
             />
           </label>
+          <br />
+          <label>
+            New Image:
+            <input
+              type="text"
+              name="imageUrl"
+              value={this.state.imageUrl}
+              onChange={this.handleChange}
+            />
+          </label>
+          <br />
           <button type="submit">Submit Change</button>
         </form>
       </div>

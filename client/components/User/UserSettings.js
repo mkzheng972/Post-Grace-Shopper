@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getSingleUser} from '../../store/user'
 import UpdateUser from './UpdateUser'
 
 export class UserSettings extends Component {
   render() {
-    const {firstName, lastName, email} = this.props.user
+    const {firstName, lastName, email, imageUrl} = this.props.user
     return (
       <div>
         <h2>Your Settings</h2>
@@ -13,6 +12,7 @@ export class UserSettings extends Component {
           <p>Current First Name: {firstName}</p>
           <p>Current Last Name: {lastName}</p>
           <p>Email: {email}</p>
+          <img src={imageUrl} width="230" height="230" />
         </div>
         <UpdateUser />
       </div>
@@ -24,6 +24,4 @@ const mapStateToProps = state => ({
   user: state.user
 })
 
-const mapDispatchToProps = dispatch => ({})
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserSettings)
+export default connect(mapStateToProps, null)(UserSettings)
