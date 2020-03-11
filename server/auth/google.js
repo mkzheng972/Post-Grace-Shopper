@@ -29,23 +29,26 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
   const strategy = new GoogleStrategy(
     googleConfig,
-    (token, refreshToken, profile, done) => {
-      const googleId = profile.id
-      const email = profile.emails[0].value
-      const imgUrl = profile.photos[0].value
-      const firstName = profile.name.givenName
-      const lastName = profile.name.familyName
+    async (token, refreshToken, profile, done) => {
+      try {
+        const googleId = profile.id
+        const email = profile.emails[0].value
+        const imgUrl = profile.photos[0].value
+        const firstName = profile.name.givenName
+        const lastName = profile.name.familyName
 
-      User.findOrCreate({
-        where: {googleId},
-        defaults: {email, imgUrl, firstName, lastName}
-      })
-        .then(async ([user]) => {
-          const order = await Order.create()
-          user.addOrder(order)
-          done(null, user)
+        const [instance, wasCreated] = await User.findOrCreate({
+          where: {googleId},
+          defaults: {email, imgUrl, firstName, lastName}
         })
-        .catch(done)
+        if (wasCreated) {
+          const order = await Order.create()
+          instance.addOrder(order)
+        }
+        done(null, instance)
+      } catch (error) {
+        done(error)
+      }
     }
   )
 
