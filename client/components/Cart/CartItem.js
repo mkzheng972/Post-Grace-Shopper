@@ -19,7 +19,7 @@ class CartItem extends React.Component {
     this.props.countChange(
       event.target.value,
       this.props.cart.id,
-      this.props.noodle.id
+      this.props.noodle.id,
     )
   }
 
