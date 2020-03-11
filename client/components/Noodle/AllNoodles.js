@@ -107,7 +107,6 @@ export class AllNoodles extends Component {
             </button>
           </div>
         </div>
-
         {userAdmin}
         <div className="row">
           {noodles.map(noodle => (
@@ -123,7 +122,6 @@ export class AllNoodles extends Component {
                   src={noodle.imageUrl}
                 />
               </Link>
-
               <div className="card-content">
                 <Link to={`/noodles/${noodle.id}`}>
                   <h4 className="card-title">{noodle.name}</h4>
@@ -132,23 +130,19 @@ export class AllNoodles extends Component {
                 <p className="card-text">Type: {noodle.noodleType}</p>
                 <p className="card-text">${noodle.price / 100}</p>
               </div>
-
               {user.isAdmin ? (
-                <div>
-                  <div>
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      name="updateNoodle"
-                      onClick={this.handleClick}
-                    >
-                      Update Noodle
-                    </button>
-                    {this.state.showUpdateNoodle ? (
-                      <UpdateNoodle id={noodle.id} />
-                    ) : null}
-                  </div>
-
+                <div display="card text-center">
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    name="updateNoodle"
+                    onClick={this.handleClick}
+                  >
+                    Update Noodle
+                  </button>
+                  {this.state.showUpdateNoodle ? (
+                    <UpdateNoodle id={noodle.id} />
+                  ) : null}
                   <button
                     type="button"
                     className="btn btn-outline-danger"
