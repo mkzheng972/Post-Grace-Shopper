@@ -41,7 +41,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
         defaults: {email, imgUrl, firstName, lastName}
       })
         .then(async ([user]) => {
-          const order = await Order.Create()
+          const order = await Order.create()
           user.addOrder(order)
           done(null, user)
         })
