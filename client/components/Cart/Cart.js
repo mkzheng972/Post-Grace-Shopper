@@ -6,10 +6,6 @@ import Checkout from './Checkout'
 import {Link} from 'react-router-dom'
 
 export class Cart extends Component {
-  // componentDidMount() {
-  //   console.log(this.props)
-  // }
-
   render() {
     const {cart, user} = this.props
     const {noodles} = cart

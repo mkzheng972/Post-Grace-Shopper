@@ -85,7 +85,7 @@ export const addToCart = (noodle, cartId) => {
         dispatch(addedToCart(noodle))
       }
     } catch (error) {
-      console.log('failed', error)
+      console.error('failed', error)
     }
   }
 }

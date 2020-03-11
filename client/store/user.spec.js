@@ -75,8 +75,6 @@ describe('thunk creators for All Noodles', () => {
       await store.dispatch(getAllNoodles())
       const actions = store.getActions()
       const noodles = store.getCart()
-      console.log('actions', actions)
-      console.log('noodles', noodles)
       expect(actions[0].type).to.be.equal('GET_NOODLES')
       expect(actions[0].noodles).to.be.deep.equal(fakeUser)
     })

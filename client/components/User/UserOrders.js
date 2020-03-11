@@ -10,7 +10,6 @@ export class UserOrders extends Component {
 
   render() {
     const {orders} = this.props ? this.props : []
-    console.log('orders', orders)
 
     return (
       <div>
