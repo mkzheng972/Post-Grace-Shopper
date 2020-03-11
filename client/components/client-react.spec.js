@@ -40,9 +40,10 @@ xdescribe('All Noodles Product', () => {
     }
   ]
 
-  // AllNoodlesComponent = shallow(
-  //   <AllNoodles noodles={testNoodles} user={fakeUser} />
-  // )
+
+  beforeEach(() => {
+    AllNoodlesComponent = <AllNoodles noodles={testNoodles} user={fakeUser} />
+  })
 
   it('renders all noodle products', () => {
     expect(AllNoodlesComponent.find('h4').text()).to.equal('')
