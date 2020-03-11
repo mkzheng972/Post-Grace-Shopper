@@ -31,27 +31,6 @@ const selfUserOnly = (req, res, next) => {
   }
 }
 
-// const adminOnly = (req, res, next) => {
-//   const err = new Error('Not Allowed')
-//   if (!req.user.isAdmin) {
-//     err.status = 403
-//     throw err
-//   }
-//   next()
-// }
-// const selfUserOnly = (req, res, next) => {
-//   const err = new Error('Not Allowed')
-//   if (req.user.id !== Number(req.params.id) || (!req.user.isAdmin)) {
-//     err.status = 403
-//     throw err
-//   }
-//   next()
-// }
-
-// if user is admin --> everything is allowed
-
-// if user is self-user or admin
-
 module.exports = {
   adminOnly,
   selfUserOnly,

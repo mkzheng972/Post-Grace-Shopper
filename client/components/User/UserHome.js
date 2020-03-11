@@ -7,12 +7,7 @@ import {getCart} from '../../store/cart'
  * COMPONENT
  */
 export class UserHome extends React.Component {
-  componentDidMount() {
-    // console.log('userprops', this.props.user)
-    // this.props.getCart(this.props.user.id)
-  }
   render() {
-    // console.log('render-userhome', this.props)
     const {email, firstName} = this.props
     return (
       <div>
