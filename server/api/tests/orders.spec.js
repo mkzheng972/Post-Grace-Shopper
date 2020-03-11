@@ -30,7 +30,7 @@ describe('Order routes', () => {
     const createdUser = await User.create(fakeUser)
   })
 
-  describe('Get all orders', () => {
+  xdescribe('Get all orders', () => {
     it('serves up all orders', async () => {
       const response = await agent.get('/api/orders', fakeUser).expect(200)
       expect(response.body).to.be.an('array')
@@ -38,7 +38,7 @@ describe('Order routes', () => {
     })
   })
 
-  describe('Get single order', () => {
+  xdescribe('Get single order', () => {
     it('serves up all orders associated with user', async () => {
       const response = await agent.get(`/api/orders/1`, fakeUser).expect(200)
       expect(response.body.status).to.be('pending')
