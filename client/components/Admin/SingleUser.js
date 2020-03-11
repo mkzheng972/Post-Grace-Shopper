@@ -1,31 +1,20 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {getSingleUser} from '../../store/user'
+import React from 'react'
 
-export class SingleUser extends Component {
-  componentDidMount() {
-    const id = this.props.match.params.userId
-    this.props.getSingleUser(id)
-  }
-  render() {
-    const {email, firstName, lastName, imageUrl} = this.props.user
-    return (
-      <div>
-        <h1>Email: {email}</h1>
-        <h1>First Name: {firstName}</h1>
-        <h1>Last Name: {lastName}</h1>
-        <img src={imageUrl} />
-      </div>
-    )
-  }
+export default function SingleUser({user}) {
+  return (
+    <div>
+      <p>Email: {user.email}</p>
+      <p>First Name: {user.firstName}</p>
+      <p>Last Name: {user.lastName}</p>
+      {user.imageUrl ? (
+        <img src={user.imageUrl} width="230" height="230" />
+      ) : (
+        <img
+          src="https://i.stack.imgur.com/l60Hf.png"
+          width="230"
+          height="230"
+        />
+      )}
+    </div>
+  )
 }
-
-const mapStateToProps = state => ({
-  user: state.user
-})
-
-const mapDispatchToProps = dispatch => ({
-  getSingleUser: id => dispatch(getSingleUser(id))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(SingleUser)

@@ -10,10 +10,10 @@ export class UserProfile extends Component {
         <div>
           <h2>Hello {user.firstName}!</h2>
           <h4>Your current profile</h4>
-          {user.imageUrl === null ? (
+          {!user.imageUrl ? (
             <p>No Image Available</p>
           ) : (
-            <img src={user.imageUrl} />
+            <img src={user.imageUrl} width="230" height="230" />
           )}
           <p>Current First Name: {user.firstName}</p>
           <p>Current Last Name: {user.lastName}</p>
@@ -39,6 +39,4 @@ const mapStateToProps = state => ({
   user: state.user
 })
 
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)
+export default connect(mapStateToProps, null)(UserProfile)
