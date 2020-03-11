@@ -1,7 +1,7 @@
 const {expect} = require('chai')
 const request = require('supertest')
-const db = require('../../db')
-const app = require('../../index')
+const db = require('../db')
+const app = require('../index')
 const Noodle = db.model('noodle')
 
 describe('Noodle routes', () => {
@@ -26,7 +26,7 @@ describe('Noodle routes', () => {
         .get('/api/noodles')
         .expect(200)
       expect(response.body).to.be.an('array')
-      expect(response.body[0].name).to.equal(beef.name)
+      expect(response.body).to.have.length(1)
     })
   })
 })

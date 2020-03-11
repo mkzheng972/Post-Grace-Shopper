@@ -1,6 +1,7 @@
 const {Order} = require('../db/models')
 
 const adminOnly = (req, res, next) => {
+  console.log('helllloooooo', req.user)
   const err = new Error('Not Allowed - Admin Only')
   if (req.user.isAdmin) {
     next()
