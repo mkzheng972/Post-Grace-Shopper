@@ -19,12 +19,12 @@ class CartItem extends React.Component {
     this.props.countChange(
       event.target.value,
       this.props.cart.id,
-      this.props.noodle.id
+      this.props.noodle.id,
     )
   }
 
   render() {
-    const {noodle, cart} = this.props
+    const {noodle, removeFromCart, countChange, cart} = this.props
     const {name, price, imageUrl} = noodle
     return (
       <div className="row my-1 text-center">
