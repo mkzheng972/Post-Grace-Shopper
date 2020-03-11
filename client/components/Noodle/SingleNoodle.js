@@ -17,30 +17,30 @@ export class SingleNoodle extends Component {
       <div className="container center">
         <div
           className="card text-center"
-          display="inline-block"
+          display="inline"
+          text-align="center"
           style={{margin: '10px'}}
         >
-          <img
-            className="card-img-top"
-            width="150px"
-            height="250px"
-            src={imageUrl}
-          />
           <div>
-            <h1>{name}</h1>
-            <h3>{description}</h3>
-            <h3>{`$${price / 100}`}</h3>
-            {show.length > 0 ? (
-              <button type="button">Already in Cart</button>
-            ) : (
-              <button
-                type="button"
-                className="addToCart"
-                onClick={() => this.props.addToCart(this.props.noodle, cart.id)}
-              >
-                Add To Cart
-              </button>
-            )}
+            <img width="200px" height="200px" src={imageUrl} />
+            <div>
+              <h1>{name}</h1>
+              <h3>{description}</h3>
+              <h3>{`$${price / 100}`}</h3>
+              {show.length > 0 ? (
+                <button type="button">Already in Cart</button>
+              ) : (
+                <button
+                  type="button"
+                  className="addToCart"
+                  onClick={() =>
+                    this.props.addToCart(this.props.noodle, cart.id)
+                  }
+                >
+                  Add To Cart
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
