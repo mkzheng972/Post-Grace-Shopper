@@ -14,11 +14,15 @@ export class SingleNoodle extends Component {
     const {name, imageUrl, description, price, id} = noodle
     const show = cart.noodles.filter(nood => nood.id === id)
     return (
-      <div className="container">
-        <div className="card horizontal" style={{margin: '10px'}}>
+      <div className="container center">
+        <div
+          className="card text-center"
+          display="inline-block"
+          style={{margin: '10px'}}
+        >
           <img
             className="card-img-top"
-            width="250px"
+            width="150px"
             height="250px"
             src={imageUrl}
           />
