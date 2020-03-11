@@ -24,7 +24,7 @@ class CartItem extends React.Component {
   }
 
   render() {
-    const {noodle, cart} = this.props
+    const {noodle, removeFromCart, countChange, cart} = this.props
     const {name, price, imageUrl} = noodle
     return (
       <div className="row my-1 text-center">
