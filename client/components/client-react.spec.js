@@ -41,9 +41,7 @@ describe('All Noodles Product', () => {
   ]
 
   beforeEach(() => {
-    AllNoodlesComponent = shallow(
-      <AllNoodles noodles={testNoodles} user={fakeUser} />
-    )
+    AllNoodlesComponent = <AllNoodles noodles={testNoodles} user={fakeUser} />
   })
 
   it('renders all noodle products', () => {
