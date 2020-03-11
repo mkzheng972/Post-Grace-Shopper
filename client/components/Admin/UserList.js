@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getAllUsers} from '../../store/user'
+import SingleUser from './SingleUser'
 export class UserList extends Component {
   componentDidMount() {
     this.props.getAllUsers()
@@ -10,10 +11,11 @@ export class UserList extends Component {
     return (
       <div>
         {this.props.users.map(user => (
-          <div className="single-user" key={user.id}>
-            <Link to={`/users/${user.id}`}>
-              <h1>{user.email}</h1>
-            </Link>
+          <div className="card text-left " key={user.id}>
+            <h1>
+              {user.id}. {user.email}
+            </h1>
+            <SingleUser user={user} />
           </div>
         ))}
       </div>

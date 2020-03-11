@@ -5,7 +5,8 @@ const dummyUsers = [
     firstName: 'Cody',
     lastName: 'Cafe',
     email: 'cody@email.com',
-    imageUrl: 'http://dummyimage.com/119x183.bmp/cc0000/ffffff',
+    imageUrl:
+      'https://ksk132dvocz3814ql108etk1-wpengine.netdna-ssl.com/wp-content/uploads/2009/10/Pug-Puppy.jpg',
     password: '123',
     isAdmin: true
   },
@@ -13,30 +14,17 @@ const dummyUsers = [
     firstName: 'Chip',
     lastName: 'Wabersich',
     email: 'cwabersich1@huffingtonpost.com',
-    imageUrl: 'http://dummyimage.com/184x158.png/ff4444/ffffff',
+    imageUrl:
+      'https://b3h2.scene7.com/is/image/BedBathandBeyond/97023047087521p?$690$&wid=690&hei=690',
     password: '123'
   },
   {
     firstName: 'Denni',
     lastName: 'Fosher',
     email: 'dfosher2@google.it',
-    imageUrl: 'http://dummyimage.com/225x226.png/dddddd/000000',
+    imageUrl: 'https://i.stack.imgur.com/l60Hf.png',
     password: '123'
   }
-  // {
-  //   firstName: 'Abbott',
-  //   lastName: 'Janos',
-  //   email: 'ajanos3@imdb.com',
-  //   imageUrl: 'http://dummyimage.com/241x229.jpg/dddddd/000000',
-  //   password: '123'
-  // },
-  // {
-  //   firstName: 'Vilma',
-  //   lastName: 'Dufaire',
-  //   email: 'vdufaire4@china.com.cn',
-  //   imageUrl: 'http://dummyimage.com/177x221.png/ff4444/ffffff',
-  //   password: '123'
-  // }
 ]
 
 const dummyNoodles = [
@@ -238,36 +226,6 @@ async function seed() {
   await orders[1].addNoodle(noodles[3], {through: {quantity: 2, price: 10}})
   await orders[2].addNoodle(noodles[4], {through: {quantity: 2, price: 10}})
   await orders[2].addNoodle(noodles[5], {through: {quantity: 2, price: 10}})
-
-  // await Promise.all(
-  // 	orders.map((order) => {
-  // 		return order.setUser(users[Math.round(Math.random() * 5)]);
-  // 	}),
-  // 	orders.map((order) => {
-  // 		if (Math.round(Math.random()) === 1) {
-  // 			return order.addNoodle(noodles[Math.round(Math.random() * 6)], {
-  // 				through: { quantity: Math.random() * 100 }
-  // 			});
-  // 		}
-  // 	}),
-  // 	orders.map((order) => {
-  // 		if (Math.round(Math.random()) === 1) {
-  // 			return order.addNoodle(noodles[Math.round(Math.random() * 6)], {
-  // 				through: { quantity: Math.random() * 100 }
-  // 			});
-  // 		}
-  // 	})
-  // ingredients.map(ingredient => {
-  //   if (Math.round(Math.random()) === 1) {
-  //     return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
-  //   }
-  // }),
-  // ingredients.map(ingredient => {
-  //   if (Math.round(Math.random()) === 1) {
-  //     return ingredient.addNoodle(noodles[Math.round(Math.random() * 5)])
-  //   }
-  // })
-  // );
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
