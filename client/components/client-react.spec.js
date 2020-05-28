@@ -1,3 +1,4 @@
+/*
 import {expect} from 'chai'
 import React from 'react'
 import enzyme, {shallow} from 'enzyme'
@@ -49,3 +50,5 @@ xdescribe('All Noodles Product', () => {
     expect(AllNoodlesComponent.find('h4').text()).to.equal('')
   })
 })
+
+*/
