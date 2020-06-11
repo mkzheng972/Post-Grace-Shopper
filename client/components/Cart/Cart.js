@@ -10,7 +10,7 @@ export class Cart extends Component {
     const {cart, user} = this.props
     const {noodles} = cart
     return (
-      <div>
+      <div id="cart">
         {noodles.length ? (
           <div>
             <CartColumns />

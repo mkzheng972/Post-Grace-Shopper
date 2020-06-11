@@ -5,48 +5,45 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <nav className="navbar navbar-default navbar-fixed-top bg-warning lighten(@gray-base, 33.5%)">
-      <div className="container-fluid">
-        <Link to="/home" className="">
-          <img src="/images/ramen.svg" width="80" />
-        </Link>
-        <Link to="/menu" className="btn btn-outline-primary">
+  <div id="navbar">
+    <div className="navbar-image">
+      <Link to="/home" className="navbar-image">
+        <img src="/images/ramen.svg" width="80" />
+      </Link>
+    </div>
+    {isLoggedIn ? (
+      <div className="navbar-wrapper">
+        {/* The navbar will show these links after you log in */}
+        <Link to="/menu" className="navbar-link">
           Noodles
         </Link>
-        {isLoggedIn ? (
-          <div>
-            {/* The navbar will show these links after you log in */}
-            <Link to="/cart" className="btn btn-outline-primary">
-              Cart
-            </Link>
-            <Link to="/user/profile" className="btn btn-outline-primary">
-              Profile
-            </Link>
-            <a
-              href="#"
-              className="btn btn-outline-secondary"
-              onClick={handleClick}
-            >
-              Logout
-            </a>
-          </div>
-        ) : (
-          <div>
-            {/* The navbar will show these links before you log in */}
-            <Link to="/cart" className="btn btn-outline-primary">
-              Cart
-            </Link>
-            <Link to="/login" className="btn btn-outline-primary">
-              Login
-            </Link>
-            <Link to="/signup" className="btn btn-outline-primary">
-              Sign Up
-            </Link>
-          </div>
-        )}
+        <Link to="/cart" className="navbar-link">
+          Cart
+        </Link>
+        <Link to="/user/profile" className="navbar-link">
+          Profile
+        </Link>
+        <Link className="navbar-link" onClick={handleClick}>
+          Logout
+        </Link>
       </div>
-    </nav>
+    ) : (
+      <div className="navbar-wrapper">
+        {/* The navbar will show these links before you log in */}
+        <Link to="/menu" className="navbar-link">
+          Noodles
+        </Link>
+        <Link to="/cart" className="navbar-link">
+          Cart
+        </Link>
+        <Link to="/login" className="navbar-link">
+          Login
+        </Link>
+        <Link to="/signup" className="navbar-link">
+          Sign Up
+        </Link>
+      </div>
+    )}
   </div>
 )
 

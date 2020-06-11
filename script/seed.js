@@ -13,7 +13,7 @@ const dummyUsers = [
   {
     firstName: 'Chip',
     lastName: 'Wabersich',
-    email: 'cwabersich1@huffingtonpost.com',
+    email: 'cw@email.com',
     imageUrl:
       'https://b3h2.scene7.com/is/image/BedBathandBeyond/97023047087521p?$690$&wid=690&hei=690',
     password: '123'
@@ -21,7 +21,7 @@ const dummyUsers = [
   {
     firstName: 'Denni',
     lastName: 'Fosher',
-    email: 'dfosher2@google.it',
+    email: 'df@email.com',
     imageUrl: 'https://i.stack.imgur.com/l60Hf.png',
     password: '123'
   }
@@ -33,7 +33,8 @@ const dummyNoodles = [
     noodleType: 'soup',
     imageUrl:
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/32/cf/39/spicy-beef-noodle-soup.jpg',
-    description: 'Beef noodle soup with spices and veggies',
+    description:
+      'Beef noodle soup with beef flank, bok choy, and house special soup',
     price: 1099,
     quantity: 1,
     isCustom: false,
@@ -44,7 +45,7 @@ const dummyNoodles = [
     noodleType: 'soup',
     imageUrl:
       'https://img.delicious.com.au/OqmFaoLj/w759-h506-cfill/del/2017/07/japanese-spicy-miso-pork-ramen-49051-1.jpg',
-    description: 'ground Pork with noodles and spicy soup',
+    description: 'Ground pork with spicy noodles, bok choy, scallion, and egg',
     price: 1099,
     quantity: 1,
     isCustom: false,
@@ -55,7 +56,8 @@ const dummyNoodles = [
     noodleType: 'soup',
     imageUrl:
       'https://i.pinimg.com/originals/63/de/ad/63deada440ecd5b4bd40c503f26df6a0.jpg',
-    description: 'sliced Lamb with noodles and spicy soup',
+    description:
+      'Sliced lamb with spicy noodles, chili sauce, scallions, and cilantro',
     price: 1099,
     quantity: 1,
     isCustom: false,
@@ -66,7 +68,7 @@ const dummyNoodles = [
     noodleType: 'soup',
     imageUrl:
       'https://res.cloudinary.com/hksqkdlah/image/upload/ar_1:1,c_fill,dpr_2.0,f_auto,fl_lossy.progressive.strip_profile,g_faces:auto,q_auto:low,w_344/SFS_CurriedChickenNoodleSoup-42_bqbizi',
-    description: 'chopped Chicken with noodle and spicy soup',
+    description: 'Chopped chicken with noodles, basil, carrot, lime, mushroom',
     price: 1099,
     quantity: 1,
     isCustom: false,
@@ -77,7 +79,8 @@ const dummyNoodles = [
     noodleType: 'soup',
     imageUrl:
       'https://heatherchristo.com/wp-content/uploads/2014/01/Spicy-Thai-Curry-Noodle-Soup1.jpg',
-    description: 'Vegetables with spicy noodle and spicy soup',
+    description:
+      'Vegetables with spicy noodles, basil, bok choy, garlic, mushroom, choice of green or red pepper',
     price: 1099,
     quantity: 1,
     isCustom: false,
@@ -88,7 +91,8 @@ const dummyNoodles = [
     noodleType: 'soup',
     imageUrl:
       'https://previews.123rf.com/images/bbtreesubmission/bbtreesubmission1902/bbtreesubmission190209644/117880688-korean-chinese-cuisine-jjambbong-spicy-seafood-noodle-soup-with-octopus-crab-and-shrimp.jpg',
-    description: 'Seafood mix with noodle and spicy soup',
+    description:
+      'Seafood mix with spicy noodles, shrimp, squid, calm, crab, and red pepper',
     price: 1099,
     quantity: 1,
     isCustom: false,
@@ -98,7 +102,7 @@ const dummyNoodles = [
     name: 'Spicy Cold Noodles',
     noodleType: 'dry',
     imageUrl: '/images/spicyColdNoodles.jpg',
-    description: 'Spicy cold noodles with peanut sauce',
+    description: 'Spicy cold noodles with peanut sauce and scallion',
     price: 1099,
     quantity: 1,
     isCustom: false,
@@ -108,7 +112,8 @@ const dummyNoodles = [
     name: 'Spicy DanDan Noodles',
     noodleType: 'dry',
     imageUrl: '/images/spicyDanDanNoodles.jpg',
-    description: 'Chinese DANDAN noodles with pork',
+    description:
+      'Chinese dandan noodles with ground pork, chinese broccoli, and chili sauce',
     price: 1099,
     quantity: 1,
     isCustom: false,
@@ -118,7 +123,8 @@ const dummyNoodles = [
     name: 'Spicy Egg Noodles',
     noodleType: 'dry',
     imageUrl: '/images/spicySweetWontonNoodlesWithEgg.jpeg',
-    description: 'Spicy egg noodles with a soft boiled egg',
+    description:
+      'Spicy egg noodles with a soft boiled egg, tomato, and red pepper',
     price: 999,
     quantity: 1,
     isCustom: false,
@@ -128,7 +134,8 @@ const dummyNoodles = [
     name: 'Spicy Udon Noodles',
     noodleType: 'dry',
     imageUrl: '/images/spicyUdonNoodlesWithTofu.jpeg',
-    description: 'Spicy Udon noodles with herbs',
+    description:
+      'Spicy udon noodles with selected herbs and mixed choices of vegetables',
     price: 1099,
     quantity: 1,
     isCustom: false,

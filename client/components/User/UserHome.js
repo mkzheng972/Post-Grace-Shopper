@@ -10,13 +10,13 @@ export class UserHome extends React.Component {
   render() {
     const {email, firstName} = this.props
     return (
-      <div>
+      <div id="home">
         <h2>
           Welcome {firstName ? `Back` : null} To Spicy Noods{firstName
             ? `, ${firstName}`
             : null}!
         </h2>
-        <p>We have all kindsss of noodles for your liking!</p>
+        <p>We have all kinds of noodles for your liking!</p>
         <div />
       </div>
     )

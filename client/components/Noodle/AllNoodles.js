@@ -75,7 +75,7 @@ export class AllNoodles extends Component {
           <div className="sort-products">
             <button
               type="button"
-              className="btn btn-info"
+              className="btn btn-warning"
               name="soup"
               onClick={this.handleClick}
             >
@@ -83,7 +83,7 @@ export class AllNoodles extends Component {
             </button>
             <button
               type="button"
-              className="btn btn-info"
+              className="btn btn-warning"
               name="dry"
               onClick={this.handleClick}
             >
@@ -91,7 +91,7 @@ export class AllNoodles extends Component {
             </button>
             <button
               type="button"
-              className="btn btn-info"
+              className="btn btn-warning"
               name="veggie"
               onClick={this.handleClick}
             >
@@ -108,7 +108,7 @@ export class AllNoodles extends Component {
           </div>
         </div>
         {userAdmin}
-        <div className="row">
+        <div className="row" id="all-noodles">
           {noodles.map(noodle => (
             <div
               className="card text-center"
