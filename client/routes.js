@@ -43,13 +43,12 @@ class Routes extends Component {
             <Route path="/user/profile" component={UserProfile} />
             <Route path="/user/orders" component={UserOrders} />
             <Route path="/user/settings" component={UserSettings} />
-            <Route path="/home" component={UserHome} />
             <Route path="/admin/userList" component={UserList} />
             <Route path="/users/:userId" component={SingleUser} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route path="/">
+        <Route exact path="/">
           <Redirect to="home" />
         </Route>
       </Switch>

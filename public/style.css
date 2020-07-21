@@ -28,8 +28,34 @@ form div {
 }
 
 /* home page */
-#home {
+.homepage {
+  position: relative;
   min-height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage::before {
+  content: '';
+  background-image: url(https://retaildesignblog.net/wp-content/uploads/2016/02/Cook-Fans-Chinese-noodle-bar-by-David-Ho-Design-Studio-Beijing-China.jpg);
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.6;
+}
+
+.homepage-text {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* login */
@@ -56,7 +82,7 @@ form div {
 }
 
 /* navbar */
-#navbar {
+.navbar {
   padding: 10px;
   display: flex;
   align-items: center;
