@@ -9,20 +9,26 @@ export class Cart extends Component {
   render() {
     const {cart, user} = this.props
     const {noodles} = cart
+    const total = noodles.reduce((accum, noodle) => accum + noodle.price, 0)
     return (
       <div id="cart">
         {noodles.length ? (
           <div>
             <CartColumns />
             <CartList noodles={noodles} />
-            <div className="float-right">
-              {user.id ? (
-                <Checkout />
-              ) : (
-                <Link to="/signup" className="btn btn-outline-primary">
-                  Sign Up to Checkout
-                </Link>
-              )}
+            <div className="total-checkout">
+              <div>
+                <div className="total-price">{`Total: $ ${
+                  total ? total / 100 : 0
+                }`}</div>
+                {user.id ? (
+                  <Checkout />
+                ) : (
+                  <Link to="/signup" className="btn btn-outline-primary">
+                    Sign Up to Checkout
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         ) : (

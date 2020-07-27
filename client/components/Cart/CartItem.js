@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import {removeFromCart, countChange} from '../../store/cart'
 
 class CartItem extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       quantity: 1
@@ -19,12 +19,15 @@ class CartItem extends React.Component {
     this.props.countChange(
       event.target.value,
       this.props.cart.id,
-      this.props.noodle.id,
+      this.props.noodle.id
     )
+    if (event.target.value == 0) {
+      this.props.removeFromCart(this.props.noodle, this.props.cart.id)
+    }
   }
 
   render() {
-    const {noodle, removeFromCart, countChange, cart} = this.props
+    const {noodle, removeFromCart, cart} = this.props
     const {name, price, imageUrl} = noodle
     return (
       <div className="row my-1 text-center">
@@ -56,7 +59,7 @@ class CartItem extends React.Component {
           </button>
         </div>
         <div className="col-10 mx-auto col-lg-2">
-          $ {price * this.state.quantity / 100}
+          $ {(price * this.state.quantity) / 100}
         </div>
       </div>
     )
@@ -68,7 +71,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  removeFromCart: (noodle, id) => dispatch(removeFromCart(noodle, id)),
+  removeFromCart: (noodle, cartId) => dispatch(removeFromCart(noodle, cartId)),
   countChange: (quantity, cartId, noodleId) =>
     dispatch(countChange(quantity, cartId, noodleId))
 })

@@ -6,9 +6,11 @@ import {
   updateNoodle,
   sortNoodles
 } from '../../store/noodles'
-import {Link} from 'react-router-dom'
 import AddNoodle from './AddNoodle'
 import UpdateNoodle from './UpdateNoodle'
+import {SingleNoodleItem} from './SingleNoodleItem'
+import {addToCart} from '../../store/cart'
+import {SortNoodle} from './SortNoodle'
 
 export class AllNoodles extends Component {
   constructor() {
@@ -52,107 +54,35 @@ export class AllNoodles extends Component {
   }
 
   render() {
-    const {noodles, user} = this.props
+    const {noodles, user, deleteNoodle} = this.props
 
-    const userAdmin = user.isAdmin ? (
-      <div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          name="addNoodle"
-          onClick={this.handleClick}
-        >
-          Add Noodle
-        </button>
-        {this.state.showAddNoodle ? <AddNoodle /> : null}
-      </div>
-    ) : null
+    // const userAdmin = user.isAdmin ? (
+    //   <div>
+    //     <button
+    //       type="button"
+    //       className="btn btn-primary"
+    //       name="addNoodle"
+    //       onClick={this.handleClick}
+    //     >
+    //       Add Noodle
+    //     </button>
+    //     {this.state.showAddNoodle ? <AddNoodle /> : null}
+    //   </div>
+    // ) : null
 
     return (
       <div className="container">
-        <div className="card text-center">
-          <h4>Filter By Noodle Type</h4>
-          <div className="sort-products">
-            <button
-              type="button"
-              className="btn btn-warning"
-              name="soup"
-              onClick={this.handleClick}
-            >
-              Soup Noodles
-            </button>
-            <button
-              type="button"
-              className="btn btn-warning"
-              name="dry"
-              onClick={this.handleClick}
-            >
-              Dry Noodles
-            </button>
-            <button
-              type="button"
-              className="btn btn-warning"
-              name="veggie"
-              onClick={this.handleClick}
-            >
-              Veggie Noodles
-            </button>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              name="all"
-              onClick={this.handleClick}
-            >
-              No Filter
-            </button>
-          </div>
-        </div>
-        {userAdmin}
+        <SortNoodle handleSortNoodle={this.handleClick} />
+        {/* Noodles below */}
         <div className="row" id="all-noodles">
           {noodles.map(noodle => (
-            <div
-              className="card text-center"
-              style={{width: '20rem', height: '30rem', margin: '10px'}}
+            <SingleNoodleItem
               key={noodle.id}
-            >
-              <Link to={`/noodles/${noodle.id}`}>
-                <img
-                  className="card-img-top img-fluid"
-                  style={{height: '300px'}}
-                  src={noodle.imageUrl}
-                />
-              </Link>
-              <div className="card-content">
-                <Link to={`/noodles/${noodle.id}`}>
-                  <h4 className="card-title">{noodle.name}</h4>
-                </Link>
-                <p className="card-text">{noodle.description}</p>
-                <p className="card-text">Type: {noodle.noodleType}</p>
-                <p className="card-text">${noodle.price / 100}</p>
-              </div>
-              {user.isAdmin ? (
-                <div display="card text-center">
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    name="updateNoodle"
-                    onClick={this.handleClick}
-                  >
-                    Update Noodle
-                  </button>
-                  {this.state.showUpdateNoodle ? (
-                    <UpdateNoodle id={noodle.id} />
-                  ) : null}
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger"
-                    onClick={() => this.props.deleteNoodle(noodle.id)}
-                  >
-                    Remove Noodle
-                  </button>
-                </div>
-              ) : null}
-            </div>
+              noodle={noodle}
+              user={user}
+              handleClick={this.handleClick}
+              deleteNoodle={deleteNoodle}
+            />
           ))}
         </div>
       </div>
@@ -169,7 +99,8 @@ const mapDispatchToProps = dispatch => ({
   getAllNoodles: () => dispatch(getAllNoodles()),
   deleteNoodle: id => dispatch(deleteNoodle(id)),
   updateNoodle: (noodle, id) => dispatch(updateNoodle(noodle, id)),
-  sortNoodles: type => dispatch(sortNoodles(type))
+  sortNoodles: type => dispatch(sortNoodles(type)),
+  addToCart: id => dispatch(addToCart(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllNoodles)

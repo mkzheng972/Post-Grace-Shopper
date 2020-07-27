@@ -1,7 +1,6 @@
 const {Order} = require('../db/models')
 
 const adminOnly = (req, res, next) => {
-  console.log('helllloooooo', req.user)
   const err = new Error('Not Allowed - Admin Only')
   if (req.user.isAdmin) {
     next()
@@ -13,6 +12,8 @@ const adminOnly = (req, res, next) => {
 
 const selfUserOrderOnly = async (req, res, next) => {
   const err = new Error('Not Allowed - Self User Only')
+  console.log(req.params)
+  next()
   const order = await Order.findByPk(req.params.orderId)
   if (req.user.id === order.userId) {
     next()

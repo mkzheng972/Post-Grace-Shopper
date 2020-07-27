@@ -15,7 +15,7 @@ router.get('/', adminOnly, async (req, res, next) => {
 })
 
 //To establish relationship between an order and a noodle. Add a Noodle to Cart functionality. 'selfUserOrderOnly'
-router.put('/:orderId', selfUserOrderOnly, async (req, res, next) => {
+router.put('/:orderId', async (req, res, next) => {
   try {
     const noodle = await Noodle.findByPk(req.body.id)
     const cart = await Order.findByPk(req.params.orderId)
@@ -67,20 +67,16 @@ router.get('/pending/:id', selfUserOnly, async (req, res, next) => {
 })
 
 //Removing a noodle from the order
-router.delete(
-  '/:orderId/:noodleId',
-  selfUserOrderOnly,
-  async (req, res, next) => {
-    try {
-      await OrderItem.destroy({
-        where: {
-          orderId: req.params.orderId,
-          noodleId: req.params.noodleId
-        }
-      })
-      res.sendStatus(204)
-    } catch (error) {
-      next(error)
-    }
+router.delete('/:orderId/:noodleId', async (req, res, next) => {
+  try {
+    await OrderItem.destroy({
+      where: {
+        orderId: req.params.orderId,
+        noodleId: req.params.noodleId
+      }
+    })
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
   }
-)
+})

@@ -5,7 +5,7 @@ import Checkouts from '../../../react-express-stripe/frontend/Checkout'
 
 function Checkout(props) {
   return (
-    <div>
+    <div className="checkout-buttons">
       <button
         type="button"
         className="btn btn-primary"
