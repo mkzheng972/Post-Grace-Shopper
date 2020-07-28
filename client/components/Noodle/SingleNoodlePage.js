@@ -22,26 +22,24 @@ export class SingleNoodle extends Component {
           style={{margin: '10px'}}
         >
           <div>
-            <img width="200px" height="200px" src={imageUrl} />
+            <img width="300px" height="300px" src={imageUrl} />
             <div>
               <h1>{name}</h1>
               <h3>{description}</h3>
               <h3>{`$${price / 100}`}</h3>
-              {show.length > 0 ? (
+              {/* {show.length > 0 ? (
                 <button className="btn btn-outline-primary" type="button">
                   Already in Cart
                 </button>
-              ) : (
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() =>
-                    this.props.addToCart(this.props.noodle, cart.id)
-                  }
-                >
-                  Add To Cart
-                </button>
-              )}
+              ) : ( */}
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => this.props.addToCart(this.props.noodle, cart.id)}
+              >
+                Add To Cart
+              </button>
+              {/* )} */}
             </div>
           </div>
         </div>

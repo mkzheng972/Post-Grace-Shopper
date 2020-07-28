@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {decreaseItemQuantityUtil, increaseItemQuantityUtil} from './cart.util'
 
 const GOT_CART = 'GOT_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
@@ -6,6 +7,8 @@ const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const COUNT_CHANGE = 'COUNT_CHANGE'
 const CHECKEDOUT = 'CHECKEDOUT'
 const REMOVE_CART = 'REMOVE_CART'
+const DECREASE_ITEM_QUANTITY = 'DECREASE_ITEM_QUANTITY'
+const INCREASE_ITEM_QUANTITY = 'INCREASE_ITEM_QUANTITY'
 
 export const removeCart = () => ({
   type: REMOVE_CART
@@ -16,7 +19,7 @@ export const gotCart = cart => ({
   cart
 })
 
-const checkedOut = cart => ({
+export const checkedOut = cart => ({
   type: CHECKEDOUT,
   cart
 })
@@ -33,62 +36,41 @@ export const removedFromCart = id => ({
   id
 })
 
-export const countedChange = (id, count) => ({
-  type: COUNT_CHANGE,
-  id,
-  count
-})
-
-export const removeFromCart = (noodle, cartId) => {
-  return async dispatch => {
-    try {
-      if (cartId) {
-        await axios.delete(`/api/orders/${cartId}/${noodle.id}`)
-        dispatch(removedFromCart(noodle.id))
-      } else {
-        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
-        const newCartNoodles = localCartNoodles.filter(
-          cartNoodle => cartNoodle.id !== noodle.id
-        )
-        localStorage.setItem('noodles', JSON.stringify(newCartNoodles))
-        dispatch(removedFromCart(noodle.id))
-      }
-    } catch (error) {
-      console.error(error)
-    }
+export const decreasedItemQuantity = (noodle, cart) => {
+  return {
+    type: DECREASE_ITEM_QUANTITY,
+    noodle,
+    cart
   }
 }
 
-export const checkout = cart => {
-  delete cart.noodles
-  cart.status = 'completed'
-  return async dispatch => {
-    try {
-      const {data} = await axios.put(`/api/orders`, cart)
-      dispatch(checkedOut(data))
-    } catch (error) {
-      console.error('Error Checking Out', error)
-    }
+export const increasedItemQuantity = (noodle, cart) => {
+  return {
+    type: INCREASE_ITEM_QUANTITY,
+    noodle,
+    cart
   }
 }
 
-export const addToCart = (noodle, cartId) => {
-  return async dispatch => {
-    try {
-      if (cartId) {
-        const {data} = await axios.put(`/api/orders/${cartId}`, noodle)
-        if (data) dispatch(addedToCart(data))
-      } else {
-        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
-        localCartNoodles.push(noodle)
-        localStorage.setItem('noodles', JSON.stringify(localCartNoodles))
-        dispatch(addedToCart(noodle))
-      }
-    } catch (error) {
-      console.error('failed', error)
-    }
-  }
-}
+// export const decreaseItemQuantity = (noodle, cart) => {
+//   console.log(noodle, cart)
+//   return async dispatch => {
+//     try {
+//       console.log(cart.id)
+//       if (cart.id) {
+//         const {data} = await axios.put(
+//           `/api/orderItems/${cart.id}/${noodle.id}/${noodle.quantity}`
+//         )
+//         if (data) {
+//           console.log(data)
+//         }
+//       } else {
+//       }
+//     } catch (error) {
+//       console.error('Error Decreasing Item Quantity', error)
+//     }
+//   }
+// }
 
 export const getCart = id => {
   return async dispatch => {
@@ -116,13 +98,55 @@ export const getCart = id => {
   }
 }
 
-export const countChange = (quantity, cartId, noodleId) => {
+export const checkout = cart => {
+  delete cart.noodles
+  cart.status = 'completed'
   return async dispatch => {
     try {
-      await axios.put(`/api/orderItems/${cartId}/${noodleId}/${quantity}`)
-      dispatch(countedChange())
+      const {data} = await axios.put(`/api/orders`, cart)
+      dispatch(checkedOut(data))
     } catch (error) {
-      console.error('Error Changing Quantity', error)
+      console.error('Error Checking Out', error)
+    }
+  }
+}
+
+export const addToCart = (noodle, cart) => {
+  console.log(noodle)
+  console.log(cart)
+  return async dispatch => {
+    try {
+      if (cart) {
+        const {data} = await axios.put(`/api/orders/${cart.id}`, noodle)
+        if (data) dispatch(addedToCart(data))
+      } else {
+        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        localCartNoodles.push(noodle)
+        localStorage.setItem('noodles', JSON.stringify(localCartNoodles))
+        dispatch(addedToCart(noodle))
+      }
+    } catch (error) {
+      console.error('Error Adding To Cart', error)
+    }
+  }
+}
+
+export const removeFromCart = (noodle, cartId) => {
+  return async dispatch => {
+    try {
+      if (cartId) {
+        await axios.delete(`/api/orders/${cartId}/${noodle.id}`)
+        dispatch(removedFromCart(noodle.id))
+      } else {
+        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        const newCartNoodles = localCartNoodles.filter(
+          cartNoodle => cartNoodle.id !== noodle.id
+        )
+        localStorage.setItem('noodles', JSON.stringify(newCartNoodles))
+        dispatch(removedFromCart(noodle.id))
+      }
+    } catch (error) {
+      console.error(error)
     }
   }
 }
@@ -136,8 +160,7 @@ export default function(state = defaultCart, action) {
     case ADD_TO_CART:
       return {
         ...state,
-        noodles: [...state.noodles, action.noodle],
-        total: state.total + action.noodle.price
+        noodles: [...state.noodles, action.noodle]
       }
     case REMOVE_FROM_CART:
       return {
@@ -146,10 +169,26 @@ export default function(state = defaultCart, action) {
       }
     case CHECKEDOUT:
       return action.cart
-    case COUNT_CHANGE:
-      return state
     case REMOVE_CART:
       return defaultCart
+    case DECREASE_ITEM_QUANTITY:
+      return {
+        ...state,
+        noodles: decreaseItemQuantityUtil(
+          state.noodles,
+          action.noodle,
+          action.cart
+        )
+      }
+    case INCREASE_ITEM_QUANTITY:
+      return {
+        ...state,
+        noodles: increaseItemQuantityUtil(
+          state.noodles,
+          action.noodle,
+          action.cart
+        )
+      }
     default:
       return state
   }

@@ -1,6 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {removeFromCart, countChange} from '../../store/cart'
+import {
+  removeFromCart,
+  countChange,
+  decreasedItemQuantity,
+  increasedItemQuantity
+} from '../../store/cart'
 
 class CartItem extends React.Component {
   constructor(props) {
@@ -27,8 +32,15 @@ class CartItem extends React.Component {
   }
 
   render() {
-    const {noodle, removeFromCart, cart} = this.props
-    const {name, price, imageUrl} = noodle
+    const {
+      noodle,
+      cart,
+      removeFromCart,
+      decreasedItemQuantity,
+      increasedItemQuantity
+    } = this.props
+    const {name, price, imageUrl, quantity} = noodle
+    console.log(cart)
     return (
       <div className="row my-1 text-center">
         <div className="col-10 mx-auto col-lg-2">
@@ -41,12 +53,21 @@ class CartItem extends React.Component {
           <p>$ {price / 100}</p>
         </div>
         <div className="col-10 mx-auto col-lg-2">
-          <input
-            type="number"
-            name="quantity"
-            value={this.state.quantity}
-            onChange={this.handleChange}
-          />
+          <span className="quantity">
+            <span
+              className="arrow"
+              onClick={() => decreasedItemQuantity(noodle, cart)}
+            >
+              &#10094;
+            </span>
+            <span className="quantity-value">{quantity}</span>
+            <span
+              className="arrow"
+              onClick={() => increasedItemQuantity(noodle, cart)}
+            >
+              &#10095;
+            </span>
+          </span>
         </div>
         <div className="col-10 mx-auto col-lg-2">
           <button
@@ -72,8 +93,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   removeFromCart: (noodle, cartId) => dispatch(removeFromCart(noodle, cartId)),
-  countChange: (quantity, cartId, noodleId) =>
-    dispatch(countChange(quantity, cartId, noodleId))
+  decreasedItemQuantity: (noodle, cart) =>
+    dispatch(decreasedItemQuantity(noodle, cart)),
+  increasedItemQuantity: (noodle, cart) =>
+    dispatch(increasedItemQuantity(noodle, cart))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem)

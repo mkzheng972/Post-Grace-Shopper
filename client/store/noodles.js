@@ -40,21 +40,6 @@ const sortedNoodles = noodles => ({
   noodles
 })
 
-export const sortNoodles = type => async dispatch => {
-  try {
-    const {data} = await axios.get('/api/noodles')
-    let sorted
-    if (type === 'veggie') {
-      sorted = data.filter(noodle => noodle.isVeggie)
-    } else {
-      sorted = data.filter(noodle => noodle.noodleType === type)
-    }
-    dispatch(sortedNoodles(sorted))
-  } catch (error) {
-    console.error('Error Sorting All Noodles', error)
-  }
-}
-
 //THUNKS
 export const getAllNoodles = () => async dispatch => {
   try {
@@ -101,6 +86,21 @@ export const updateNoodle = (noodle, id) => async dispatch => {
   }
 }
 
+export const sortNoodles = type => async dispatch => {
+  try {
+    const {data} = await axios.get('/api/noodles')
+    let sorted
+    if (type === 'veggie') {
+      sorted = data.filter(noodle => noodle.isVeggie)
+    } else {
+      sorted = data.filter(noodle => noodle.noodleType === type)
+    }
+    dispatch(sortedNoodles(sorted))
+  } catch (error) {
+    console.error('Error Sorting All Noodles', error)
+  }
+}
+
 //REDUCER
 
 export const noodlesReducer = (state = [], action) => {
@@ -112,8 +112,8 @@ export const noodlesReducer = (state = [], action) => {
     case DELETE_NOODLE:
       return state.filter(noodle => noodle.id !== action.id)
     case UPDATE_NOODLE:
-      return state.map(
-        noodle => (noodle.id === action.noodle.id ? action.noodle : noodle)
+      return state.map(noodle =>
+        noodle.id === action.noodle.id ? action.noodle : noodle
       )
     case SORT_NOODLES:
       return action.noodles

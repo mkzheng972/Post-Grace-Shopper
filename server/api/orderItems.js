@@ -17,7 +17,7 @@ router.put(
       })
       orderItem.quantity = req.params.quantity
       orderItem.save()
-      res.sendStatus(200)
+      res.send(orderItem)
     } catch (error) {
       next(error)
     }
