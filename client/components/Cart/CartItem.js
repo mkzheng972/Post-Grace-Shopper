@@ -40,7 +40,6 @@ class CartItem extends React.Component {
       increasedItemQuantity
     } = this.props
     const {name, price, imageUrl, quantity} = noodle
-    console.log(cart)
     return (
       <div className="row my-1 text-center">
         <div className="col-10 mx-auto col-lg-2">

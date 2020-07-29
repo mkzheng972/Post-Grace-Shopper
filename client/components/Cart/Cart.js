@@ -9,7 +9,6 @@ export class Cart extends Component {
   render() {
     const {cart, user} = this.props
     const {noodles} = cart
-    console.log(cart)
     const total = noodles
       ? noodles.reduce(
           (accum, noodle) => accum + noodle.price * noodle.quantity,

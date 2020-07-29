@@ -12,7 +12,6 @@ const adminOnly = (req, res, next) => {
 
 const selfUserOrderOnly = async (req, res, next) => {
   const err = new Error('Not Allowed - Self User Only')
-  console.log(req.params)
   next()
   const order = await Order.findByPk(req.params.orderId)
   if (req.user.id === order.userId) {
