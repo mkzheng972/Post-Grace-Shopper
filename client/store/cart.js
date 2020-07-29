@@ -112,19 +112,22 @@ export const checkout = cart => {
 }
 
 export const addToCart = (noodle, cart) => {
-  console.log(noodle)
-  console.log(cart)
   return async dispatch => {
     try {
-      if (cart) {
-        const {data} = await axios.put(`/api/orders/${cart.id}`, noodle)
-        if (data) dispatch(addedToCart(data))
-      } else {
-        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
-        localCartNoodles.push(noodle)
-        localStorage.setItem('noodles', JSON.stringify(localCartNoodles))
-        dispatch(addedToCart(noodle))
-      }
+      const existingItem = cart.noodles.find(
+        cartItem => cartItem.id === noodle.id
+      )
+      if (existingItem) {
+        dispatch(increasedItemQuantity(noodle, cart.noodles))
+      } else if (cart.id) {
+          const {data} = await axios.put(`/api/orders/${cart.id}`, noodle)
+          if (data) dispatch(addedToCart(data))
+        } else {
+          const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+          localCartNoodles.push(noodle)
+          localStorage.setItem('noodles', JSON.stringify(localCartNoodles))
+          dispatch(addedToCart(noodle))
+        }
     } catch (error) {
       console.error('Error Adding To Cart', error)
     }

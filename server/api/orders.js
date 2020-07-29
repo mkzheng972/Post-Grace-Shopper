@@ -19,7 +19,9 @@ router.put('/:orderId', async (req, res, next) => {
   try {
     const noodle = await Noodle.findByPk(req.body.id)
     const cart = await Order.findByPk(req.params.orderId)
-    await cart.addNoodle(noodle, {through: {price: noodle.price}})
+    await cart.addNoodle(noodle, {
+      through: {price: noodle.price, quantity: noodle.quantity}
+    })
     res.json(noodle)
   } catch (error) {
     next(error)

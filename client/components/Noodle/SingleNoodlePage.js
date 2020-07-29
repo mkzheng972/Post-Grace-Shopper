@@ -27,15 +27,10 @@ export class SingleNoodle extends Component {
               <h1>{name}</h1>
               <h3>{description}</h3>
               <h3>{`$${price / 100}`}</h3>
-              {/* {show.length > 0 ? (
-                <button className="btn btn-outline-primary" type="button">
-                  Already in Cart
-                </button>
-              ) : ( */}
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => this.props.addToCart(this.props.noodle, cart.id)}
+                onClick={() => this.props.addToCart(this.props.noodle, cart)}
               >
                 Add To Cart
               </button>
@@ -55,7 +50,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getSingleNoodle: id => dispatch(getSingleNoodle(id)),
-  addToCart: (noodle, id) => dispatch(addToCart(noodle, id))
+  addToCart: (noodle, cart) => dispatch(addToCart(noodle, cart))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleNoodle)
