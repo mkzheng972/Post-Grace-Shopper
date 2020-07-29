@@ -18,11 +18,9 @@ export const decreaseItemQuantityUtil = (cartItems, cartItemToRemove, cart) => {
 }
 
 export const increaseItemQuantityUtil = (cartItems, cartItemToAdd) => {
-  console.log(cartItems, cartItemToAdd)
   const existingCartItem = cartItems.find(
     cartItem => cartItem.id === cartItemToAdd.id
   )
-  console.log(existingCartItem)
   if (existingCartItem) {
     return cartItems.map(cartItem =>
       cartItem.id === cartItemToAdd.id
@@ -30,6 +28,5 @@ export const increaseItemQuantityUtil = (cartItems, cartItemToAdd) => {
         : cartItem
     )
   }
-  console.log('hit')
   return [...cartItems, {...cartItemToAdd, quantity: 1}]
 }
