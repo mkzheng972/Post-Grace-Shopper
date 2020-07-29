@@ -30,10 +30,6 @@ export class AllNoodles extends Component {
       this.setState({
         showAddNoodle: !this.state.showAddNoodle
       })
-    } else if (event.target.name === 'updateNoodle') {
-      this.setState({
-        showUpdateNoodle: !this.state.showUpdateNoodle
-      })
     } else if (event.target.name === 'soup') {
       this.setState({
         noodles: this.props.sortNoodles('soup')
@@ -80,7 +76,6 @@ export class AllNoodles extends Component {
               key={noodle.id}
               noodle={noodle}
               user={user}
-              handleClick={this.handleClick}
               deleteNoodle={deleteNoodle}
             />
           ))}

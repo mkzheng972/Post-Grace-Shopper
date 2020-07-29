@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export const SingleNoodleItem = ({noodle, user, handleClick, deleteNoodle}) => {
+export const SingleNoodleItem = ({noodle, user, deleteNoodle}) => {
   return (
     <div
       className="card text-center"
@@ -33,15 +33,6 @@ export const SingleNoodleItem = ({noodle, user, handleClick, deleteNoodle}) => {
       </div>
       {user.isAdmin ? (
         <div display="card text-center">
-          <button
-            type="button"
-            className="btn btn-primary"
-            name="updateNoodle"
-            onClick={handleClick}
-          >
-            Update Noodle
-          </button>
-          {/* {this.state.showUpdateNoodle ? <UpdateNoodle id={noodle.id} /> : null} */}
           <button
             type="button"
             className="btn btn-outline-danger"

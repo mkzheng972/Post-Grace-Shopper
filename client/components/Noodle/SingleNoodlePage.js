@@ -2,11 +2,27 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getSingleNoodle} from '../../store/noodles'
 import {addToCart} from '../../store/cart'
+import UpdateNoodle from './UpdateNoodle'
 
 export class SingleNoodle extends Component {
+  constructor() {
+    super()
+    this.state = {
+      showUpdateNoodle: false
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
   componentDidMount() {
     const id = this.props.match.params.noodleId
     this.props.getSingleNoodle(id)
+  }
+
+  handleClick(event) {
+    if (event.target.name === 'updateNoodle') {
+      this.setState({
+        showUpdateNoodle: !this.state.showUpdateNoodle
+      })
+    }
   }
 
   render() {
@@ -34,8 +50,18 @@ export class SingleNoodle extends Component {
               >
                 Add To Cart
               </button>
-              {/* )} */}
+              <button
+                type="button"
+                className="btn btn-primary"
+                name="updateNoodle"
+                onClick={event => this.handleClick(event)}
+              >
+                Update Noodle
+              </button>
             </div>
+            {this.state.showUpdateNoodle ? (
+              <UpdateNoodle id={noodle.id} />
+            ) : null}
           </div>
         </div>
       </div>

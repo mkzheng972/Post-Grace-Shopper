@@ -44,6 +44,7 @@ export class UpdateNoodle extends Component {
               onChange={this.handleChange}
             />
           </label>
+          <br />
           <label>
             Image:
             <input
@@ -53,6 +54,7 @@ export class UpdateNoodle extends Component {
               onChange={this.handleChange}
             />
           </label>
+          <br />
           <label>
             Description:
             <input
@@ -62,6 +64,7 @@ export class UpdateNoodle extends Component {
               onChange={this.handleChange}
             />
           </label>
+          <br />
           <label>
             Price:
             <input
@@ -71,6 +74,7 @@ export class UpdateNoodle extends Component {
               onChange={this.handleChange}
             />
           </label>
+          <br />
           <button type="submit">Submit Noodle</button>
         </form>
       </div>
