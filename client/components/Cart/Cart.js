@@ -4,17 +4,20 @@ import CartColumns from './CartColumns'
 import CartList from './CartList'
 import Checkout from './Checkout'
 import {Link} from 'react-router-dom'
+import {getCart} from '../../store/cart'
 
 export class Cart extends Component {
   render() {
     const {cart, user} = this.props
     const {noodles} = cart
-    const total = noodles
-      ? noodles.reduce(
-          (accum, noodle) => accum + noodle.price * noodle.quantity,
-          0
-        )
-      : 0
+    console.log(noodles)
+    let total = 0
+    // const total = noodles
+    //   ? noodles.reduce(
+    //       (accum, noodle) => accum + noodle.price * noodle.quantity,
+    //       0
+    //     )
+    //   : 0
     return (
       <div id="cart">
         {noodles.length ? (
@@ -49,6 +52,4 @@ const mapStateToProps = state => ({
   cart: state.cart
 })
 
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps)(Cart)

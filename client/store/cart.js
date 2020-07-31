@@ -4,7 +4,6 @@ import {decreaseItemQuantityUtil, increaseItemQuantityUtil} from './cart.util'
 const GOT_CART = 'GOT_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-const COUNT_CHANGE = 'COUNT_CHANGE'
 const CHECKEDOUT = 'CHECKEDOUT'
 const REMOVE_CART = 'REMOVE_CART'
 const DECREASE_ITEM_QUANTITY = 'DECREASE_ITEM_QUANTITY'
@@ -44,11 +43,29 @@ export const decreasedItemQuantity = (noodle, cart) => {
   }
 }
 
-export const increasedItemQuantity = (noodle, cart) => {
+export const increasedItemQuantity = (noodleId, quantity) => {
   return {
     type: INCREASE_ITEM_QUANTITY,
-    noodle,
-    cart
+    noodleId,
+    quantity
+  }
+}
+
+export const increaseItemQuantity = (noodle, cart) => {
+  return async dispatch => {
+    try {
+      noodle.quantity = parseInt(noodle.quantity) + 1
+      if (cart.id) {
+        const {data} = await axios.put(
+          `/api/orderItems/${cart.id}/${noodle.id}/${noodle.quantity}`
+        )
+        dispatch(increasedItemQuantity(data.noodleId, data.quantity))
+      } else {
+        // localstorage
+      }
+    } catch (error) {
+      console.error('Error Increasing Item Quantity', error)
+    }
   }
 }
 
@@ -120,14 +137,14 @@ export const addToCart = (noodle, cart) => {
       if (existingItem) {
         dispatch(increasedItemQuantity(noodle, cart.noodles))
       } else if (cart.id) {
-          const {data} = await axios.put(`/api/orders/${cart.id}`, noodle)
-          if (data) dispatch(addedToCart(data))
-        } else {
-          const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
-          localCartNoodles.push(noodle)
-          localStorage.setItem('noodles', JSON.stringify(localCartNoodles))
-          dispatch(addedToCart(noodle))
-        }
+        const {data} = await axios.put(`/api/orders/${cart.id}`, noodle)
+        if (data) dispatch(addedToCart(data))
+      } else {
+        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        localCartNoodles.push(noodle)
+        localStorage.setItem('noodles', JSON.stringify(localCartNoodles))
+        dispatch(addedToCart(noodle))
+      }
     } catch (error) {
       console.error('Error Adding To Cart', error)
     }
@@ -186,11 +203,17 @@ export default function(state = defaultCart, action) {
     case INCREASE_ITEM_QUANTITY:
       return {
         ...state,
-        noodles: increaseItemQuantityUtil(
-          state.noodles,
-          action.noodle,
-          action.cart
-        )
+        noodles: state.noodles.map(noodle => {
+          if (noodle.id === action.noodleId) {
+            noodle.quantity = action.quantity
+          }
+          return noodle
+        })
+        // noodles: increaseItemQuantityUtil(
+        //   state.noodles,
+        //   action.noodle,
+        //   action.cart
+        // )
       }
     default:
       return state

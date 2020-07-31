@@ -4,7 +4,7 @@ import {
   removeFromCart,
   countChange,
   decreasedItemQuantity,
-  increasedItemQuantity
+  increaseItemQuantity
 } from '../../store/cart'
 
 class CartItem extends React.Component {
@@ -37,7 +37,7 @@ class CartItem extends React.Component {
       cart,
       removeFromCart,
       decreasedItemQuantity,
-      increasedItemQuantity
+      increaseItemQuantity
     } = this.props
     const {name, price, imageUrl, quantity} = noodle
     return (
@@ -62,7 +62,7 @@ class CartItem extends React.Component {
             <span className="quantity-value">{quantity}</span>
             <span
               className="arrow"
-              onClick={() => increasedItemQuantity(noodle, cart)}
+              onClick={() => increaseItemQuantity(noodle, cart)}
             >
               &#10095;
             </span>
@@ -94,8 +94,8 @@ const mapDispatchToProps = dispatch => ({
   removeFromCart: (noodle, cartId) => dispatch(removeFromCart(noodle, cartId)),
   decreasedItemQuantity: (noodle, cart) =>
     dispatch(decreasedItemQuantity(noodle, cart)),
-  increasedItemQuantity: (noodle, cart) =>
-    dispatch(increasedItemQuantity(noodle, cart))
+  increaseItemQuantity: (noodle, cart) =>
+    dispatch(increaseItemQuantity(noodle, cart))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem)

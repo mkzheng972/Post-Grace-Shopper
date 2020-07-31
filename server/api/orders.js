@@ -5,7 +5,7 @@ const {adminOnly, selfUserOrderOnly, selfUserOnly} = require('./utils')
 module.exports = router
 
 //Getting all orders in DB 'admin only'
-router.get('/', adminOnly, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await Order.findAll({})
     res.json(users)
@@ -53,7 +53,7 @@ router.put('/', async (req, res, next) => {
 })
 
 //Get user only pending cart
-router.get('/pending/:id', selfUserOnly, async (req, res, next) => {
+router.get('/pending/:id', async (req, res, next) => {
   try {
     const cart = await Order.findOne({
       where: {

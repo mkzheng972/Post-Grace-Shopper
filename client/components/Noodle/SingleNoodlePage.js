@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {getSingleNoodle} from '../../store/noodles'
 import {addToCart} from '../../store/cart'
 import UpdateNoodle from './UpdateNoodle'
+import {me} from '../../store/user'
 
 export class SingleNoodle extends Component {
   constructor() {
@@ -15,6 +16,7 @@ export class SingleNoodle extends Component {
   componentDidMount() {
     const id = this.props.match.params.noodleId
     this.props.getSingleNoodle(id)
+    this.props.getSelfUser()
   }
 
   handleClick(event) {
@@ -26,9 +28,8 @@ export class SingleNoodle extends Component {
   }
 
   render() {
-    const {noodle, cart} = this.props
+    const {noodle, cart, user} = this.props
     const {name, imageUrl, description, price, id} = noodle
-    const show = cart.noodles.filter(nood => nood.id === id)
     return (
       <div id="single-noodle" className="container center">
         <div
@@ -50,14 +51,16 @@ export class SingleNoodle extends Component {
               >
                 Add To Cart
               </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                name="updateNoodle"
-                onClick={event => this.handleClick(event)}
-              >
-                Update Noodle
-              </button>
+              {user.isAdmin ? (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  name="updateNoodle"
+                  onClick={event => this.handleClick(event)}
+                >
+                  Update Noodle
+                </button>
+              ) : null}
             </div>
             {this.state.showUpdateNoodle ? (
               <UpdateNoodle id={noodle.id} />
@@ -71,12 +74,14 @@ export class SingleNoodle extends Component {
 
 const mapStateToProps = state => ({
   noodle: state.noodle,
-  cart: state.cart
+  cart: state.cart,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
   getSingleNoodle: id => dispatch(getSingleNoodle(id)),
-  addToCart: (noodle, cart) => dispatch(addToCart(noodle, cart))
+  addToCart: (noodle, cart) => dispatch(addToCart(noodle, cart)),
+  getSelfUser: () => dispatch(me())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleNoodle)
