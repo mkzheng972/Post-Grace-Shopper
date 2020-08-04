@@ -85,22 +85,22 @@ export const decreaseItemQuantity = (noodle, cart) => {
       if (noodle.quantity === 0) {
         dispatch(removeFromCart(noodle, cart.id))
       } else if (cart.id) {
-          const {data} = await axios.put(
-            `/api/orderItems/${cart.id}/${noodle.id}/${noodle.quantity}`
-          )
-          dispatch(decreasedItemQuantity(data.noodleId, data.quantity))
-        } else {
-          // localstorage
-          const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
-          const newLocalCartNoodles = localCartNoodles.map(item => {
-            if (item.id === noodle.id) {
-              item.quantity = noodle.quantity
-            }
-            return item
-          })
-          localStorage.setItem('noodles', JSON.stringify(newLocalCartNoodles))
-          dispatch(decreasedItemQuantity(noodle.id, noodle.quantity))
-        }
+        const {data} = await axios.put(
+          `/api/orderItems/${cart.id}/${noodle.id}/${noodle.quantity}`
+        )
+        dispatch(decreasedItemQuantity(data.noodleId, data.quantity))
+      } else {
+        // localstorage
+        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        const newLocalCartNoodles = localCartNoodles.map(item => {
+          if (item.id === noodle.id) {
+            item.quantity = noodle.quantity
+          }
+          return item
+        })
+        localStorage.setItem('noodles', JSON.stringify(newLocalCartNoodles))
+        dispatch(decreasedItemQuantity(noodle.id, noodle.quantity))
+      }
     } catch (error) {
       console.error('Error Increasing Item Quantity', error)
     }

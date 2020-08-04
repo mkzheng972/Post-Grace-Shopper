@@ -12,7 +12,7 @@ export class UserOrders extends Component {
     const {orders} = this.props ? this.props : []
 
     return (
-      <div>
+      <div className="container">
         <h2>Order History</h2>
         {orders ? (
           orders.map(order => (

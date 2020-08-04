@@ -7,6 +7,11 @@ a {
   color: black;
 }
 
+p {
+  text-decoration: none;
+  color: black;
+}
+
 label {
   display: inline-block;
   width: 140px;
@@ -25,8 +30,7 @@ form div {
 }
 
 /* cart page */
-#cart {
-  min-height: 80vh;
+.cart {
   padding: 2rem;
 }
 
@@ -196,4 +200,9 @@ form div {
   border-radius: 10px;
   cursor: pointer;
   margin: 10px;
+}
+
+/* user page */
+.user-page {
+  padding: 2rem;
 }

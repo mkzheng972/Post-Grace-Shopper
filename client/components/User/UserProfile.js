@@ -6,7 +6,7 @@ export class UserProfile extends Component {
   render() {
     const {user} = this.props
     return (
-      <div>
+      <div className="container user-page">
         <div>
           <h2>Hello {user.firstName}!</h2>
           <h4>Your current profile</h4>

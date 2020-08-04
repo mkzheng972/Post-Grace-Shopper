@@ -75,7 +75,9 @@ export class UpdateNoodle extends Component {
             />
           </label>
           <br />
-          <button type="submit">Submit Noodle</button>
+          <button type="submit" className="btn btn-secondary">
+            Submit Noodle
+          </button>
         </form>
       </div>
     )

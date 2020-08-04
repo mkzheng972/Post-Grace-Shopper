@@ -16,7 +16,7 @@ export class Cart extends Component {
         )
       : 0
     return (
-      <div id="cart">
+      <div className="container cart">
         {noodles.length ? (
           <div>
             <CartColumns />
@@ -29,9 +29,14 @@ export class Cart extends Component {
                 {user.id ? (
                   <Checkout />
                 ) : (
-                  <Link to="/signup" className="btn btn-outline-primary">
-                    Sign Up to Checkout
-                  </Link>
+                  <div>
+                    <Link to="/login" className="btn btn-outline-primary">
+                      Login In to Checkout
+                    </Link>
+                    <Link to="/signup" className="btn btn-outline-primary">
+                      Sign Up to Checkout
+                    </Link>
+                  </div>
                 )}
               </div>
             </div>
