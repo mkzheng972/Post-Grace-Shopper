@@ -42,6 +42,7 @@ class AddNoodle extends Component {
               onChange={this.handleChange}
             />
           </label>
+          <br />
           <label>
             Image:
             <input
@@ -51,6 +52,7 @@ class AddNoodle extends Component {
               onChange={this.handleChange}
             />
           </label>
+          <br />
           <label>
             Description:
             <input
@@ -60,6 +62,7 @@ class AddNoodle extends Component {
               onChange={this.handleChange}
             />
           </label>
+          <br />
           <label>
             Price:
             <input
@@ -69,7 +72,10 @@ class AddNoodle extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <button type="submit">Submit Noodle</button>
+          <br />
+          <button type="submit" className="btn btn-secondary">
+            Submit Noodle
+          </button>
         </form>
       </div>
     )

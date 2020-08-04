@@ -7,10 +7,10 @@ import {
   sortNoodles
 } from '../../store/noodles'
 import AddNoodle from './AddNoodle'
-import UpdateNoodle from './UpdateNoodle'
-import {SingleNoodleItem} from './SingleNoodleItem'
+import SingleNoodleItem from './SingleNoodleItem'
 import {addToCart} from '../../store/cart'
 import {SortNoodle} from './SortNoodle'
+import {me} from '../../store/user'
 
 export class AllNoodles extends Component {
   constructor() {
@@ -23,6 +23,7 @@ export class AllNoodles extends Component {
   }
   componentDidMount() {
     this.props.getAllNoodles()
+    this.props.getSelfUser()
   }
 
   handleClick(event) {
@@ -50,26 +51,26 @@ export class AllNoodles extends Component {
   }
 
   render() {
-    const {noodles, user, deleteNoodle} = this.props
-
-    // const userAdmin = user.isAdmin ? (
-    //   <div>
-    //     <button
-    //       type="button"
-    //       className="btn btn-primary"
-    //       name="addNoodle"
-    //       onClick={this.handleClick}
-    //     >
-    //       Add Noodle
-    //     </button>
-    //     {this.state.showAddNoodle ? <AddNoodle /> : null}
-    //   </div>
-    // ) : null
+    const {noodles, user, deleteNoodle, addToCart, cart} = this.props
+    const addNoodleButton = user.isAdmin ? (
+      <div className="add-noodle-button">
+        <button
+          type="button"
+          className="btn btn-primary"
+          name="addNoodle"
+          onClick={this.handleClick}
+        >
+          Add Noodle
+        </button>
+        {this.state.showAddNoodle ? <AddNoodle /> : null}
+      </div>
+    ) : null
 
     return (
       <div className="container">
         <SortNoodle handleSortNoodle={this.handleClick} />
         {/* Noodles below */}
+        {addNoodleButton}
         <div className="row" id="all-noodles">
           {noodles.map(noodle => (
             <SingleNoodleItem
@@ -77,6 +78,8 @@ export class AllNoodles extends Component {
               noodle={noodle}
               user={user}
               deleteNoodle={deleteNoodle}
+              addToCart={addToCart}
+              cart={cart}
             />
           ))}
         </div>
@@ -87,7 +90,8 @@ export class AllNoodles extends Component {
 
 const mapStateToProps = state => ({
   noodles: state.noodles,
-  user: state.user
+  user: state.user,
+  cart: state.cart
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -95,7 +99,8 @@ const mapDispatchToProps = dispatch => ({
   deleteNoodle: id => dispatch(deleteNoodle(id)),
   updateNoodle: (noodle, id) => dispatch(updateNoodle(noodle, id)),
   sortNoodles: type => dispatch(sortNoodles(type)),
-  addToCart: id => dispatch(addToCart(id))
+  addToCart: (noodle, cart) => dispatch(addToCart(noodle, cart)),
+  getSelfUser: () => dispatch(me())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllNoodles)

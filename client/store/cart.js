@@ -62,6 +62,15 @@ export const increaseItemQuantity = (noodle, cart) => {
         dispatch(increasedItemQuantity(data.noodleId, data.quantity))
       } else {
         // localstorage
+        const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        const newLocalCartNoodles = localCartNoodles.map(item => {
+          if (item.id === noodle.id) {
+            item.quantity = noodle.quantity
+          }
+          return item
+        })
+        localStorage.setItem('noodles', JSON.stringify(newLocalCartNoodles))
+        dispatch(increasedItemQuantity(noodle.id, noodle.quantity))
       }
     } catch (error) {
       console.error('Error Increasing Item Quantity', error)
@@ -69,25 +78,34 @@ export const increaseItemQuantity = (noodle, cart) => {
   }
 }
 
-// export const decreaseItemQuantity = (noodle, cart) => {
-//   console.log(noodle, cart)
-//   return async dispatch => {
-//     try {
-//       console.log(cart.id)
-//       if (cart.id) {
-//         const {data} = await axios.put(
-//           `/api/orderItems/${cart.id}/${noodle.id}/${noodle.quantity}`
-//         )
-//         if (data) {
-//           console.log(data)
-//         }
-//       } else {
-//       }
-//     } catch (error) {
-//       console.error('Error Decreasing Item Quantity', error)
-//     }
-//   }
-// }
+export const decreaseItemQuantity = (noodle, cart) => {
+  return async dispatch => {
+    try {
+      noodle.quantity = parseInt(noodle.quantity) - 1
+      if (noodle.quantity === 0) {
+        dispatch(removeFromCart(noodle, cart.id))
+      } else if (cart.id) {
+          const {data} = await axios.put(
+            `/api/orderItems/${cart.id}/${noodle.id}/${noodle.quantity}`
+          )
+          dispatch(decreasedItemQuantity(data.noodleId, data.quantity))
+        } else {
+          // localstorage
+          const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+          const newLocalCartNoodles = localCartNoodles.map(item => {
+            if (item.id === noodle.id) {
+              item.quantity = noodle.quantity
+            }
+            return item
+          })
+          localStorage.setItem('noodles', JSON.stringify(newLocalCartNoodles))
+          dispatch(decreasedItemQuantity(noodle.id, noodle.quantity))
+        }
+    } catch (error) {
+      console.error('Error Increasing Item Quantity', error)
+    }
+  }
+}
 
 export const getCart = id => {
   return async dispatch => {
@@ -95,12 +113,19 @@ export const getCart = id => {
       const {data} = await axios.get(`/api/orders/pending/${id}`)
       if (data) {
         const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
+        const mapQuantityNoodles = data.noodles.map(item => {
+          if (item.quantity !== item.orderItem.quantity) {
+            item.quantity = item.orderItem.quantity
+          }
+          return item
+        })
+        data.noodles = mapQuantityNoodles
         dispatch(gotCart(data))
         if (localCartNoodles.length) {
           const serverCartNoodlesIds = data.noodles.map(noodle => noodle.id)
           localCartNoodles.forEach(noodle => {
             if (!serverCartNoodlesIds.includes(noodle.id)) {
-              dispatch(addToCart(noodle, data.id))
+              dispatch(addToCart(noodle, data))
             }
           })
           localStorage.setItem('noodles', JSON.stringify([]))
@@ -134,16 +159,37 @@ export const addToCart = (noodle, cart) => {
       const existingItem = cart.noodles.find(
         cartItem => cartItem.id === noodle.id
       )
-      if (existingItem) {
-        dispatch(increasedItemQuantity(noodle, cart.noodles))
-      } else if (cart.id) {
-        const {data} = await axios.put(`/api/orders/${cart.id}`, noodle)
-        if (data) dispatch(addedToCart(data))
+      if (cart.id) {
+        if (existingItem) {
+          dispatch(increaseItemQuantity(noodle, cart))
+        } else {
+          const {data} = await axios.put(`/api/orders/${cart.id}`, noodle)
+          if (data) {
+            dispatch(addedToCart(data))
+          }
+          if (noodle.quantity > 1) {
+            const res = await axios.put(
+              `/api/orderItems/${cart.id}/${noodle.id}/${noodle.quantity}`
+            )
+            dispatch(
+              increasedItemQuantity(res.data.noodleId, res.data.quantity)
+            )
+          }
+        }
       } else {
         const localCartNoodles = JSON.parse(localStorage.getItem('noodles'))
-        localCartNoodles.push(noodle)
+        if (existingItem) {
+          localCartNoodles.forEach(cartItem => {
+            if (cartItem.id === noodle.id) {
+              cartItem.quantity += 1
+            }
+          })
+          dispatch(increaseItemQuantity(noodle, cart))
+        } else {
+          localCartNoodles.push(noodle)
+          dispatch(addedToCart(noodle))
+        }
         localStorage.setItem('noodles', JSON.stringify(localCartNoodles))
-        dispatch(addedToCart(noodle))
       }
     } catch (error) {
       console.error('Error Adding To Cart', error)
@@ -194,11 +240,12 @@ export default function(state = defaultCart, action) {
     case DECREASE_ITEM_QUANTITY:
       return {
         ...state,
-        noodles: decreaseItemQuantityUtil(
-          state.noodles,
-          action.noodle,
-          action.cart
-        )
+        noodles: state.noodles.map(noodle => {
+          if (noodle.id === action.noodleId) {
+            noodle.quantity = action.quantity
+          }
+          return noodle
+        })
       }
     case INCREASE_ITEM_QUANTITY:
       return {
@@ -209,11 +256,6 @@ export default function(state = defaultCart, action) {
           }
           return noodle
         })
-        // noodles: increaseItemQuantityUtil(
-        //   state.noodles,
-        //   action.noodle,
-        //   action.cart
-        // )
       }
     default:
       return state

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {
   removeFromCart,
   countChange,
-  decreasedItemQuantity,
+  decreaseItemQuantity,
   increaseItemQuantity
 } from '../../store/cart'
 
@@ -21,14 +21,14 @@ class CartItem extends React.Component {
       [event.target.name]: event.target.value
     })
     //thunk countchange
-    this.props.countChange(
-      event.target.value,
-      this.props.cart.id,
-      this.props.noodle.id
-    )
-    if (event.target.value == 0) {
-      this.props.removeFromCart(this.props.noodle, this.props.cart.id)
-    }
+    // this.props.countChange(
+    //   event.target.value,
+    //   this.props.cart.id,
+    //   this.props.noodle.id
+    // )
+    // if (event.target.value == 0) {
+    //   this.props.removeFromCart(this.props.noodle, this.props.cart.id)
+    // }
   }
 
   render() {
@@ -36,7 +36,7 @@ class CartItem extends React.Component {
       noodle,
       cart,
       removeFromCart,
-      decreasedItemQuantity,
+      decreaseItemQuantity,
       increaseItemQuantity
     } = this.props
     const {name, price, imageUrl, quantity} = noodle
@@ -55,7 +55,7 @@ class CartItem extends React.Component {
           <span className="quantity">
             <span
               className="arrow"
-              onClick={() => decreasedItemQuantity(noodle, cart)}
+              onClick={() => decreaseItemQuantity(noodle, cart)}
             >
               &#10094;
             </span>
@@ -92,8 +92,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   removeFromCart: (noodle, cartId) => dispatch(removeFromCart(noodle, cartId)),
-  decreasedItemQuantity: (noodle, cart) =>
-    dispatch(decreasedItemQuantity(noodle, cart)),
+  decreaseItemQuantity: (noodle, cart) =>
+    dispatch(decreaseItemQuantity(noodle, cart)),
   increaseItemQuantity: (noodle, cart) =>
     dispatch(increaseItemQuantity(noodle, cart))
 })

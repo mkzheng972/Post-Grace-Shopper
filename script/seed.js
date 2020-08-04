@@ -69,7 +69,7 @@ const dummyNoodles = [
     imageUrl:
       'https://res.cloudinary.com/hksqkdlah/image/upload/ar_1:1,c_fill,dpr_2.0,f_auto,fl_lossy.progressive.strip_profile,g_faces:auto,q_auto:low,w_344/SFS_CurriedChickenNoodleSoup-42_bqbizi',
     description: 'Chopped chicken with noodles, basil, carrot, lime, mushroom',
-    price: 1099,
+    price: 999,
     quantity: 1,
     isCustom: false,
     isVeggie: false
@@ -80,8 +80,8 @@ const dummyNoodles = [
     imageUrl:
       'https://heatherchristo.com/wp-content/uploads/2014/01/Spicy-Thai-Curry-Noodle-Soup1.jpg',
     description:
-      'Vegetables with spicy noodles, basil, bok choy, garlic, mushroom, choice of green or red pepper',
-    price: 1099,
+      'Vegetables with spicy noodles, basil, bok choy, garlic, mushroom, green or red pepper',
+    price: 999,
     quantity: 1,
     isCustom: false,
     isVeggie: true
@@ -93,7 +93,7 @@ const dummyNoodles = [
       'https://previews.123rf.com/images/bbtreesubmission/bbtreesubmission1902/bbtreesubmission190209644/117880688-korean-chinese-cuisine-jjambbong-spicy-seafood-noodle-soup-with-octopus-crab-and-shrimp.jpg',
     description:
       'Seafood mix with spicy noodles, shrimp, squid, calm, crab, and red pepper',
-    price: 1099,
+    price: 1199,
     quantity: 1,
     isCustom: false,
     isVeggie: false
@@ -103,7 +103,7 @@ const dummyNoodles = [
     noodleType: 'dry',
     imageUrl: '/images/spicyColdNoodles.jpg',
     description: 'Spicy cold noodles with peanut sauce and scallion',
-    price: 1099,
+    price: 999,
     quantity: 1,
     isCustom: false,
     isVeggie: true
@@ -140,6 +140,17 @@ const dummyNoodles = [
     quantity: 1,
     isCustom: false,
     isVeggie: true
+  },
+  {
+    name: 'Spicy Singapore Noodles',
+    noodleType: 'dry',
+    imageUrl: '/images/spicySingaporeNoodles.jpeg',
+    description:
+      'Spicy singapore rice noodles with tofu and various vegetables',
+    price: 1199,
+    quantity: 1,
+    isCustom: false,
+    isVeggie: false
   }
 ]
 

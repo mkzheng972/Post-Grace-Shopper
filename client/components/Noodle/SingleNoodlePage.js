@@ -13,6 +13,7 @@ export class SingleNoodle extends Component {
     }
     this.handleClick = this.handleClick.bind(this)
   }
+
   componentDidMount() {
     const id = this.props.match.params.noodleId
     this.props.getSingleNoodle(id)
@@ -28,7 +29,7 @@ export class SingleNoodle extends Component {
   }
 
   render() {
-    const {noodle, cart, user} = this.props
+    const {noodle, cart, user, addToCart} = this.props
     const {name, imageUrl, description, price, id} = noodle
     return (
       <div id="single-noodle" className="container center">
@@ -47,7 +48,7 @@ export class SingleNoodle extends Component {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => this.props.addToCart(this.props.noodle, cart)}
+                onClick={() => addToCart(noodle, cart)}
               >
                 Add To Cart
               </button>

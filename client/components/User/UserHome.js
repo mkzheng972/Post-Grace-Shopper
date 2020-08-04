@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {getCart} from '../../store/cart'
 
 /**
  * COMPONENT
@@ -35,11 +34,7 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = dispatch => ({
-  getCart: id => dispatch(getCart(id))
-})
-
-export default connect(mapState, mapDispatch)(UserHome)
+export default connect(mapState)(UserHome)
 
 /**
  * PROP TYPES

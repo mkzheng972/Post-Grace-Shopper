@@ -4,20 +4,17 @@ import CartColumns from './CartColumns'
 import CartList from './CartList'
 import Checkout from './Checkout'
 import {Link} from 'react-router-dom'
-import {getCart} from '../../store/cart'
 
 export class Cart extends Component {
   render() {
     const {cart, user} = this.props
     const {noodles} = cart
-    console.log(noodles)
-    let total = 0
-    // const total = noodles
-    //   ? noodles.reduce(
-    //       (accum, noodle) => accum + noodle.price * noodle.quantity,
-    //       0
-    //     )
-    //   : 0
+    const total = noodles
+      ? noodles.reduce(
+          (accum, noodle) => accum + noodle.price * noodle.quantity,
+          0
+        )
+      : 0
     return (
       <div id="cart">
         {noodles.length ? (
@@ -40,7 +37,7 @@ export class Cart extends Component {
             </div>
           </div>
         ) : (
-          <h1>Your Cart is Currently empty</h1>
+          <h1>Your cart is currently empty</h1>
         )}
       </div>
     )

@@ -1,11 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export const SingleNoodleItem = ({noodle, user, deleteNoodle}) => {
+const SingleNoodleItem = ({noodle, user, deleteNoodle, addToCart, cart}) => {
   return (
     <div
       className="card text-center"
-      style={{width: '20rem', height: '30rem', margin: '10px'}}
+      style={{width: '20rem', height: '30rem', margin: '30px'}}
       key={noodle.id}
     >
       <Link to={`/noodles/${noodle.id}`}>
@@ -22,7 +22,7 @@ export const SingleNoodleItem = ({noodle, user, deleteNoodle}) => {
         >
           <h4 className="card-title">{noodle.name}</h4>
         </Link>
-        <div className="noodle-type-price">
+        <div className="itemtype-price">
           <span className="card-text">
             {noodle.noodleType.charAt(0).toUpperCase() +
               noodle.noodleType.slice(1)}
@@ -30,6 +30,9 @@ export const SingleNoodleItem = ({noodle, user, deleteNoodle}) => {
           <span className="card-text">${noodle.price / 100}</span>
         </div>
         <p className="card-text">{noodle.description}</p>
+      </div>
+      <div className="add-to-cart" onClick={() => addToCart(noodle, cart)}>
+        Add To Cart
       </div>
       {user.isAdmin ? (
         <div display="card text-center">
@@ -45,3 +48,5 @@ export const SingleNoodleItem = ({noodle, user, deleteNoodle}) => {
     </div>
   )
 }
+
+export default SingleNoodleItem
