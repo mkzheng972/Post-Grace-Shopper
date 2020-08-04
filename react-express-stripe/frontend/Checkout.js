@@ -7,18 +7,19 @@ import Swal from 'sweetalert2'
 
 const CURRENCY = 'EUR'
 const fromEuroToCent = amount => amount * 100
-const successPayment = (checkout, cart) => {
-  checkout(cart)
-  Swal.fire({
-    icon: 'success',
-    title: 'Order Confirmation',
-    text: 'Thank you for ordering!'
-  })
+const successPayment = (checkout, cart, handleCheckout) => {
+  handleCheckout()
 }
 const errorPayment = data => {
   alert('Payment Error')
 }
-const onToken = (amount, description, cart, checkout) => token =>
+const onToken = (
+  amount,
+  description,
+  cart,
+  checkout,
+  handleCheckout
+) => token =>
   axios
     .post(PAYMENT_SERVER_URL, {
       description,
@@ -26,14 +27,21 @@ const onToken = (amount, description, cart, checkout) => token =>
       currency: CURRENCY,
       amount: fromEuroToCent(amount)
     })
-    .then(successPayment(checkout, cart))
+    .then(successPayment(checkout, cart, handleCheckout))
     .catch(errorPayment)
-const Checkout = ({name, description, amount, cart, checkout}) => (
+const Checkout = ({
+  name,
+  description,
+  amount,
+  cart,
+  checkout,
+  handleCheckout
+}) => (
   <StripeCheckout
     name={name}
     description={description}
     amount={fromEuroToCent(amount)}
-    token={onToken(amount, description, cart, checkout)}
+    token={onToken(amount, description, cart, checkout, handleCheckout)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
   />

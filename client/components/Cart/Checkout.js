@@ -6,11 +6,11 @@ import Swal from 'sweetalert2'
 
 function Checkout(props) {
   const {cart, checkout} = props
-  const handleClick = () => {
+  const handleCheckout = () => {
     checkout(cart)
     Swal.fire({
       icon: 'success',
-      title: 'Order Confirmation',
+      title: `Order Confirmation #${cart.id}`,
       text: 'Thank you for ordering!'
     })
   }
@@ -19,14 +19,14 @@ function Checkout(props) {
       <button
         type="button"
         className="btn btn-primary"
-        onClick={() => handleClick()}
+        onClick={() => handleCheckout()}
       >
         Pay with Cash
       </button>
       <Checkouts
         cart={props.cart}
         checkout={props.checkout}
-        handleClick={handleClick}
+        handleCheckout={handleCheckout}
       />
     </div>
   )
