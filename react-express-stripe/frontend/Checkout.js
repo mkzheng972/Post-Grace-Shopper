@@ -3,13 +3,17 @@ import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import STRIPE_PUBLISHABLE from './constants/stripe'
 import PAYMENT_SERVER_URL from './constants/server'
+import Swal from 'sweetalert2'
 
 const CURRENCY = 'EUR'
 const fromEuroToCent = amount => amount * 100
 const successPayment = (checkout, cart) => {
-  alert('Payment Successful')
-  console.log(cart)
   checkout(cart)
+  Swal.fire({
+    icon: 'success',
+    title: 'Order Confirmation',
+    text: 'Thank you for ordering!'
+  })
 }
 const errorPayment = data => {
   alert('Payment Error')

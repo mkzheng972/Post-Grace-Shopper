@@ -65,7 +65,8 @@
     "redux-thunk": "^2.3.0",
     "sequelize": "^5.15.1",
     "socket.io": "^2.2.0",
-    "stripe": "^8.28.1"
+    "stripe": "^8.28.1",
+    "sweetalert2": "^9.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
