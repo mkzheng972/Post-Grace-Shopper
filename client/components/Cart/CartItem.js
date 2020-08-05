@@ -20,15 +20,6 @@ class CartItem extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    //thunk countchange
-    // this.props.countChange(
-    //   event.target.value,
-    //   this.props.cart.id,
-    //   this.props.noodle.id
-    // )
-    // if (event.target.value == 0) {
-    //   this.props.removeFromCart(this.props.noodle, this.props.cart.id)
-    // }
   }
 
   render() {

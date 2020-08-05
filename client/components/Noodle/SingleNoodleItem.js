@@ -11,7 +11,7 @@ const SingleNoodleItem = ({noodle, user, deleteNoodle, addToCart, cart}) => {
       <Link to={`/noodles/${noodle.id}`}>
         <img
           className="card-img-top img-fluid"
-          style={{height: '300px'}}
+          style={{height: '280px'}}
           src={noodle.imageUrl}
         />
       </Link>

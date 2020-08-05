@@ -41,7 +41,6 @@ passport.deserializeUser(async (id, done) => {
 })
 
 const createApp = () => {
-  console.log('44', PORT)
   // logging middleware
   app.use(morgan('dev'))
 
