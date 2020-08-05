@@ -10,6 +10,7 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const favicon = require('serve-favicon')
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -67,8 +68,14 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
+  app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')))
+
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
+
+  app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+  })
 
   // any remaining requests with an extension(.js, .css, etc.) send 404
   app.use((req, res, next) => {
