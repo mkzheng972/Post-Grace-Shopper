@@ -200,9 +200,7 @@ const db = require('../server/db')
 const {User, Order, Noodle, Ingredient} = require('../server/db/models')
 
 async function seed() {
-  console.log('running under seed pre')
   await db.sync({force: true})
-  console.log('running under seed post')
   console.log('db synced!')
 
   const users = await Promise.all(
@@ -253,7 +251,6 @@ async function seed() {
 async function runSeed() {
   console.log('seeding...')
   try {
-    console.log('in the try')
     await seed()
   } catch (err) {
     console.error(err)
