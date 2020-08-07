@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom'
 const SingleNoodleItem = ({noodle, user, deleteNoodle, addToCart, cart}) => {
   return (
     <div
-      className="card text-center"
-      style={{width: '20rem', height: '30rem', padding: '20px'}}
+      className="card text-center single-noodle-item-box"
+      style={{width: '20rem', height: '30rem'}}
       key={noodle.id}
     >
       <Link to={`/noodles/${noodle.id}`}>
