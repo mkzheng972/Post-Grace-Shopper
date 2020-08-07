@@ -68,14 +68,8 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
-  app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')))
-
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
-
-  app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
-  })
 
   // any remaining requests with an extension(.js, .css, etc.) send 404
   app.use((req, res, next) => {
