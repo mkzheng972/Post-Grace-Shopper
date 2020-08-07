@@ -157,6 +157,7 @@ form div {
   justify-content: flex-end;
   margin-top: 20px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .itemtype-price {

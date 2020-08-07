@@ -5,7 +5,7 @@ const SingleNoodleItem = ({noodle, user, deleteNoodle, addToCart, cart}) => {
   return (
     <div
       className="card text-center"
-      style={{width: '20rem', height: '30rem', margin: '30px'}}
+      style={{width: '20rem', height: '30rem', padding: '20px'}}
       key={noodle.id}
     >
       <Link to={`/noodles/${noodle.id}`}>
@@ -30,9 +30,9 @@ const SingleNoodleItem = ({noodle, user, deleteNoodle, addToCart, cart}) => {
           <span className="card-text">${noodle.price / 100}</span>
         </div>
         <p className="card-text">{noodle.description}</p>
-      </div>
-      <div className="add-to-cart" onClick={() => addToCart(noodle, cart)}>
-        Add To Cart
+        <div className="add-to-cart" onClick={() => addToCart(noodle, cart)}>
+          Add To Cart
+        </div>
       </div>
       {user.isAdmin ? (
         <div display="card text-center">

@@ -80,7 +80,7 @@ const dummyNoodles = [
     imageUrl:
       'https://heatherchristo.com/wp-content/uploads/2014/01/Spicy-Thai-Curry-Noodle-Soup1.jpg',
     description:
-      'Vegetables with spicy noodles, basil, bok choy, garlic, mushroom, green or red pepper',
+      'Vegetables with spicy noodles, basil, bok choy, mushroom, green or red pepper',
     price: 999,
     quantity: 1,
     isCustom: false,

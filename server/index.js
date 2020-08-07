@@ -97,7 +97,7 @@ const createApp = () => {
 
 const startListening = () => {
   // start listening (and create a 'server' object representing our server)
-  const server = app.listen(PORT, () =>
+  const server = app.listen(process.env.PORT || 8080, () =>
     console.log(`Mixing it up on port ${PORT}`)
   )
 
@@ -110,9 +110,13 @@ const syncDb = () => db.sync()
 
 async function bootApp() {
   await sessionStore.sync()
+  console.log('hit after sessionStore sync')
   await syncDb()
+  console.log('hit after syncDb')
   await createApp()
+  console.log('hit after createApp')
   await startListening()
+  console.log('hit after startListening')
 }
 // This evaluates as true when this file is run directly from the command line,
 // i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)
