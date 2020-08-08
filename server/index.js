@@ -10,7 +10,6 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
-const favicon = require('serve-favicon')
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -110,13 +109,9 @@ const syncDb = () => db.sync()
 
 async function bootApp() {
   await sessionStore.sync()
-  console.log('hit after sessionStore sync')
   await syncDb()
-  console.log('hit after syncDb')
   await createApp()
-  console.log('hit after createApp')
   await startListening()
-  console.log('hit after startListening')
 }
 // This evaluates as true when this file is run directly from the command line,
 // i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)

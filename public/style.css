@@ -155,6 +155,7 @@ form div {
 .single-noodle-item-box {
   box-sizing: content-box;
 }
+
 .add-to-cart {
   display: flex;
   justify-content: flex-end;
