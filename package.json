@@ -65,7 +65,7 @@
     "redux-thunk": "^2.3.0",
     "sequelize": "^5.22.3",
     "serve-favicon": "^2.5.0",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "stripe": "^8.82.0",
     "sweetalert2": "^9.17.1"
   },
